@@ -25,11 +25,16 @@
 #define DISPLAY_CMD_MIN_POS		DISPLAY_CMD_VAL_POS + 1
 #define DISPLAY_CMD_MAX_POS		DISPLAY_CMD_MIN_POS + 1
 
-#define BUTTON_CMD_BNUM_POS		COMMAND_BUSID_POS + 1
+#define BUTTON_CMD_DATA_POS		COMMAND_BUSID_POS + 1
+
+#define UP_BUTTON				KBI_NUM_PIN0
+#define DOWN_BUTTON				KBI_NUM_PIN1
+#define ACK_BUTTON				KBI_NUM_PIN2
 
 void processFrame(FramePtrType, FrameCntType);
-void init(FramePtrType, FrameCntType);
-void clear(FramePtrType, FrameCntType);
-void display(FramePtrType, FrameCntType);
+void initDisplay(void);
+void clearDisplay(void);
+void setValues(FramePtrType, FrameCntType);
+void displayCurrentValue(void);
 
 #endif /* COMMANDS_H_ */

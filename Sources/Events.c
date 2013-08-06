@@ -46,6 +46,9 @@
  **     Returns     : Nothing
  ** ===================================================================
  */
+extern uint8_t gCurValue;
+extern uint8_t gMinValue;
+extern uint8_t gMaxValue;
 void KBI_OnInterrupt(void) {
 
 	uint8_t commandBytes[] = { BUTTON_COMMAND, MYBUSID, 0x00 };
@@ -56,19 +59,40 @@ void KBI_OnInterrupt(void) {
 
 	while ((buttonNum == 0) && (loops++ < 50000)) {
 		kbiVal = KBI_GetVal();
-		if (kbiVal & KBI_NUM_PIN0) {
+		if ((kbiVal & UP_BUTTON) == 0) {
 			buttonNum = 1;
-		} else if (kbiVal & KBI_NUM_PIN1) {
+			if (gCurValue < gMaxValue) {
+				gCurValue++;
+				displayCurrentValue();
+			}
+		} else if ((kbiVal & DOWN_BUTTON) == 0) {
 			buttonNum = 2;
-		} else if (kbiVal & KBI_NUM_PIN2) {
+			if (gCurValue > gMinValue) {
+				gCurValue--;
+				displayCurrentValue();
+			}
+		} else if ((kbiVal & ACK_BUTTON) == 0) {
 			buttonNum = 3;
-		}
-	}
-
-	if (buttonNum != 0) {
-		commandBytes[BUTTON_CMD_BNUM_POS];
-		for (pos = 0; pos < 4; ++pos) {
-			ASYNC_SendChar(commandBytes[pos]);
+			commandBytes[BUTTON_CMD_DATA_POS] = gCurValue;
+			// Turn on the RS485 driver.
+			RS485_DRV_PutVal(1);
+			for (pos = 0; pos <= 3; ++pos) {
+				// Wait while the TX buffer is full.
+				while (SCIS1_TDRE == 0) {
+					
+				}
+				ASYNC_SendChar(commandBytes[pos]);
+			}
+			// Wait while the TX buffer is full.
+			while (SCIS1_TDRE == 0) {
+				
+			}
+			// The last TX character takes a few ms to transmit through.
+			Cpu_Delay100US(15);
+			
+			// Turn off the 485 driver.
+			RS485_DRV_PutVal(0);
+			clearDisplay();
 		}
 	}
 }
