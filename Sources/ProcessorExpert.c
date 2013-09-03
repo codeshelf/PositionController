@@ -13,6 +13,7 @@
 #include "ASYNC.h"
 #include "IIC.h"
 #include "RS485_DRV.h"
+#include "DISPLAY_RESET.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"

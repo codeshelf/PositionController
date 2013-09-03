@@ -38,6 +38,7 @@
 #include "ASYNC.h"
 #include "IIC.h"
 #include "RS485_DRV.h"
+#include "DISPLAY_RESET.h"
 
 
 /*
