@@ -39,6 +39,7 @@
 #include "IIC.h"
 #include "RS485_DRV.h"
 #include "DISPLAY_RESET.h"
+#include "DebounceTimer.h"
 
 
 /*
@@ -184,6 +185,22 @@ void KBI_OnInterrupt(void);
 **         the data successfully. This event is not available for the
 **         SLAVE mode and if both SendChar and SendBlock are disabled.
 **         This event is enabled only if interrupts/events are enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void DebounceTimer_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  DebounceTimer_OnInterrupt (module Events)
+**
+**     Component   :  DebounceTimer [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================
