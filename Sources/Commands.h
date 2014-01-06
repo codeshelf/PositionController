@@ -27,9 +27,9 @@
 
 #define BUTTON_CMD_DATA_POS		COMMAND_BUSID_POS + 1
 
-#define UP_BUTTON				KBI_NUM_PIN0
+#define ACK_BUTTON				KBI_NUM_PIN0
 #define DOWN_BUTTON				KBI_NUM_PIN1
-#define ACK_BUTTON				KBI_NUM_PIN2
+#define UP_BUTTON				KBI_NUM_PIN2
 
 void processFrame(FramePtrType, FrameCntType);
 void initDisplay(void);
