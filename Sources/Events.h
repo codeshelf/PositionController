@@ -40,6 +40,8 @@
 #include "RS485_DRV.h"
 #include "DISPLAY_RESET.h"
 #include "DebounceTimer.h"
+#include "Flash.h"
+#include "ConfigModeWait.h"
 
 
 /*
@@ -196,6 +198,22 @@ void DebounceTimer_OnInterrupt(void);
 **     Event       :  DebounceTimer_OnInterrupt (module Events)
 **
 **     Component   :  DebounceTimer [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void ConfigModeWait_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  ConfigModeWait_OnInterrupt (module Events)
+**
+**     Component   :  ConfigModeWait [TimerInt]
 **     Description :
 **         When a timer interrupt occurs this event is called (only
 **         when the component is enabled - <Enable> and the events are

@@ -9,10 +9,11 @@
 
 #include "Commands.h"
 #include <string.h>
+#include <Flash.h>
 
 uint8_t gMessageBuffer[MAX_FRAME_BYTES];
-uint16_t gRightDigitBits[] = { 0x6aa6, 0x6556, 0x69a9, 0x696a, 0x665a, 0x5a6a, 0x5aaa, 0x6956, 0x6aaa, 0x6a5a };
-uint16_t gLeftDigitBits[] = { 0x5555, 0x5995, 0xa5a9, 0x69a9, 0x599a, 0x696a, 0xa96a, 0x59a5, 0xa9aa, 0x59aa };
+uint32_t gRightDigitBits[] = { 0x01000010, 0x51000015, 0x41000040, 0x41000001, 0x11000005, 0x05000001, 0x05000000, 0x41000015, 0x01000000, 0x01000001 };
+uint32_t gLeftDigitBits[] =  { 0x00104000, 0x00544500, 0x00405000, 0x00404100, 0x00044500, 0x00014100, 0x00014000, 0x00504500, 0x00004000, 0x00004500 };
 uint8_t gCurValue = 0;
 uint8_t gMinValue = 0;
 uint8_t gMaxValue = 0;
@@ -20,21 +21,25 @@ uint8_t gMaxValue = 0;
 // --------------------------------------------------------------------------
 
 void processFrame(FramePtrType framePtr, FrameCntType frameByteCount) {
+	
+	uint8_t myBusId = 0x0;
+	if (Flash_GetByteFlash(0x0, &myBusId) == ERR_OK) {
 
-	// Dispatch the command if the bus ID is zero or matches our bus ID.
-	if ((MYBUSID == framePtr[COMMAND_BUSID_POS]) || (0 == framePtr[COMMAND_BUSID_POS])) {
-		switch (framePtr[COMMANDID_POS]) {
-			case INIT_COMMAND:
-				initDisplay();
-				break;
-			case CLEAR_COMMAND:
-				clearDisplay();
-				break;
-			case DISPLAY_COMMAND:
-				setValues(framePtr, frameByteCount);
-				break;
-			default:
-				break;
+		// Dispatch the command if the bus ID is zero or matches our bus ID.
+		if ((myBusId == framePtr[COMMAND_BUSID_POS]) || (0 == framePtr[COMMAND_BUSID_POS])) {
+			switch (framePtr[COMMANDID_POS]) {
+				case INIT_COMMAND:
+					initDisplay();
+					break;
+				case CLEAR_COMMAND:
+					clearDisplay();
+					break;
+				case DISPLAY_COMMAND:
+					setValues(framePtr, frameByteCount);
+					break;
+				default:
+					break;
+			}
 		}
 	}
 }
@@ -51,10 +56,20 @@ void initDisplay() {
 	static uint8_t displayInitBytes[] = { 0x12, 0x00, 0xb8, 0x00, 0xb8, 0x55, 0x55, 0x55, 0x55 };
 	static uint16_t bytesSent = 0;
 	uint8_t error;
+	uint8_t i;
+	uint8_t j;
 
 //	error = I2C_SelectSlave(0xC0);
 //	error = I2C_SendBlock(displayInitBytes, 10, &bytesSent);
 	I2CM_Write_Bytes(0x60, 9, displayInitBytes);
+	
+	for (j = 0; j <= 10; j++) {
+		for (i = 0; i <= 99; i++) {
+			gCurValue = i;
+			displayCurrentValue();
+			Cpu_Delay100US(1 * 1000);
+		}
+	}
 }
 
 // --------------------------------------------------------------------------
@@ -84,14 +99,17 @@ void clearDisplay() {
  */
 void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 
-	if (MYBUSID == framePtr[COMMAND_BUSID_POS]) {
-		gCurValue = framePtr[DISPLAY_CMD_VAL_POS];
-		gMinValue = framePtr[DISPLAY_CMD_MIN_POS];
-		gMaxValue = framePtr[DISPLAY_CMD_MAX_POS];
+	uint8_t myBusId = 0x0;
+	if (Flash_GetByteFlash(0x0, &myBusId) == ERR_OK) {
 
-		displayCurrentValue();
-	}
-}
+		if (myBusId == framePtr[COMMAND_BUSID_POS]) {
+			gCurValue = framePtr[DISPLAY_CMD_VAL_POS];
+			gMinValue = framePtr[DISPLAY_CMD_MIN_POS];
+			gMaxValue = framePtr[DISPLAY_CMD_MAX_POS];
+
+			displayCurrentValue();
+		}
+	}}
 
 // --------------------------------------------------------------------------
 
@@ -102,13 +120,23 @@ void displayCurrentValue() {
 	uint8_t tens;
 	uint8_t ones;
 	uint8_t error;
-
+	uint8_t i;
+	uint8_t value;
+	uint8_t *ptr;
+	
 	tens = gCurValue / 10;
 	ones = gCurValue % 10;
 
-	memcpy2(&displayBytes[1], &gLeftDigitBits[tens], 2);
-	memcpy2(&displayBytes[3], &gRightDigitBits[ones], 2);
-
+	displayBytes[1] = *(((uint8_t*) &gRightDigitBits[ones]) + 0);
+	if (tens > 0) {
+		displayBytes[2] = *(((uint8_t*) &gLeftDigitBits[tens]) + 1);
+		displayBytes[3] = *(((uint8_t*) &gLeftDigitBits[tens]) + 2);
+	} else {
+		displayBytes[2] = 0x55;
+		displayBytes[3] = 0x55;
+	}
+	displayBytes[4] = *(((uint8_t*) &gRightDigitBits[ones]) + 3);
+	             
 //		error = I2C_SelectSlave(0xC0);
 //		error = I2C_SendBlock(displayBytes, 5, &bytesSent);
 	I2CM_Write_Bytes(0x60, 5, displayBytes);

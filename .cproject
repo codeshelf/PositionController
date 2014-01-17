@@ -46,7 +46,6 @@
 							<tool id="hcs08.toolchain.compiler.243988202" name="HCS08 Compiler" superClass="hcs08.toolchain.compiler">
 								<option id="hc08.toolchain.compiler.base.preprocessor.defines.1327330995" name="Define preprocessor macros (-D)" superClass="hc08.toolchain.compiler.base.preprocessor.defines" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__NO_FLOAT__"/>
-									<listOptionValue builtIn="false" value="MYBUSID=0x01"/>
 								</option>
 								<option id="hsc08.toolchain.compiler.base.input.i.1538811111" name="Include File Path (-I)" superClass="hsc08.toolchain.compiler.base.input.i" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Project_Headers&quot;"/>

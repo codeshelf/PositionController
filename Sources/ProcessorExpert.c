@@ -15,6 +15,8 @@
 #include "RS485_DRV.h"
 #include "DISPLAY_RESET.h"
 #include "DebounceTimer.h"
+#include "Flash.h"
+#include "ConfigModeWait.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
