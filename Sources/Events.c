@@ -49,11 +49,13 @@
 extern uint8_t gCurValue;
 extern uint8_t gMinValue;
 extern uint8_t gMaxValue;
+extern uint8_t POSITION_NUM;
+
 bool gKbReady = TRUE;
 void KBI_OnInterrupt(void) {
 
 	uint8_t myBusId = 0x0;
-	if (Flash_GetByteFlash(0x0, &myBusId) == ERR_OK) {
+	if (Flash_GetByteFlash((unsigned int) (&POSITION_NUM), &myBusId) == ERR_OK) {
 
 		uint8_t commandBytes[] = { BUTTON_COMMAND, 0x00, 0x00 };
 		uint32_t loops = 0;
@@ -66,17 +68,21 @@ void KBI_OnInterrupt(void) {
 		if (gKbReady) {
 			while ((buttonNum == 0) && (loops++ < 50000)) {
 				kbiVal = KBI_GetVal();
-				if ((kbiVal & UP_BUTTON) == 0) {
+				if ((kbiVal & UP_BUTTON == 0) || (kbiVal & DOWN_BUTTON == 0) || (kbiVal & ACK_BUTTON == 0)) {
+					// All three buttons are down.
+					gKbReady = FALSE;
+					ConfigModeWait_Enable();
+				} else if ((kbiVal & UP_BUTTON) == 0) {
 					buttonNum = 1;
 					if (gCurValue < gMaxValue) {
 						gCurValue++;
-						displayCurrentValue();
+						displayValue(gCurValue);
 					}
 				} else if ((kbiVal & DOWN_BUTTON) == 0) {
 					buttonNum = 2;
 					if (gCurValue > gMinValue) {
 						gCurValue--;
-						displayCurrentValue();
+						displayValue(gCurValue);
 					}
 				} else if ((kbiVal & ACK_BUTTON) == 0) {
 					buttonNum = 3;
@@ -146,7 +152,18 @@ void DebounceTimer_OnInterrupt(void) {
 void ConfigModeWait_OnInterrupt(void)
 {
   /* Write your code here ... */
+	uint8_t kbiVal = 0;
+	uint8_t myBusId = 0x0;
 
+	gKbReady = TRUE;
+	ConfigModeWait_Disable();
+	
+	kbiVal = KBI_GetVal();
+	if ((kbiVal & UP_BUTTON == 0) || (kbiVal & DOWN_BUTTON == 0) || (kbiVal & ACK_BUTTON == 0)) {
+		if (Flash_GetByteFlash((unsigned int) (&POSITION_NUM), &myBusId) == ERR_OK) {
+			displayValueBlink(myBusId);
+		}
+	}
 }
 
 /* END Events */

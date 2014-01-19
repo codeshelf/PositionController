@@ -31,10 +31,13 @@
 #define DOWN_BUTTON				KBI_NUM_PIN1
 #define UP_BUTTON				KBI_NUM_PIN2
 
+#define I2C_DELAY_40MS 			400
+
 void processFrame(FramePtrType, FrameCntType);
 void initDisplay(void);
 void clearDisplay(void);
 void setValues(FramePtrType, FrameCntType);
-void displayCurrentValue(void);
+void displayValue(uint8_t currentValue);
+void displayValueBlink(uint8_t currentValue);
 
 #endif /* COMMANDS_H_ */
