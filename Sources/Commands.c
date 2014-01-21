@@ -11,14 +11,16 @@
 #include <string.h>
 #include <Flash.h>
 
-const uint8_t POSITION_NUM = 0x00;
-
 const uint32_t kRightDigitDimBits[] = { 0xfd0000df, 0x5d0000d5, 0x7d00007f, 0x7d0000fd, 0xdd0000f5, 0xf50000fd, 0xf50000ff, 0x7d0000d5, 0xfd0000ff, 0xfd0000fd };
 const uint32_t kLeftDigitDimBits[] =  { 0x00df7f00, 0x00577500, 0x007f5f00, 0x007f7d00, 0x00f77500, 0x00fd7d00, 0x00fd7f00, 0x005f7500, 0x00ff7f00, 0x00ff7d00 };
 
 const uint32_t kRightDigitBlinkBits[] = { 0xa900009a, 0x59000095, 0x6900006a, 0x690000a9, 0x990000a5, 0xa50000a9, 0xa50000aa, 0x69000095, 0xa90000aa, 0xa90000a9 };
 const uint32_t kLeftDigitBlinkBits[] =  { 0x009a6a00, 0x00566500, 0x006a5a00, 0x006a6900, 0x00a66500, 0x00a96900, 0x00a96a00, 0x005a6500, 0x00aa6a00, 0x00aa6900 };
 
+// This value is set in flash, but it gets overwritten by the user config mode.
+const POSITION_NUM = UNSET_POSNUM;
+
+EDeviceState gDeviceState = eInactive;
 uint8_t gMessageBuffer[MAX_FRAME_BYTES];
 uint8_t gCurValue = 0;
 uint8_t gMinValue = 0;
@@ -32,15 +34,18 @@ void processFrame(FramePtrType framePtr, FrameCntType frameByteCount) {
 	if (Flash_GetByteFlash((unsigned int) (&POSITION_NUM), &myBusId) == ERR_OK) {
 
 		// Dispatch the command if the bus ID is zero or matches our bus ID.
-		if ((myBusId == framePtr[COMMAND_BUSID_POS]) || (0 == framePtr[COMMAND_BUSID_POS])) {
+		if ((myBusId == framePtr[COMMAND_BUSID_POS]) || (BROADCAST_POSNUM == framePtr[COMMAND_BUSID_POS])) {
 			switch (framePtr[COMMANDID_POS]) {
 				case INIT_COMMAND:
+					gDeviceState = eInactive;
 					initDisplay();
 					break;
 				case CLEAR_COMMAND:
+					gDeviceState = eInactive;
 					clearDisplay();
 					break;
 				case DISPLAY_COMMAND:
+					gDeviceState = eActive;
 					setValues(framePtr, frameByteCount);
 					break;
 				default:

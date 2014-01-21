@@ -33,6 +33,9 @@
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
+void HandleKeypress(void);
+void HandleSendAckCommand(void);
+void HandleFlashNewPositionNumber(void);
 /*
  ** ===================================================================
  **     Event       :  KBI_OnInterrupt (module Events)
@@ -49,70 +52,89 @@
 extern uint8_t gCurValue;
 extern uint8_t gMinValue;
 extern uint8_t gMaxValue;
-extern uint8_t POSITION_NUM;
+extern uint8_t gPOSITION_NUM;
+extern EDeviceState gDeviceState;
 
-bool gKbReady = TRUE;
 void KBI_OnInterrupt(void) {
 
-	uint8_t myBusId = 0x0;
-	if (Flash_GetByteFlash((unsigned int) (&POSITION_NUM), &myBusId) == ERR_OK) {
+	// A key's been pressed, so now wait until the debounce time or config time to see what state the keys are in.
+	DebounceTimer_Enable();
+	ConfigModeWait_Enable();
+}
 
-		uint8_t commandBytes[] = { BUTTON_COMMAND, 0x00, 0x00 };
-		uint32_t loops = 0;
-		uint8_t buttonNum = 0;
-		uint8_t pos;
-		uint8_t kbiVal = 0;
-		
-		commandBytes[1] = myBusId;
+/*
+ * After a debounce we finally handle a keypress.
+ */
+void HandleKeypress() {
 
-		if (gKbReady) {
-			while ((buttonNum == 0) && (loops++ < 50000)) {
-				kbiVal = KBI_GetVal();
-				if ((kbiVal & UP_BUTTON == 0) || (kbiVal & DOWN_BUTTON == 0) || (kbiVal & ACK_BUTTON == 0)) {
-					// All three buttons are down.
-					gKbReady = FALSE;
-					ConfigModeWait_Enable();
-				} else if ((kbiVal & UP_BUTTON) == 0) {
-					buttonNum = 1;
-					if (gCurValue < gMaxValue) {
-						gCurValue++;
-						displayValue(gCurValue);
-					}
-				} else if ((kbiVal & DOWN_BUTTON) == 0) {
-					buttonNum = 2;
-					if (gCurValue > gMinValue) {
-						gCurValue--;
-						displayValue(gCurValue);
-					}
-				} else if ((kbiVal & ACK_BUTTON) == 0) {
-					buttonNum = 3;
-					commandBytes[BUTTON_CMD_DATA_POS] = gCurValue;
-					// Turn on the RS485 driver.
-					RS485_DRV_PutVal(1);
-					for (pos = 0; pos <= 3; ++pos) {
-						// Wait while the TX buffer is full.
-						while (SCIS1_TDRE == 0) {
+	uint8_t kbiVal = 0;
 
-						}
-						ASYNC_SendChar(commandBytes[pos]);
-					}
-					// Wait while the TX buffer is full.
-					while (SCIS1_TDRE == 0) {
-
-					}
-					// The last TX character takes a few ms to transmit through.
-					Cpu_Delay100US(15);
-
-					// Turn off the 485 driver.
-					RS485_DRV_PutVal(0);
-					clearDisplay();
+	// Only handle keypresses when in active or config modes.
+	if (gDeviceState != eInactive) {
+		if (((kbiVal & UP_BUTTON) == 0)) {
+			if (gCurValue < gMaxValue) {
+				gCurValue++;
+				if (gDeviceState == eActive) {
+					displayValue(gCurValue);
+				} else {
+					displayValueBlink(gCurValue);
 				}
 			}
-			if (buttonNum != 0) {
-				gKbReady = FALSE;
-				DebounceTimer_Enable();
+		} else if (((kbiVal & DOWN_BUTTON) == 0) && (gDeviceState != eInactive)) {
+			if (gCurValue > gMinValue) {
+				gCurValue--;
+				if (gDeviceState == eActive) {
+					displayValue(gCurValue);
+				} else {
+					displayValueBlink(gCurValue);
+				}
 			}
-		}}
+		} else if ((kbiVal & ACK_BUTTON) == 0) {
+			if (gDeviceState == eActive) {
+				HandleSendAckCommand();
+			} else {
+				HandleFlashNewPositionNumber();
+			}
+		}
+	}
+}
+
+/*
+ * 
+ */
+void HandleSendAckCommand() {
+	uint8_t commandBytes[] = { BUTTON_COMMAND, 0x00, 0x00 };
+	uint8_t pos;
+
+	commandBytes[1] = gPOSITION_NUM;
+
+	commandBytes[BUTTON_CMD_DATA_POS] = gCurValue;
+	// Turn on the RS485 driver.
+	RS485_DRV_PutVal(1);
+	for (pos = 0; pos <= 3; ++pos) {
+		// Wait while the TX buffer is full.
+		while (SCIS1_TDRE == 0) {
+
+		}
+		ASYNC_SendChar(commandBytes[pos]);
+	}
+	// Wait while the TX buffer is full.
+	while (SCIS1_TDRE == 0) {
+
+	}
+	// The last TX character takes a few ms to transmit through.
+	Cpu_Delay100US(20);
+
+	// Turn off the 485 driver.
+	RS485_DRV_PutVal(0);
+	clearDisplay();
+}
+
+/*
+ * 
+ */
+void HandleFlashNewPositionNumber() {
+	
 }
 
 /*
@@ -130,8 +152,13 @@ void KBI_OnInterrupt(void) {
  ** ===================================================================
  */
 void DebounceTimer_OnInterrupt(void) {
-	/* Write your code here ... */
-	gKbReady = TRUE;
+	
+	uint8_t kbiVal = KBI_GetVal();
+
+	if (((kbiVal & UP_BUTTON == 0) + (kbiVal & DOWN_BUTTON == 0) + (kbiVal & ACK_BUTTON == 0)) == 1) {
+		// Only process when exactly one key is down.
+		HandleKeypress();
+	}
 	DebounceTimer_Disable();
 }
 
@@ -149,21 +176,21 @@ void DebounceTimer_OnInterrupt(void) {
 **     Returns     : Nothing
 ** ===================================================================
 */
-void ConfigModeWait_OnInterrupt(void)
-{
-  /* Write your code here ... */
-	uint8_t kbiVal = 0;
-	uint8_t myBusId = 0x0;
-
-	gKbReady = TRUE;
-	ConfigModeWait_Disable();
+void ConfigModeWait_OnInterrupt(void) {
 	
-	kbiVal = KBI_GetVal();
-	if ((kbiVal & UP_BUTTON == 0) || (kbiVal & DOWN_BUTTON == 0) || (kbiVal & ACK_BUTTON == 0)) {
-		if (Flash_GetByteFlash((unsigned int) (&POSITION_NUM), &myBusId) == ERR_OK) {
-			displayValueBlink(myBusId);
+	uint8_t kbiVal = KBI_GetVal();
+
+	if (((kbiVal & UP_BUTTON) == 0) && ((kbiVal & DOWN_BUTTON) == 0) && ((kbiVal & ACK_BUTTON) == 0)) {
+		// All three buttons are down.
+		gDeviceState = eConfigMode;
+		if (gPOSITION_NUM == UNSET_POSNUM) {
+			gCurValue = 0x01;
+		} else {
+			gCurValue = gPOSITION_NUM;
 		}
+		displayValueBlink(gCurValue);
 	}
+	ConfigModeWait_Disable();
 }
 
 /* END Events */

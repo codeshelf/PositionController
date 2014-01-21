@@ -21,6 +21,9 @@
 #define COMMANDID_POS			0x00
 #define COMMAND_BUSID_POS		COMMANDID_POS + 1
 
+#define BROADCAST_POSNUM		0x00
+#define UNSET_POSNUM			0xff
+
 #define DISPLAY_CMD_VAL_POS		COMMAND_BUSID_POS + 1
 #define DISPLAY_CMD_MIN_POS		DISPLAY_CMD_VAL_POS + 1
 #define DISPLAY_CMD_MAX_POS		DISPLAY_CMD_MIN_POS + 1
@@ -32,6 +35,12 @@
 #define UP_BUTTON				KBI_NUM_PIN2
 
 #define I2C_DELAY_40MS 			400
+
+typedef enum {
+	eInactive,
+	eActive,
+	eConfigMode
+} EDeviceState;
 
 void processFrame(FramePtrType, FrameCntType);
 void initDisplay(void);
