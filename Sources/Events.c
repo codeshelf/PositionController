@@ -33,9 +33,9 @@
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
-void HandleKeypress(void);
+void HandleKeypress(uint8_t kbiValue);
 void HandleSendAckCommand(void);
-void HandleFlashNewPositionNumber(void);
+void HandleFlashANewBusAddr(void);
 /*
  ** ===================================================================
  **     Event       :  KBI_OnInterrupt (module Events)
@@ -52,7 +52,7 @@ void HandleFlashNewPositionNumber(void);
 extern uint8_t gCurValue;
 extern uint8_t gMinValue;
 extern uint8_t gMaxValue;
-extern uint8_t gPOSITION_NUM;
+extern uint8_t kMyPermanentBusAddr;
 extern EDeviceState gDeviceState;
 
 void KBI_OnInterrupt(void) {
@@ -65,13 +65,11 @@ void KBI_OnInterrupt(void) {
 /*
  * After a debounce we finally handle a keypress.
  */
-void HandleKeypress() {
+void HandleKeypress(uint8_t kbiValue) {
 
-	uint8_t kbiVal = 0;
-
-	// Only handle keypresses when in active or config modes.
+	// Only handle key presses when in active or config modes.
 	if (gDeviceState != eInactive) {
-		if (((kbiVal & UP_BUTTON) == 0)) {
+		if (((kbiValue & UP_BUTTON) == 0)) {
 			if (gCurValue < gMaxValue) {
 				gCurValue++;
 				if (gDeviceState == eActive) {
@@ -80,7 +78,7 @@ void HandleKeypress() {
 					displayValueBlink(gCurValue);
 				}
 			}
-		} else if (((kbiVal & DOWN_BUTTON) == 0) && (gDeviceState != eInactive)) {
+		} else if (((kbiValue & DOWN_BUTTON) == 0) && (gDeviceState != eInactive)) {
 			if (gCurValue > gMinValue) {
 				gCurValue--;
 				if (gDeviceState == eActive) {
@@ -89,11 +87,11 @@ void HandleKeypress() {
 					displayValueBlink(gCurValue);
 				}
 			}
-		} else if ((kbiVal & ACK_BUTTON) == 0) {
+		} else if ((kbiValue & ACK_BUTTON) == 0) {
 			if (gDeviceState == eActive) {
 				HandleSendAckCommand();
 			} else {
-				HandleFlashNewPositionNumber();
+				HandleFlashANewBusAddr();
 			}
 		}
 	}
@@ -106,7 +104,7 @@ void HandleSendAckCommand() {
 	uint8_t commandBytes[] = { BUTTON_COMMAND, 0x00, 0x00 };
 	uint8_t pos;
 
-	commandBytes[1] = gPOSITION_NUM;
+	commandBytes[1] = kMyPermanentBusAddr;
 
 	commandBytes[BUTTON_CMD_DATA_POS] = gCurValue;
 	// Turn on the RS485 driver.
@@ -133,8 +131,17 @@ void HandleSendAckCommand() {
 /*
  * 
  */
-void HandleFlashNewPositionNumber() {
+void HandleFlashANewBusAddr() {
 	
+	// Write the current value to flash for permanent storage.
+	Flash_SetByteFlash((Flash_TAddress) &kMyPermanentBusAddr, gCurValue);
+	
+	gDeviceState = eInactive;
+	gCurValue = 0;
+	gMinValue = 0;
+	gMaxValue = 0;
+	
+	clearDisplay();
 }
 
 /*
@@ -154,10 +161,10 @@ void HandleFlashNewPositionNumber() {
 void DebounceTimer_OnInterrupt(void) {
 	
 	uint8_t kbiVal = KBI_GetVal();
-
-	if (((kbiVal & UP_BUTTON == 0) + (kbiVal & DOWN_BUTTON == 0) + (kbiVal & ACK_BUTTON == 0)) == 1) {
+	
+	if ((((kbiVal & UP_BUTTON) == 0) + ((kbiVal & DOWN_BUTTON) == 0) + ((kbiVal & ACK_BUTTON) == 0)) == 1) {
 		// Only process when exactly one key is down.
-		HandleKeypress();
+		HandleKeypress(kbiVal);
 	}
 	DebounceTimer_Disable();
 }
@@ -183,11 +190,14 @@ void ConfigModeWait_OnInterrupt(void) {
 	if (((kbiVal & UP_BUTTON) == 0) && ((kbiVal & DOWN_BUTTON) == 0) && ((kbiVal & ACK_BUTTON) == 0)) {
 		// All three buttons are down.
 		gDeviceState = eConfigMode;
-		if (gPOSITION_NUM == UNSET_POSNUM) {
+		if (kMyPermanentBusAddr == UNSET_BUSADDR) {
 			gCurValue = 0x01;
 		} else {
-			gCurValue = gPOSITION_NUM;
+			gCurValue = kMyPermanentBusAddr;
 		}
+		// Don't let the user set the address to 0 (the broadcast addr).
+		gMinValue = 1;
+		gMaxValue = 99;
 		displayValueBlink(gCurValue);
 	}
 	ConfigModeWait_Disable();

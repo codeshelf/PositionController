@@ -18,7 +18,9 @@ const uint32_t kRightDigitBlinkBits[] = { 0xa900009a, 0x59000095, 0x6900006a, 0x
 const uint32_t kLeftDigitBlinkBits[] =  { 0x009a6a00, 0x00566500, 0x006a5a00, 0x006a6900, 0x00a66500, 0x00a96900, 0x00a96a00, 0x005a6500, 0x00aa6a00, 0x00aa6900 };
 
 // This value is set in flash, but it gets overwritten by the user config mode.
-const POSITION_NUM = UNSET_POSNUM;
+#pragma CONST_SEG FLASH_STORAGE  
+const uint8_t kMyPermanentBusAddr = UNSET_BUSADDR;
+#pragma CONST_SEG DEFAULT  
 
 EDeviceState gDeviceState = eInactive;
 uint8_t gMessageBuffer[MAX_FRAME_BYTES];
@@ -31,10 +33,10 @@ uint8_t gMaxValue = 0;
 void processFrame(FramePtrType framePtr, FrameCntType frameByteCount) {
 	
 	uint8_t myBusId = 0x0;
-	if (Flash_GetByteFlash((unsigned int) (&POSITION_NUM), &myBusId) == ERR_OK) {
+	if (Flash_GetByteFlash((unsigned int) (&kMyPermanentBusAddr), &myBusId) == ERR_OK) {
 
 		// Dispatch the command if the bus ID is zero or matches our bus ID.
-		if ((myBusId == framePtr[COMMAND_BUSID_POS]) || (BROADCAST_POSNUM == framePtr[COMMAND_BUSID_POS])) {
+		if ((myBusId == framePtr[COMMAND_BUSADDR_POS]) || (BROADCAST_BUSADDR == framePtr[COMMAND_BUSADDR_POS])) {
 			switch (framePtr[COMMANDID_POS]) {
 				case INIT_COMMAND:
 					gDeviceState = eInactive;
@@ -77,9 +79,6 @@ void initDisplay() {
 			0x55  // LED C-F
 	};
 	static uint16_t bytesSent = 0;
-	uint8_t error;
-	uint8_t i;
-	uint8_t j;
 
 //	error = I2C_SelectSlave(0xC0);
 //	error = I2C_SendBlock(displayInitBytes, 10, &bytesSent);
@@ -87,13 +86,13 @@ void initDisplay() {
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
 	
-	for (j = 0; j <= 10; j++) {
-		for (i = 0; i <= 99; i++) {
-			gCurValue = i;
-			displayValue(gCurValue);
-			Cpu_Delay100US(1 * 1000);
-		}
-	}
+//	for (j = 0; j <= 10; j++) {
+//		for (i = 0; i <= 99; i++) {
+//			gCurValue = i;
+//			displayValue(gCurValue);
+//			Cpu_Delay100US(1 * 1000);
+//		}
+//	}
 }
 
 // --------------------------------------------------------------------------
@@ -102,7 +101,7 @@ void initDisplay() {
  * 
  * Frame format:
  * 1B - command ID
- * 1B - position number
+ * 1B - target device bus addr
  */
 void clearDisplay() {
 
@@ -133,9 +132,9 @@ void clearDisplay() {
 void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 
 	uint8_t myBusId = 0x0;
-	if (Flash_GetByteFlash((unsigned int) (&POSITION_NUM), &myBusId) == ERR_OK) {
+	if (Flash_GetByteFlash((unsigned int) (&kMyPermanentBusAddr), &myBusId) == ERR_OK) {
 
-		if (myBusId == framePtr[COMMAND_BUSID_POS]) {
+		if (myBusId == framePtr[COMMAND_BUSADDR_POS]) {
 			gCurValue = framePtr[DISPLAY_CMD_VAL_POS];
 			gMinValue = framePtr[DISPLAY_CMD_MIN_POS];
 			gMaxValue = framePtr[DISPLAY_CMD_MAX_POS];
@@ -157,8 +156,8 @@ void displayValue(uint8_t currentValue) {
 	uint8_t tens;
 	uint8_t ones;
 	
-	tens = gCurValue / 10;
-	ones = gCurValue % 10;
+	tens = currentValue / 10;
+	ones = currentValue % 10;
 
 	displayBytes[1] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 0);
 	if (tens > 0) {

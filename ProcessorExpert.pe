@@ -3,8 +3,8 @@
   <Header>
     <Name>ProcessorExpert</Name>
     <SavedBy>jeffw</SavedBy>
-    <ModificationStamp>44</ModificationStamp>
-    <Date>2014-01-18</Date>
+    <ModificationStamp>64</ModificationStamp>
+    <Date>2014-01-21</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.7.3.RT4_b1324-1612</PEversion>
   </Header>
@@ -28,7 +28,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>47</ProjectCompNumb>
+    <ProjectCompNumb>50</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -2263,7 +2263,7 @@
         <ItemSymbol>InternalMappingGrp</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>IntVectorTablesGrp</ItemSymbol>
@@ -3888,7 +3888,7 @@
           <ItemSymbol>C_GenerateLINKFILE</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>true</Value>
+          <Value>false</Value>
           <Expanded>true</Expanded>
         </ItemState>
         <ItemState>
@@ -3966,7 +3966,7 @@
           <ItemSymbol>C_RomRamSize0</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>8110</Value>
+          <Value>7168</Value>
           <Base>HEX</Base>
         </ItemState>
         <ItemState>
@@ -4072,13 +4072,13 @@
         <ItemState>
           <ItemSymbol>C_RomRamName3</ItemSymbol>
           <ReadOnly>false</ReadOnly>
-          <Value>ROM1</Value>
+          <Value>FLASH_STORAGE</Value>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamAddr3</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>65472</Value>
+          <Value>64512</Value>
           <Base>HEX</Base>
           <Area />
         </ItemState>
@@ -4086,8 +4086,8 @@
           <ItemSymbol>C_RomRamSize3</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>16</Value>
-          <Base>HEX</Base>
+          <Value>200</Value>
+          <Base>DEC</Base>
         </ItemState>
         <ItemState>
           <ItemSymbol>C_RomRamQualifier3</ItemSymbol>
@@ -7432,7 +7432,7 @@
         <ItemSymbol>_Tmg</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>262.144 ms</Value>
+        <Value>131.07 ms</Value>
         <RuntimeSetting>0</RuntimeSetting>
         <ReqDevPrescHigh>-1</ReqDevPrescHigh>
         <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -7458,7 +7458,7 @@
         <ReqSrcClkPrescSpeedMode5>-1</ReqSrcClkPrescSpeedMode5>
         <ReqSrcClkPrescSpeedMode6>-1</ReqSrcClkPrescSpeedMode6>
         <ReqSrcClkPrescSpeedMode7>-1</ReqSrcClkPrescSpeedMode7>
-        <InitValue>262.144 ms</InitValue>
+        <InitValue>131.07 ms</InitValue>
         <Precision>5.0</Precision>
         <PrecInProc>true</PrecInProc>
         <LowLimit />
@@ -7898,7 +7898,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>2</Index>
+        <Index>1</Index>
         <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
@@ -8184,7 +8184,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>VirtualPageType</ItemSymbol>

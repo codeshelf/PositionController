@@ -29,12 +29,10 @@
       <ShrdHeaderAge3>1143366062</ShrdHeaderAge3>
       <ShrdCodeAge3>1143366062</ShrdCodeAge3>
       <ShrdAsemblAge3>-1</ShrdAsemblAge3>
-      <GenExtraFiles lines_count="2">
-        <Line>Project_Settings\Linker_Files\ProcessorExpert.prm</Line>
+      <GenExtraFiles lines_count="1">
         <Line>Generated_Code\Vectors.c</Line>
       </GenExtraFiles>
-      <XtraAge1>1144027569</XtraAge1>
-      <GenExtraFileType1>4</GenExtraFileType1>
+      <XtraAge0>1144027569</XtraAge0>
       <GenLinkedFiles lines_count="0" />
       <GenEventModules lines_count="1">
         <Line>Events</Line>
@@ -74,7 +72,7 @@
     </GenFiles>
     <SignalListFile>Documentation\ProcessorExpert_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksHCS08CC</DestinationCompiler>
-    <ProjectModificationStamp>44</ProjectModificationStamp>
+    <ProjectModificationStamp>64</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -167,9 +165,8 @@
     <GenSmartUserChangesDetected_Header>false</GenSmartUserChangesDetected_Header>
     <GenSmartUserChangesDetected_Code>false</GenSmartUserChangesDetected_Code>
     <GenSmartUserChangesDetected_Asembl>false</GenSmartUserChangesDetected_Asembl>
-    <GenExtraFilesCount>2</GenExtraFilesCount>
-    <ExtraFile0>Project_Settings\Linker_Files\ProcessorExpert.prm</ExtraFile0>
-    <ExtraFile1>Generated_Code\Vectors.c</ExtraFile1>
+    <GenExtraFilesCount>1</GenExtraFilesCount>
+    <ExtraFile0>Generated_Code\Vectors.c</ExtraFile0>
   </CpuID_8>
   <ComponentID_15>
     <Generated>true</Generated>
@@ -633,8 +630,8 @@
     <GenComponentVersion>02.161</GenComponentVersion>
     <GenDriverVersion>01.23</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1144027569</HeaderAge>
-    <CodeAge>1144027569</CodeAge>
+    <HeaderAge>1144349207</HeaderAge>
+    <CodeAge>1144349207</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>14</GenNumMethods>
     <Enable>true</Enable>
@@ -743,8 +740,8 @@
     <GenComponentVersion>02.407</GenComponentVersion>
     <GenDriverVersion>01.31</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1143503890</HeaderAge>
-    <CodeAge>1143503890</CodeAge>
+    <HeaderAge>1144355170</HeaderAge>
+    <CodeAge>1144355170</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>26</GenNumMethods>
     <DisableEvent>false</DisableEvent>
@@ -797,141 +794,141 @@
       <MethodPos0>SetByteFlash</MethodPos0>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>110</LineBeg>
-      <LineEnd>132</LineEnd>
+      <LineBeg>109</LineBeg>
+      <LineEnd>131</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos1>GetByteFlash</MethodPos1>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>133</LineBeg>
-      <LineEnd>149</LineEnd>
+      <LineBeg>132</LineBeg>
+      <LineEnd>148</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos2>SetWordFlash</MethodPos2>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>150</LineBeg>
-      <LineEnd>172</LineEnd>
+      <LineBeg>149</LineBeg>
+      <LineEnd>171</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos3>Init</MethodPos3>
       <MethodType>internal_method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>173</LineBeg>
-      <LineEnd>185</LineEnd>
+      <LineBeg>172</LineBeg>
+      <LineEnd>184</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos4>DataPtr2Addr</MethodPos4>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>186</LineBeg>
-      <LineEnd>206</LineEnd>
+      <LineBeg>185</LineBeg>
+      <LineEnd>205</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos5>FuncPtr2Addr</MethodPos5>
       <MethodType>method</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>207</LineBeg>
-      <LineEnd>228</LineEnd>
+      <LineBeg>206</LineBeg>
+      <LineEnd>227</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos6>NonDestructiveUnsecureWrite</MethodPos6>
       <MethodType>internal_method_declaration</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>229</LineBeg>
-      <LineEnd>239</LineEnd>
+      <LineBeg>228</LineBeg>
+      <LineEnd>238</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos7>WriteBlock</MethodPos7>
       <MethodType>internal_method_declaration</MethodType>
       <ModuleType>Header</ModuleType>
-      <LineBeg>240</LineBeg>
-      <LineEnd>250</LineEnd>
+      <LineBeg>239</LineBeg>
+      <LineEnd>249</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos8>FnCmdInRam_</MethodPos8>
       <MethodType>internal_method_declaration</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>79</LineBeg>
-      <LineEnd>88</LineEnd>
+      <LineBeg>78</LineBeg>
+      <LineEnd>87</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos9>LaunchCmdAndTestError</MethodPos9>
       <MethodType>internal_method_declaration</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>89</LineBeg>
-      <LineEnd>100</LineEnd>
+      <LineBeg>88</LineBeg>
+      <LineEnd>99</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos10>FnCmdInRam_</MethodPos10>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>123</LineBeg>
-      <LineEnd>147</LineEnd>
+      <LineBeg>121</LineBeg>
+      <LineEnd>145</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos11>LaunchCmdAndTestError</MethodPos11>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>148</LineBeg>
-      <LineEnd>183</LineEnd>
+      <LineBeg>146</LineBeg>
+      <LineEnd>181</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos12>NonDestructiveUnsecureWrite</MethodPos12>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>184</LineBeg>
-      <LineEnd>230</LineEnd>
+      <LineBeg>182</LineBeg>
+      <LineEnd>228</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos13>WriteBlock</MethodPos13>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>231</LineBeg>
-      <LineEnd>317</LineEnd>
+      <LineBeg>229</LineBeg>
+      <LineEnd>280</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos14>SetByteFlash</MethodPos14>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>318</LineBeg>
-      <LineEnd>343</LineEnd>
+      <LineBeg>281</LineBeg>
+      <LineEnd>306</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos15>GetByteFlash</MethodPos15>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>344</LineBeg>
-      <LineEnd>367</LineEnd>
+      <LineBeg>307</LineBeg>
+      <LineEnd>330</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos16>SetWordFlash</MethodPos16>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>368</LineBeg>
-      <LineEnd>393</LineEnd>
+      <LineBeg>331</LineBeg>
+      <LineEnd>356</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos17>Init</MethodPos17>
       <MethodType>internal_method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>394</LineBeg>
-      <LineEnd>412</LineEnd>
+      <LineBeg>357</LineBeg>
+      <LineEnd>375</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos18>DataPtr2Addr</MethodPos18>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>413</LineBeg>
-      <LineEnd>435</LineEnd>
+      <LineBeg>376</LineBeg>
+      <LineEnd>398</LineEnd>
     </MethodPos>
     <MethodPos>
       <MethodPos19>FuncPtr2Addr</MethodPos19>
       <MethodType>method</MethodType>
       <ModuleType>Code</ModuleType>
-      <LineBeg>436</LineBeg>
-      <LineEnd>459</LineEnd>
+      <LineBeg>399</LineBeg>
+      <LineEnd>422</LineEnd>
     </MethodPos>
     <GenExtraFilesCount>0</GenExtraFilesCount>
   </ComponentID_39>
