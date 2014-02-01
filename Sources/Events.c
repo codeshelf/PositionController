@@ -125,7 +125,9 @@ void HandleSendAckCommand() {
 
 	// Turn off the 485 driver.
 	RS485_DRV_PutVal(0);
-	clearDisplay();
+	
+	// Don't clear the display - wait for the host to ACK that it got our button press correctly.
+	//clearDisplay();
 }
 
 /*

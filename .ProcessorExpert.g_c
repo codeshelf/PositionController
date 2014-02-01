@@ -72,7 +72,7 @@
     </GenFiles>
     <SignalListFile>Documentation\ProcessorExpert_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksHCS08CC</DestinationCompiler>
-    <ProjectModificationStamp>64</ProjectModificationStamp>
+    <ProjectModificationStamp>66</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -257,8 +257,8 @@
     <GenComponentVersion>02.602</GenComponentVersion>
     <GenDriverVersion>01.33</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1143366062</HeaderAge>
-    <CodeAge>1143366062</CodeAge>
+    <HeaderAge>1145018152</HeaderAge>
+    <CodeAge>1145018152</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>28</GenNumMethods>
     <Enable>false</Enable>
