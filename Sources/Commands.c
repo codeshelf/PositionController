@@ -139,7 +139,11 @@ void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 			gMinValue = framePtr[DISPLAY_CMD_MIN_POS];
 			gMaxValue = framePtr[DISPLAY_CMD_MAX_POS];
 
-			displayValue(gCurValue);
+			if (gCurValue == 0) {
+				clearDisplay();
+			} else {
+				displayValue(gCurValue);
+			}
 		}
 	}}
 

@@ -30,18 +30,18 @@
       <File Name="Generated_Code/PE_Types.h" FileDate="2014-01-06, 12:13:29" FileAge="1389039209453" FileType="45637" />
       <File Name="Generated_Code/ConfigModeWait.h" FileDate="2014-01-18, 20:35:23" FileAge="1390106123125" FileType="45637" CompNumb="43" />
       <File Name="Generated_Code/DebounceTimer.h" FileDate="2014-01-21, 12:16:46" FileAge="1390335406265" FileType="45637" CompNumb="35" />
-      <File Name="Generated_Code/IO_Map.h" FileDate="2014-01-06, 12:13:29" FileAge="1389039209437" FileType="45637" />
-      <File Name="Generated_Code/KBI.c" FileDate="2014-01-06, 12:13:29" FileAge="1389039209468" FileType="45637" CompNumb="15" />
       <File Name="Generated_Code/ASYNC.c" FileDate="2014-01-31, 18:57:17" FileAge="1391223437608" FileType="45637" CompNumb="17" />
-      <File Name="Documentation/ProcessorExpert_SIGNALS.txt" FileDate="2014-01-31, 18:57:17" FileAge="1391223437639" FileType="3072" />
+      <File Name="Generated_Code/KBI.c" FileDate="2014-01-06, 12:13:29" FileAge="1389039209468" FileType="45637" CompNumb="15" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2014-01-06, 12:13:29" FileAge="1389039209437" FileType="45637" />
+      <File Name="Documentation/ProcessorExpert_SIGNALS.txt" FileDate="2014-02-27, 12:24:46" FileAge="1393532686452" FileType="3072" />
       <File Name="Generated_Code/ConfigModeWait.c" FileDate="2014-01-18, 20:35:23" FileAge="1390106123125" FileType="45637" CompNumb="43" />
-      <File Name="Generated_Code/DebounceTimer.c" FileDate="2014-01-21, 12:16:46" FileAge="1390335406265" FileType="45637" CompNumb="35" />
       <File Name="Documentation/ProcessorExpert_Settings.xml" FileDate="2014-01-31, 18:57:17" FileAge="1391223437655" FileType="3072" />
+      <File Name="Generated_Code/DebounceTimer.c" FileDate="2014-01-21, 12:16:46" FileAge="1390335406265" FileType="45637" CompNumb="35" />
       <File Name="Generated_Code/IO_Map.c" FileDate="2014-01-06, 12:13:29" FileAge="1389039209437" FileType="45637" />
       <File Name="Generated_Code/PE_Error.h" FileDate="2014-01-06, 12:13:29" FileAge="1389039209453" FileType="45637" />
       <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2014-01-21, 16:21:06" FileAge="1390350066140" FileType="8" />
       <File Name="Generated_Code/DISPLAY_RESET.h" FileDate="2014-01-06, 12:13:29" FileAge="1389039209453" FileType="45637" CompNumb="29" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>92</CodeGenReference>
+  <CodeGenReference>95</CodeGenReference>
 </CodeGenerationInfo>
