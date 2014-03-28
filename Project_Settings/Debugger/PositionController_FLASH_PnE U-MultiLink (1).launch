@@ -21,12 +21,12 @@
 <intAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.coreIndex" value="0"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.homogeneousMulticore" value="false"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.initPath" value=""/>
-<stringAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.memConfigPath" value="${ProjDirPath}/Project_Settings/Debugger/MC9S08QG8.mem"/>
+<stringAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.memConfigPath" value=""/>
 <stringAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.simulator" value=""/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.smp" value="false"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.systemType" value="com.freescale.cw.system.hcs08.HCS08Q.MC9S08QG8"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.useInitFile" value="false"/>
-<booleanAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.useMemoryConfigFile" value="true"/>
+<booleanAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.Embedded Initialization.useMemoryConfigFile" value="false"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.HC08 Debugger.processor" value="MC9S08QG8"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.HC08 Interrupt.interrupt_disabled" value="true"/>
 <listAttribute key="com.freescale.cdt.debug.cw.CoreNameList">
@@ -48,13 +48,19 @@
 <listEntry value="___CLDE_SCRIPT___"/>
 </listAttribute>
 <listAttribute key="com.freescale.cdt.debug.cw.ExecutablePath"/>
+<booleanAttribute key="com.freescale.cdt.debug.cw.InitializePC" value="true"/>
+<booleanAttribute key="com.freescale.cdt.debug.cw.InitializePCAtProgramEntryPoint" value="true"/>
+<stringAttribute key="com.freescale.cdt.debug.cw.InitializePCAtSymbol" value="main"/>
+<booleanAttribute key="com.freescale.cdt.debug.cw.InitializePCAtUserSpecified" value="false"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.LaunchMode" value="DOWNLOAD"/>
+<booleanAttribute key="com.freescale.cdt.debug.cw.PN_StopAtExit" value="false"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.PN_StopAtProgramEntryPoint" value="false"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.PN_StopAtStartUp" value="true"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.PN_StopAtUserSpecified" value="true"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.RefreshPolicy.RefreshPeriod" value="2.0"/>
 <listAttribute key="com.freescale.cdt.debug.cw.RemoteDownload"/>
 <listAttribute key="com.freescale.cdt.debug.cw.RemotePath"/>
+<booleanAttribute key="com.freescale.cdt.debug.cw.ResumeProgram" value="true"/>
 <listAttribute key="com.freescale.cdt.debug.cw.SMPCores"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.SYNC_WITH_ENCL_PROJ" value="true"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.Symbolics.CacheSymbolicsBetweenRuns" value="false"/>
@@ -68,15 +74,16 @@
 <booleanAttribute key="com.freescale.cdt.debug.cw.core.settings.ConnectionCommonData.TargetConnectionLost.promptUserActionOn" value="true"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.core.settings.DebuggerCommonData.Connection Protocol Plugin Name" value="HC08 GDI"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.core.settings.DebuggerCommonData.Connection Type" value="com.pemicro.mcu.debug.connections.pne.hcs08"/>
+<stringAttribute key="com.freescale.cdt.debug.cw.core.settings.DebuggerCommonData.Host App Path" value=""/>
 <stringAttribute key="com.freescale.cdt.debug.cw.core.settings.DebuggerCommonData.Processor Attr Name" value="com.freescale.cdt.debug.cw.CW_SHADOWED_PREF.HC08 Debugger.processor"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.core.settings.GdiConnection.Common.PhysicalConnectionAttributeBase" value="com.pemicro.mcu.debug.connections.pne.hcs08."/>
 <stringAttribute key="com.freescale.cdt.debug.cw.core.settings.GdiConnection.Common.SimulatorConnectionAttributeBase" value=""/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.core.settings.GdiConnection.Common.logData" value="false"/>
-<stringAttribute key="com.freescale.cdt.debug.cw.core.settings.rseSystemId" value="com.freescale.cdt.debug.cw.core.ui.rse.systemtype.bareboard.hardware.130727155634-0700"/>
+<stringAttribute key="com.freescale.cdt.debug.cw.core.settings.rseSystemId" value="com.freescale.cdt.debug.cw.core.ui.rse.systemtype.bareboard.hardware.140321152323-0700"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.core.settings.wizardSystemNameHint" value="PnE U-MultiLink"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.debuggerAddress" value="127.0.0.1"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.disableIO" value="false"/>
-<stringAttribute key="com.freescale.cdt.debug.cw.ethCtrl" value="UEC1"/>
+<stringAttribute key="com.freescale.cdt.debug.cw.ethCtrl" value="Ethernet Controller 1"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.executeInitScripts" value="true"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.executePerCoresReset" value="false"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.executePerprocessorReset" value="false"/>
@@ -88,7 +95,7 @@
 </listAttribute>
 <stringAttribute key="com.freescale.cdt.debug.cw.macAddress" value="**-**-**-**-**-**"/>
 <listAttribute key="com.freescale.cdt.debug.cw.memConfigPathList">
-<listEntry value="${ProjDirPath}/Project_Settings/Debugger/MC9S08QG8.mem"/>
+<listEntry value=""/>
 </listAttribute>
 <stringAttribute key="com.freescale.cdt.debug.cw.netMask" value="255.255.255.255"/>
 <stringAttribute key="com.freescale.cdt.debug.cw.osawareness.osContributorID" value="None"/>
@@ -109,12 +116,13 @@
 </listAttribute>
 <booleanAttribute key="com.freescale.cdt.debug.cw.useMacAddress" value="false"/>
 <listAttribute key="com.freescale.cdt.debug.cw.useMemConfigPathList">
-<listEntry value="true"/>
+<listEntry value="false"/>
 </listAttribute>
 <booleanAttribute key="com.freescale.cdt.debug.cw.useNetworkTransferIO" value="false"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.useSerialTransferIO" value="false"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.useStopTransferIO" value="true"/>
 <booleanAttribute key="com.freescale.cdt.debug.cw.useUDPPort" value="false"/>
+<stringAttribute key="com.freescale.debugger.ka.osek.ORTI_file" value=""/>
 <listAttribute key="com.freescale.panel.list">
 <listEntry value="Debugger Common Settings"/>
 <listEntry value="HC08 Interrupt"/>
@@ -179,13 +187,14 @@
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_Multilink_PowerDownDelay" value="250"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_Multilink_PowerUpDelay" value="1000"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_PORT" value="21"/>
+<stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_PORT_NAME_STRING" value="PE5011504"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_SPECIFY_IP" value="127.0.0.1"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_SPECIFY_IP_ENABLED" value="0"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_SPECIFY_NETWORKCARD" value="127.0.0.1"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_SPECIFY_NETWORKCARD_ENABLED" value="0"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_USE_CYCLONEPRO_RELAYS" value="1"/>
 <stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.STARTUP_interface_selection" value="1"/>
-<stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.UUID" value="c9a416be-ad8e-40df-8afa-cd77a89d34fc"/>
+<stringAttribute key="com.pemicro.mcu.debug.connections.pne.hcs08.UUID" value="0ed37ca5-3b13-4009-bf6e-b714082a109c"/>
 <intAttribute key="org.eclipse.cdt.launch.ATTR_BUILD_BEFORE_LAUNCH_ATTR" value="2"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_ID" value="com.freescale.cdt.debug.cw.hc08.HC08Debugger"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_REGISTER_GROUPS" value=""/>
@@ -195,7 +204,7 @@
 <booleanAttribute key="org.eclipse.cdt.launch.ENABLE_REGISTER_BOOKKEEPING" value="false"/>
 <booleanAttribute key="org.eclipse.cdt.launch.ENABLE_RESTORE_WATCHPOINTS" value="true"/>
 <booleanAttribute key="org.eclipse.cdt.launch.ENABLE_VARIABLE_BOOKKEEPING" value="false"/>
-<stringAttribute key="org.eclipse.cdt.launch.FORMAT" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&lt;contentList&gt;&lt;content id=&quot;frame-main-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;gMaxValue--(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;gCurValue--(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;kbiVal-ConfigModeWait_OnInterrupt-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;bytesReceived-serialReceiveFrame-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;nextByte-serialReceiveFrame-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;maxFrameSize-serialReceiveFrame-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;kbiVal-DebounceTimer_OnInterrupt-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;Addr-Flash_GetByteFlash-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;Slave_Addr-I2CM_Write_Bytes-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;ones-displayCurrentValue-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;tens-displayCurrentValue-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;gMinValue-setValues-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;gCurValue-setValues-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[1]-frame-main-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[0]-frame-main-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[4]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[3]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[2]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[1]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[0]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;ones-display-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;tens-display-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;Slv-I2C_SelectSlave-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;I2C_SerFlag-I2C_SendBlock-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;[0]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[1]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[2]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[3]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[4]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[5]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[6]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[7]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[8]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[9]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[0]-gRightDigitBits-displayCurrentValue-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;i-displayCurrentValue-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;value-displayCurrentValue-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;gCurValue-initDisplay-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;myBusId-KBI_OnInterrupt-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;kbiVal-KBI_OnInterrupt-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;testVal-DebounceTimer_OnInterrupt-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;gBUS_ADDR--(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;frameSize-main-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;kbiValue-HandleKeypress-(format)&quot; val=&quot;2&quot;/&gt;&lt;/contentList&gt;"/>
+<stringAttribute key="org.eclipse.cdt.launch.FORMAT" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&lt;contentList&gt;&lt;content id=&quot;kbiValue-HandleKeypress-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;frameSize-main-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;gBUS_ADDR--(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;testVal-DebounceTimer_OnInterrupt-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;kbiVal-KBI_OnInterrupt-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;myBusId-KBI_OnInterrupt-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;gCurValue-initDisplay-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;value-displayCurrentValue-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;i-displayCurrentValue-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;[0]-gRightDigitBits-displayCurrentValue-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[9]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[8]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[7]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[6]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[5]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[4]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[3]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[2]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[1]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[0]-gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;I2C_SerFlag-I2C_SendBlock-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;Slv-I2C_SelectSlave-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;tens-display-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;ones-display-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;gLeftDigitBits-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[0]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[1]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[2]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[3]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[4]-displayBytes-display-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[0]-frame-main-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;[1]-frame-main-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;gCurValue-setValues-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;gMinValue-setValues-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;tens-displayCurrentValue-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;ones-displayCurrentValue-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;Slave_Addr-I2CM_Write_Bytes-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;Addr-Flash_GetByteFlash-(format)&quot; val=&quot;4&quot;/&gt;&lt;content id=&quot;kbiVal-DebounceTimer_OnInterrupt-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;maxFrameSize-serialReceiveFrame-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;nextByte-serialReceiveFrame-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;bytesReceived-serialReceiveFrame-(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;kbiVal-ConfigModeWait_OnInterrupt-(format)&quot; val=&quot;2&quot;/&gt;&lt;content id=&quot;gCurValue--(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;gMaxValue--(format)&quot; val=&quot;1&quot;/&gt;&lt;content id=&quot;frame-main-(format)&quot; val=&quot;4&quot;/&gt;&lt;/contentList&gt;"/>
 <stringAttribute key="org.eclipse.cdt.launch.GLOBAL_VARIABLES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;globalVariableList&gt;&#13;&#10;&lt;globalVariable name=&quot;gCurValue&quot; path=&quot;&quot;/&gt;&#13;&#10;&lt;globalVariable name=&quot;gMaxValue&quot; path=&quot;&quot;/&gt;&#13;&#10;&lt;/globalVariableList&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryBlockExpressionList/&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="FLASH/PositionController.abs"/>

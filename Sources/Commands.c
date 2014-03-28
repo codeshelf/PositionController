@@ -71,8 +71,8 @@ void initDisplay() {
 			0x12, // Start writing register bytes with register PSC0
 			0x15, // PSC0 - low freq: appears to blink (0.5 sec cycle time)
 			0x40, // PWM0 - 80% duty cycle
-			0x00, // PSC1 - high freq: appears to dim (1/44th sec cycle time)
-			0xF0, // PWM1 - 5% duty cycle
+			0x12, // PSC1 - high freq: appears to dim (1/44th sec cycle time)
+			0x40, // PWM1 - 80% duty cycle
 			0x55, // LED 0-3
 			0x55, // LED 4-7
 			0x55, // LED 8-C
