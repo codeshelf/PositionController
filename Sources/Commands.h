@@ -27,6 +27,8 @@
 #define DISPLAY_CMD_VAL_POS		COMMAND_BUSADDR_POS + 1
 #define DISPLAY_CMD_MIN_POS		DISPLAY_CMD_VAL_POS + 1
 #define DISPLAY_CMD_MAX_POS		DISPLAY_CMD_MIN_POS + 1
+#define DISPLAY_CMD_FREQ_POS	DISPLAY_CMD_MAX_POS + 1
+#define DISPLAY_CMD_DUTY_POS	DISPLAY_CMD_FREQ_POS + 1
 
 #define BUTTON_CMD_DATA_POS		COMMAND_BUSADDR_POS + 1
 
@@ -36,10 +38,11 @@
 
 #define I2C_DELAY_40MS 			400
 
+#define BLINK_FREQ 				0x15
+#define BLINK_DUTYCYCLE 		0x40
+
 typedef enum {
-	eInactive,
-	eActive,
-	eConfigMode
+	eInactive, eActive, eConfigMode
 } EDeviceState;
 
 void processFrame(FramePtrType, FrameCntType);
@@ -48,5 +51,6 @@ void clearDisplay(void);
 void setValues(FramePtrType, FrameCntType);
 void displayValue(uint8_t currentValue);
 void displayValueBlink(uint8_t currentValue);
+void displayValueAsCode(uint8_t controlValue);
 
 #endif /* COMMANDS_H_ */
