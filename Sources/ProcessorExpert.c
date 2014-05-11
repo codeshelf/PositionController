@@ -17,6 +17,7 @@
 #include "DebounceTimer.h"
 #include "Flash.h"
 #include "ConfigModeWait.h"
+#include "AckButtonDelay.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"

@@ -167,11 +167,7 @@ void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 			gCurValue = curValue;
 			gMinValue = minValue;
 			gMaxValue = gMaxValue;
-			if (gCurValue == 0) {
-				clearDisplay();
-			} else {
-				displayValue(gCurValue);
-			}
+			displayValue(gCurValue);
 		}
 	}
 }

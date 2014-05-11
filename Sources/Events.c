@@ -1,7 +1,7 @@
 /* ###################################################################
  **     Filename    : Events.c
  **     Project     : ProcessorExpert
- **     Processor   : MC9S08QG8CPB
+ **     Processor   : MC9S08QG8CDT
  **     Component   : Events
  **     Version     : Driver 01.02
  **     Compiler    : CodeWarrior HCS08 C Compiler
@@ -33,9 +33,20 @@
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
-void HandleKeypress(uint8_t kbiValue);
+#define RESET_MCU()		__asm DCB 0x8D
+
+void HandleKeypress();
 void HandleSendAckCommand(void);
 void HandleFlashANewBusAddr(void);
+
+bool gKeypressPending = FALSE;
+bool gAckButtonLockout = FALSE;
+extern uint8_t gCurValue;
+extern uint8_t gMinValue;
+extern uint8_t gMaxValue;
+extern uint8_t kMyPermanentBusAddr;
+extern EDeviceState gDeviceState;
+
 /*
  ** ===================================================================
  **     Event       :  KBI_OnInterrupt (module Events)
@@ -49,49 +60,56 @@ void HandleFlashANewBusAddr(void);
  **     Returns     : Nothing
  ** ===================================================================
  */
-extern uint8_t gCurValue;
-extern uint8_t gMinValue;
-extern uint8_t gMaxValue;
-extern uint8_t kMyPermanentBusAddr;
-extern EDeviceState gDeviceState;
-
 void KBI_OnInterrupt(void) {
 
 	// A key's been pressed, so now wait until the debounce time or config time to see what state the keys are in.
-	DebounceTimer_Enable();
-	ConfigModeWait_Enable();
+	if (!gKeypressPending) {
+		gKeypressPending = TRUE;
+		DebounceTimer_Enable();
+		ConfigModeWait_Enable();
+		HandleKeypress();
+	}
 }
 
 /*
  * After a debounce we finally handle a keypress.
  */
-void HandleKeypress(uint8_t kbiValue) {
+void HandleKeypress() {
 
-	// Only handle key presses when in active or config modes.
-	if (gDeviceState != eInactive) {
-		if (((kbiValue & UP_BUTTON) == 0)) {
-			if (gCurValue < gMaxValue) {
-				gCurValue++;
-				if (gDeviceState == eActive) {
-					displayValue(gCurValue);
-				} else {
-					displayValueBlink(gCurValue);
+	uint8_t kbiValue = KBI_GetVal();
+
+	// Only handle keypress when exactly one button pressed.
+	if ((((kbiValue & UP_BUTTON) == 0) + ((kbiValue & DOWN_BUTTON) == 0) + ((kbiValue & ACK_BUTTON) == 0)) == 1) {
+		// Only handle key presses when in active or config modes.
+		if (gDeviceState != eInactive) {
+			if (((kbiValue & UP_BUTTON) == 0)) {
+				if (gCurValue < gMaxValue) {
+					gCurValue++;
+					if (gDeviceState == eActive) {
+						displayValue(gCurValue);
+					} else {
+						displayValueBlink(gCurValue);
+					}
 				}
-			}
-		} else if (((kbiValue & DOWN_BUTTON) == 0) && (gDeviceState != eInactive)) {
-			if (gCurValue > gMinValue) {
-				gCurValue--;
-				if (gDeviceState == eActive) {
-					displayValue(gCurValue);
-				} else {
-					displayValueBlink(gCurValue);
+			} else if (((kbiValue & DOWN_BUTTON) == 0) && (gDeviceState != eInactive)) {
+				if (gCurValue > gMinValue) {
+					gCurValue--;
+					if (gDeviceState == eActive) {
+						displayValue(gCurValue);
+					} else {
+						displayValueBlink(gCurValue);
+					}
 				}
-			}
-		} else if ((kbiValue & ACK_BUTTON) == 0) {
-			if (gDeviceState == eActive) {
-				HandleSendAckCommand();
-			} else {
-				HandleFlashANewBusAddr();
+			} else if ((kbiValue & ACK_BUTTON) == 0) {
+				if (!gAckButtonLockout) {
+					if (gDeviceState == eActive) {
+						gAckButtonLockout = TRUE;
+						AckButtonDelay_Enable();
+						HandleSendAckCommand();
+					} else {
+						HandleFlashANewBusAddr();
+					}
+				}
 			}
 		}
 	}
@@ -125,7 +143,7 @@ void HandleSendAckCommand() {
 
 	// Turn off the 485 driver.
 	RS485_DRV_PutVal(0);
-	
+
 	// Don't clear the display - wait for the host to ACK that it got our button press correctly.
 	//clearDisplay();
 }
@@ -134,16 +152,16 @@ void HandleSendAckCommand() {
  * 
  */
 void HandleFlashANewBusAddr() {
-	
+
 	// Write the current value to flash for permanent storage.
 	Flash_SetByteFlash((Flash_TAddress) &kMyPermanentBusAddr, gCurValue);
-	
+
 	gDeviceState = eInactive;
 	gCurValue = 0;
 	gMinValue = 0;
 	gMaxValue = 0;
-	
-	clearDisplay();
+
+	RESET_MCU();
 }
 
 /*
@@ -161,32 +179,26 @@ void HandleFlashANewBusAddr() {
  ** ===================================================================
  */
 void DebounceTimer_OnInterrupt(void) {
-	
-	uint8_t kbiVal = KBI_GetVal();
-	
-	if ((((kbiVal & UP_BUTTON) == 0) + ((kbiVal & DOWN_BUTTON) == 0) + ((kbiVal & ACK_BUTTON) == 0)) == 1) {
-		// Only process when exactly one key is down.
-		HandleKeypress(kbiVal);
-	}
 	DebounceTimer_Disable();
+	gKeypressPending = FALSE;
 }
 
 /*
-** ===================================================================
-**     Event       :  ConfigModeWait_OnInterrupt (module Events)
-**
-**     Component   :  ConfigModeWait [TimerInt]
-**     Description :
-**         When a timer interrupt occurs this event is called (only
-**         when the component is enabled - <Enable> and the events are
-**         enabled - <EnableEvent>). This event is enabled only if a
-**         <interrupt service/event> is enabled.
-**     Parameters  : None
-**     Returns     : Nothing
-** ===================================================================
-*/
+ ** ===================================================================
+ **     Event       :  ConfigModeWait_OnInterrupt (module Events)
+ **
+ **     Component   :  ConfigModeWait [TimerInt]
+ **     Description :
+ **         When a timer interrupt occurs this event is called (only
+ **         when the component is enabled - <Enable> and the events are
+ **         enabled - <EnableEvent>). This event is enabled only if a
+ **         <interrupt service/event> is enabled.
+ **     Parameters  : None
+ **     Returns     : Nothing
+ ** ===================================================================
+ */
 void ConfigModeWait_OnInterrupt(void) {
-	
+
 	uint8_t kbiVal = KBI_GetVal();
 
 	if (((kbiVal & UP_BUTTON) == 0) && ((kbiVal & DOWN_BUTTON) == 0) && ((kbiVal & ACK_BUTTON) == 0)) {
@@ -203,6 +215,25 @@ void ConfigModeWait_OnInterrupt(void) {
 		displayValueBlink(gCurValue);
 	}
 	ConfigModeWait_Disable();
+}
+
+/*
+ ** ===================================================================
+ **     Event       :  AckButtonDelay_OnInterrupt (module Events)
+ **
+ **     Component   :  AckButtonDelay [TimerInt]
+ **     Description :
+ **         When a timer interrupt occurs this event is called (only
+ **         when the component is enabled - <Enable> and the events are
+ **         enabled - <EnableEvent>). This event is enabled only if a
+ **         <interrupt service/event> is enabled.
+ **     Parameters  : None
+ **     Returns     : Nothing
+ ** ===================================================================
+ */
+void AckButtonDelay_OnInterrupt(void) {
+	gAckButtonLockout = FALSE;
+	AckButtonDelay_Disable();
 }
 
 /* END Events */

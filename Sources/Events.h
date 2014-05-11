@@ -1,7 +1,7 @@
 /* ###################################################################
 **     Filename    : Events.h
 **     Project     : ProcessorExpert
-**     Processor   : MC9S08QG8CPB
+**     Processor   : MC9S08QG8CDT
 **     Component   : Events
 **     Version     : Driver 01.02
 **     Compiler    : CodeWarrior HCS08 C Compiler
@@ -42,6 +42,7 @@
 #include "DebounceTimer.h"
 #include "Flash.h"
 #include "ConfigModeWait.h"
+#include "AckButtonDelay.h"
 
 
 /*
@@ -214,6 +215,22 @@ void ConfigModeWait_OnInterrupt(void);
 **     Event       :  ConfigModeWait_OnInterrupt (module Events)
 **
 **     Component   :  ConfigModeWait [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void AckButtonDelay_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  AckButtonDelay_OnInterrupt (module Events)
+**
+**     Component   :  AckButtonDelay [TimerInt]
 **     Description :
 **         When a timer interrupt occurs this event is called (only
 **         when the component is enabled - <Enable> and the events are
