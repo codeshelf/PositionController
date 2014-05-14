@@ -67,8 +67,7 @@ void serialTransmitFrame(FramePtrType framePtr, FrameCntType frameSize) {
 
 // --------------------------------------------------------------------------
 
-FrameCntType serialReceiveFrame(FramePtrType framePtr,
-		FrameCntType maxFrameSize) {
+FrameCntType serialReceiveFrame(FramePtrType framePtr, FrameCntType maxFrameSize) {
 	FrameDataType nextByte;
 	FrameCntType bytesReceived = 0;
 
@@ -82,10 +81,11 @@ FrameCntType serialReceiveFrame(FramePtrType framePtr,
 
 			// If it's an END character then we're done with the frame.
 			case END:
-				if (bytesReceived)
+				if (bytesReceived) {
 					return bytesReceived;
-				else
+				} else {
 					break;
+				}
 
 				/* If it's the same code as an ESC character, wait and get another character and then figure out
 				 * what to store in the frame based on that.
@@ -108,10 +108,13 @@ FrameCntType serialReceiveFrame(FramePtrType framePtr,
 
 				// Here we fall into the default handler and let it store the character for us.
 			default:
-				if (bytesReceived < maxFrameSize)
-					framePtr[bytesReceived++] = nextByte;
+				break;
+
 		}
+		if (bytesReceived < maxFrameSize)
+			framePtr[bytesReceived++] = nextByte;
+
 	}
-	
+
 	return bytesReceived;
 }
