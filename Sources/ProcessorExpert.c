@@ -18,6 +18,7 @@
 #include "Flash.h"
 #include "ConfigModeWait.h"
 #include "AckButtonDelay.h"
+#include "Led.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -38,6 +39,17 @@ void main(void) {
 	
 //	Init_I2CM();
 	initDisplay();
+	setLedIndicator(0xfc, 0x00, 0x00);
+	//Cpu_Delay100US(5000);
+	setLedIndicator(0x00, 0xfc, 0x00);
+	//Cpu_Delay100US(5000);
+	setLedIndicator(0x00, 0x00, 0xfc);
+	//Cpu_Delay100US(5000);
+	setLedIndicator(0xfc, 0xfc, 0x00);
+	//Cpu_Delay100US(5000);
+	setLedIndicator(0x00, 0xfc, 0xfc);
+	//Cpu_Delay100US(5000);
+	setLedIndicator(0xfc, 0xfc, 0xfc);
 
 	for (;;) {
 		// Read a frame from the serial bus and then process it.

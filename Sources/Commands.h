@@ -52,5 +52,6 @@ void setValues(FramePtrType, FrameCntType);
 void displayValue(uint8_t currentValue);
 void displayValueBlink(uint8_t currentValue);
 void displayValueAsCode(uint8_t controlValue);
+void setLedIndicator(uint8_t redValue, uint8_t greenValue, uint8_t blueValue);
 
 #endif /* COMMANDS_H_ */
