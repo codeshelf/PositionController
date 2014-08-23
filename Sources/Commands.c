@@ -312,29 +312,11 @@ asm {
 	// Param 3 (red) in A
 	
 	// Push 2rd param
-		PSHX
+		PSHA
 		
-	// Red
-		LDX    #8
-	Loop1:
-		ASRA
-		BCS    On1
-	Off1:
-		MOV    #0x08,0x02
-		MOV    #0x00,0x02
-		BRA    End1
-	On1:
-		MOV    #0x08,0x02
-		NOP    
-		NOP    
-		MOV    #0x00,0x02
-	End1:
-		DECX
-		BNE    Loop1
-	
 	// Green
 	// Pop A back off the stack
-		PULA
+		TXA
 		LDX    #8
 	Loop2:
 		ASRA
@@ -352,6 +334,25 @@ asm {
 		DECX
 		BNE    Loop2
 	
+	// Red
+		PULA
+		LDX    #8
+	Loop1:
+		ASRA
+		BCS    On1
+	Off1:
+		MOV    #0x08,0x02
+		MOV    #0x00,0x02
+		BRA    End1
+	On1:
+		MOV    #0x08,0x02
+		NOP    
+		NOP    
+		MOV    #0x00,0x02
+	End1:
+		DECX
+		BNE    Loop1
+		
 	// Blue
 	// Pop 1st param from stack
 		AIS    #2
