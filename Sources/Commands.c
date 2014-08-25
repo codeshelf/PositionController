@@ -322,11 +322,11 @@ asm {
 		ASRA
 		BCS    On2
 	Off2:
-		MOV    #0x08,0x02
+		MOV    #PTBD_PTBD4_MASK,0x02
 		MOV    #0x00,0x02
 		BRA    End2
 	On2:
-		MOV    #0x08,0x02
+		MOV    #PTBD_PTBD4_MASK,0x02
 		NOP    
 		NOP    
 		MOV    #0x00,0x02
@@ -341,11 +341,11 @@ asm {
 		ASRA
 		BCS    On1
 	Off1:
-		MOV    #0x08,0x02
+		MOV    #PTBD_PTBD4_MASK,0x02
 		MOV    #0x00,0x02
 		BRA    End1
 	On1:
-		MOV    #0x08,0x02
+		MOV    #PTBD_PTBD4_MASK,0x02
 		NOP    
 		NOP    
 		MOV    #0x00,0x02
@@ -364,11 +364,11 @@ asm {
 		ASRA
 		BCS    On3
 	Off3:
-		MOV    #0x08,0x02
+		MOV    #PTBD_PTBD4_MASK,0x02
 		MOV    #0x00,0x02
 		BRA    End3
 	On3:
-		MOV    #0x08,0x02
+		MOV    #PTBD_PTBD4_MASK,0x02
 		NOP    
 		NOP    
 		MOV    #0x00,0x02
