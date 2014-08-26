@@ -3,7 +3,7 @@
   <Header>
     <Name>ProcessorExpert</Name>
     <SavedBy>jeffw</SavedBy>
-    <ModificationStamp>80</ModificationStamp>
+    <ModificationStamp>82</ModificationStamp>
     <Date>2014-08-25</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.1.RT6_b1423-0421</PEversion>
@@ -28,7 +28,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>63</ProjectCompNumb>
+    <ProjectCompNumb>66</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -9996,7 +9996,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <TypeSpecNameState>typePULL</TypeSpecNameState>
-        <Index>5</Index>
+        <Index>1</Index>
       </ItemState>
       <ItemState>
         <ItemSymbol>ODE</ItemSymbol>
