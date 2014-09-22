@@ -13,10 +13,19 @@
 #include "Led.h"
 
 // The bits for the LED segments get loaded into a register via SPI.
-// The patter to light the LED element go like this:
-// (digit = 1 (right) or 2 (left), elements are A-G and DP)
+// The pattern to light the LED element go like this:
+// In the code below the number is the digit = 1 (right) or 2 (left), and the letter is the standard LED segment.
+// https://en.wikipedia.org/wiki/File:7_segment_display_labeled.svg
+//
 //     LSB3           LSB2          LSB1            LSB0
 // 1F 1A 1B 1DP | 2F 2G 2A 2B | 2DP 2C 2D 2E | 1C 1G 1D 1E
+// 
+// In the segment position, e.g. 1F, use one of the follow 2-bit codes:
+//
+// 00 = LED Output set LOW (LED On)
+// 01 = LED Output set Hi-Z (LED Off – Default) 
+// 10 = LED Output blinks at BLINK0 Rate
+// 11 = LED Output blinks at BLINK1 Rate
 
 const uint32_t kRightDigitDimBits[] = { 0xfd0000df, 0x5d0000d5, 0x7d00007f,
 		0x7d0000fd, 0xdd0000f5, 0xf50000fd, 0xf50000ff, 0x7d0000d5, 0xfd0000ff,
@@ -35,10 +44,12 @@ const uint32_t kLeftDigitBlinkBits[] = { 0x009a6a00, 0x00566500, 0x006a5a00,
 const uint32_t errorDigits = 0xa555556a; // " E"
 const uint32_t bayCompDigits = 0x55a56a6a; // "bc"
 const uint32_t posAssignDigits = 0x7d5555ff; // " a"
+const uint32_t posRepeatDigits = 0x55555544; // " r"
 
 const uint8_t kErrorCode = 255;
 const uint8_t kBayCompleteCode = 254;
 const uint8_t kPositionAssignCode = 253;
+const uint8_t kPositionRepeatCode = 252;
 
 // This value is set in flash, but it gets overwritten by the user config mode.
 #pragma CONST_SEG FLASH_STORAGE  
@@ -246,6 +257,12 @@ void displayValueAsCode(uint8_t controlValue) {
 		displayBytes[4] = *(((uint8_t*) &posAssignDigits) + 1);
 		displayBytes[5] = *(((uint8_t*) &posAssignDigits) + 2);
 		displayBytes[6] = *(((uint8_t*) &posAssignDigits) + 3);
+		break;
+	case kPositionRepeatCode:
+		displayBytes[3] = *(((uint8_t*) &posRepeatDigits) + 0);
+		displayBytes[4] = *(((uint8_t*) &posRepeatDigits) + 1);
+		displayBytes[5] = *(((uint8_t*) &posRepeatDigits) + 2);
+		displayBytes[6] = *(((uint8_t*) &posRepeatDigits) + 3);
 		break;
 	default:
 		break;
