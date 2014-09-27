@@ -17,8 +17,11 @@
 // In the code below the number is the digit = 1 (right) or 2 (left), and the letter is the standard LED segment.
 // https://en.wikipedia.org/wiki/File:7_segment_display_labeled.svg
 //
-//     LSB3           LSB2          LSB1            LSB0
-// 1F 1A 1B 1DP | 2F 2G 2A 2B | 2DP 2C 2D 2E | 1C 1G 1D 1E
+//     LSB3           LSB2          LSB1          LSB0
+// 1DP 1C 1D 1E | 2DP 2C 2D 2E | 2G 2F 2A 2B | 1G 1F 1A 1B 
+//
+// LSBx refers to the 9552's LED register number.  
+// We send them in LSB0, LSB1, LSB2, LSB3 order on the IIC bus.
 // 
 // In the segment position, e.g. 1F, use one of the follow 2-bit codes:
 //
@@ -27,24 +30,20 @@
 // 10 = LED Output blinks at BLINK0 Rate
 // 11 = LED Output blinks at BLINK1 Rate
 
-const uint32_t kRightDigitDimBits[] = { 0xfd0000df, 0x5d0000d5, 0x7d00007f,
-		0x7d0000fd, 0xdd0000f5, 0xf50000fd, 0xf50000ff, 0x7d0000d5, 0xfd0000ff,
-		0xfd0000fd };
-const uint32_t kLeftDigitDimBits[] = { 0x00df7f00, 0x00577500, 0x007f5f00,
-		0x007f7d00, 0x00f77500, 0x00fd7d00, 0x00fd7f00, 0x005f7500, 0x00ff7f00,
-		0x00ff7d00 };
+const uint16_t kRightDigitBlinkBits[] = { 0x6a6a, 0x5665, 0x9a5a, 0x9a69, 0xa665,
+		0xa969, 0xa96a, 0x5a65, 0xaa6a, 0xaa65 };
+const uint16_t kLeftDigitBlinkBits[] =  { 0x6a6a, 0x5665, 0x9a5a, 0x9a69, 0xa665,
+		0xa969, 0xa96a, 0x5a65, 0xaa6a, 0xaa65 };
 
-const uint32_t kRightDigitBlinkBits[] = { 0xa900009a, 0x59000095, 0x6900006a,
-		0x690000a9, 0x990000a5, 0xa50000a9, 0xa50000aa, 0x69000095, 0xa90000aa,
-		0xa90000a9 };
-const uint32_t kLeftDigitBlinkBits[] = { 0x009a6a00, 0x00566500, 0x006a5a00,
-		0x006a6900, 0x00a66500, 0x00a96900, 0x00a96a00, 0x005a6500, 0x00aa6a00,
-		0x00aa6900 };
+const uint16_t kRightDigitDimBits[] = { 0x7f7f, 0x5775, 0xdf5f, 0xdf7d, 0xf775,
+		0xfd7d, 0xfd7d, 0x5f75, 0xff7f, 0xff75 };
+const uint16_t kLeftDigitDimBits[] =  { 0x7f7f, 0x5775, 0xdf5f, 0xdf7d, 0xf775,
+		0xfd7d, 0xfd7d, 0x5f75, 0xff7f, 0xff75 };
 
-const uint32_t errorDigits = 0xa555556a; // " E"
-const uint32_t bayCompDigits = 0x55a56a6a; // "bc"
-const uint32_t posAssignDigits = 0x7d5555ff; // " a"
-const uint32_t posRepeatDigits = 0x55555544; // " r"
+const uint32_t errorDigits = 0xa955555a; // " E"
+const uint32_t bayCompDigits = 0xf5d57f7f; // "bc"
+const uint32_t posAssignDigits = 0xdf55557f; // " a"
+const uint32_t posRepeatDigits = 0xd5555557; // " r"
 
 const uint8_t kErrorCode = 255;
 const uint8_t kBayCompleteCode = 254;
@@ -210,15 +209,15 @@ void displayValue(uint8_t displayValue) {
 	tens = displayValue / 10;
 	ones = displayValue % 10;
 
-	displayBytes[3] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 0);
+	displayBytes[4] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 0);
+	displayBytes[5] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 1);
 	if (tens > 0) {
-		displayBytes[4] = *(((uint8_t*) &kLeftDigitDimBits[tens]) + 1);
-		displayBytes[5] = *(((uint8_t*) &kLeftDigitDimBits[tens]) + 2);
+		displayBytes[3] = *(((uint8_t*) &kLeftDigitDimBits[tens]) + 0);
+		displayBytes[6] = *(((uint8_t*) &kLeftDigitDimBits[tens]) + 1);
 	} else {
-		displayBytes[4] = 0x55;
-		displayBytes[5] = 0x55;
+		displayBytes[3] = 0x55;
+		displayBytes[6] = 0x55;
 	}
-	displayBytes[6] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 3);
 
 	I2CM_Write_Bytes(0x60, 7, displayBytes);
 	// Give it some time to write out to the bus.
@@ -295,15 +294,15 @@ void displayValueBlink(uint8_t displayValue) {
 	tens = displayValue / 10;
 	ones = displayValue % 10;
 
-	displayBytes[3] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 0);
+	displayBytes[4] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 0);
+	displayBytes[5] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 1);
 	if (tens > 0) {
-		displayBytes[4] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 1);
-		displayBytes[5] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 2);
+		displayBytes[3] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 0);
+		displayBytes[6] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 1);
 	} else {
-		displayBytes[4] = 0x55;
-		displayBytes[5] = 0x55;
+		displayBytes[3] = 0x55;
+		displayBytes[6] = 0x55;
 	}
-	displayBytes[6] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 3);
 
 	I2CM_Write_Bytes(0x60, 7, displayBytes);
 	// Give it some time to write out to the bus.

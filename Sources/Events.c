@@ -152,16 +152,20 @@ void HandleSendAckCommand() {
  * 
  */
 void HandleFlashANewBusAddr() {
+	
+	byte error;
 
 	// Write the current value to flash for permanent storage.
-	Flash_SetByteFlash((Flash_TAddress) &kMyPermanentBusAddr, gCurValue);
+	error = Flash_SetByteFlash((Flash_TAddress) &kMyPermanentBusAddr, gCurValue);
 
 	gDeviceState = eInactive;
 	gCurValue = 0;
 	gMinValue = 0;
 	gMaxValue = 0;
 
-	RESET_MCU();
+	if (error == ERR_OK) {
+		RESET_MCU();
+	}
 }
 
 /*
@@ -179,8 +183,16 @@ void HandleFlashANewBusAddr() {
  ** ===================================================================
  */
 void DebounceTimer_OnInterrupt(void) {
-	DebounceTimer_Disable();
-	gKeypressPending = FALSE;
+	uint8_t kbiValue = KBI_GetVal();
+
+	// If any buttons are still down then re-fire the debounce timer.
+	if (((kbiValue & UP_BUTTON) == 0) || ((kbiValue & DOWN_BUTTON) == 0) || ((kbiValue & ACK_BUTTON) == 0)) {
+		gKeypressPending = TRUE;
+		DebounceTimer_Enable();
+	} else {
+		gKeypressPending = FALSE;
+		DebounceTimer_Disable();		
+	}
 }
 
 /*
