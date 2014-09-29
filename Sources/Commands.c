@@ -36,12 +36,12 @@ const uint16_t kLeftDigitBlinkBits[] =  { 0x6a6a, 0x5665, 0x9a5a, 0x9a69, 0xa665
 		0xa969, 0xa96a, 0x5a65, 0xaa6a, 0xaa65 };
 
 const uint16_t kRightDigitDimBits[] = { 0x7f7f, 0x5775, 0xdf5f, 0xdf7d, 0xf775,
-		0xfd7d, 0xfd7d, 0x5f75, 0xff7f, 0xff75 };
+		0xfd7d, 0xfd7f, 0x5f75, 0xff7f, 0xff75 };
 const uint16_t kLeftDigitDimBits[] =  { 0x7f7f, 0x5775, 0xdf5f, 0xdf7d, 0xf775,
-		0xfd7d, 0xfd7d, 0x5f75, 0xff7f, 0xff75 };
+		0xfd7d, 0xfd7f, 0x5f75, 0xff7f, 0xff75 };
 
 const uint32_t errorDigits = 0xa955555a; // " E"
-const uint32_t bayCompDigits = 0xf5d57f7f; // "bc"
+const uint32_t bayCompDigits = 0xf5d55f7f; // "bc"
 const uint32_t posAssignDigits = 0xdf55557f; // " a"
 const uint32_t posRepeatDigits = 0xd5555557; // " r"
 
@@ -293,7 +293,7 @@ void displayValueBlink(uint8_t displayValue) {
 
 	tens = displayValue / 10;
 	ones = displayValue % 10;
-
+	
 	displayBytes[4] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 0);
 	displayBytes[5] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 1);
 	if (tens > 0) {
