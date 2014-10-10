@@ -39,17 +39,6 @@ void main(void) {
 	
 //	Init_I2CM();
 	initDisplay();
-	setLedIndicator(0xff, 0x00, 0x00);
-	//Cpu_Delay100US(5000);
-	setLedIndicator(0x00, 0xff, 0x00);
-	//Cpu_Delay100US(5000);
-	setLedIndicator(0x00, 0x00, 0xff);
-	//Cpu_Delay100US(5000);
-	setLedIndicator(0xff, 0xff, 0x00);
-	//Cpu_Delay100US(5000);
-	setLedIndicator(0x00, 0xff, 0xff);
-	//Cpu_Delay100US(5000);
-	setLedIndicator(0xff, 0xff, 0xff);
 
 	for (;;) {
 		// Read a frame from the serial bus and then process it.

@@ -33,7 +33,7 @@
       <GenExtraFiles lines_count="1">
         <Line>Generated_Code\Vectors.c</Line>
       </GenExtraFiles>
-      <XtraAge0>1159051800</XtraAge0>
+      <XtraAge0>1162445909</XtraAge0>
       <GenLinkedFiles lines_count="0" />
       <GenEventModules lines_count="1">
         <Line>Events</Line>
@@ -78,7 +78,7 @@
     </GenFiles>
     <SignalListFile>Documentation\ProcessorExpert_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>MetrowerksHCS08CC</DestinationCompiler>
-    <ProjectModificationStamp>82</ProjectModificationStamp>
+    <ProjectModificationStamp>83</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>false</Generated>
@@ -131,8 +131,8 @@
     <GenComponentVersion>01.262</GenComponentVersion>
     <GenDriverVersion>01.40</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1159036259</HeaderAge>
-    <CodeAge>1159307638</CodeAge>
+    <HeaderAge>1162445909</HeaderAge>
+    <CodeAge>1162445909</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>20</GenNumMethods>
     <SetHighSpeed>false</SetHighSpeed>
@@ -178,8 +178,8 @@
     <GenComponentVersion>01.096</GenComponentVersion>
     <GenDriverVersion>01.25</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1159051842</HeaderAge>
-    <CodeAge>1159051842</CodeAge>
+    <HeaderAge>1162445909</HeaderAge>
+    <CodeAge>1162445909</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>7</GenNumMethods>
     <Enable>false</Enable>
@@ -409,8 +409,8 @@
     <GenComponentVersion>01.081</GenComponentVersion>
     <GenDriverVersion>01.20</GenDriverVersion>
     <GenEventModule />
-    <HeaderAge>1159036259</HeaderAge>
-    <CodeAge>1159036259</CodeAge>
+    <HeaderAge>1162445909</HeaderAge>
+    <CodeAge>1162445909</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>1</GenNumMethods>
     <Init>true</Init>
@@ -634,8 +634,8 @@
     <GenComponentVersion>02.161</GenComponentVersion>
     <GenDriverVersion>01.23</GenDriverVersion>
     <GenEventModule>Events</GenEventModule>
-    <HeaderAge>1159036259</HeaderAge>
-    <CodeAge>1159036259</CodeAge>
+    <HeaderAge>1162445909</HeaderAge>
+    <CodeAge>1162445909</CodeAge>
     <AsemblAge>-1</AsemblAge>
     <GenNumMethods>14</GenNumMethods>
     <Enable>true</Enable>
