@@ -183,7 +183,7 @@ void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 		} else {
 			gCurValue = curValue;
 			gMinValue = minValue;
-			gMaxValue = gMaxValue;
+			gMaxValue = maxValue;
 			displayValue(gCurValue);
 		}
 	}
@@ -226,7 +226,9 @@ void displayValue(uint8_t displayValue) {
 }
 
 void displayValueAsCode(uint8_t controlValue) {
-	static uint8_t displayBytes[] = { 0x14, // Start writing at register LED 0-3
+	static uint8_t displayBytes[] = { 0x12, // Start writing at register LED 0-3
+			0x00, // Blink Frequency
+			0x00, // Blink DUTY Cycle
 			0x00, // Frequency
 			0x00, // DUTY Cycle
 			0x00, // LED 0-3
@@ -237,37 +239,39 @@ void displayValueAsCode(uint8_t controlValue) {
 
 	displayBytes[1] = gFreq;
 	displayBytes[2] = gDutyCycle;
+	displayBytes[3] = gFreq;
+	displayBytes[4] = gDutyCycle;
 
 	switch (controlValue) {
 	case kErrorCode:
-		displayBytes[3] = *(((uint8_t*) &errorDigits) + 0);
-		displayBytes[4] = *(((uint8_t*) &errorDigits) + 1);
-		displayBytes[5] = *(((uint8_t*) &errorDigits) + 2);
-		displayBytes[6] = *(((uint8_t*) &errorDigits) + 3);
+		displayBytes[5] = *(((uint8_t*) &errorDigits) + 0);
+		displayBytes[6] = *(((uint8_t*) &errorDigits) + 1);
+		displayBytes[7] = *(((uint8_t*) &errorDigits) + 2);
+		displayBytes[8] = *(((uint8_t*) &errorDigits) + 3);
 		break;
 	case kBayCompleteCode:
-		displayBytes[3] = *(((uint8_t*) &bayCompDigits) + 0);
-		displayBytes[4] = *(((uint8_t*) &bayCompDigits) + 1);
-		displayBytes[5] = *(((uint8_t*) &bayCompDigits) + 2);
-		displayBytes[6] = *(((uint8_t*) &bayCompDigits) + 3);
+		displayBytes[5] = *(((uint8_t*) &bayCompDigits) + 0);
+		displayBytes[6] = *(((uint8_t*) &bayCompDigits) + 1);
+		displayBytes[7] = *(((uint8_t*) &bayCompDigits) + 2);
+		displayBytes[8] = *(((uint8_t*) &bayCompDigits) + 3);
 		break;
 	case kPositionAssignCode:
-		displayBytes[3] = *(((uint8_t*) &posAssignDigits) + 0);
-		displayBytes[4] = *(((uint8_t*) &posAssignDigits) + 1);
-		displayBytes[5] = *(((uint8_t*) &posAssignDigits) + 2);
-		displayBytes[6] = *(((uint8_t*) &posAssignDigits) + 3);
+		displayBytes[5] = *(((uint8_t*) &posAssignDigits) + 0);
+		displayBytes[6] = *(((uint8_t*) &posAssignDigits) + 1);
+		displayBytes[7] = *(((uint8_t*) &posAssignDigits) + 2);
+		displayBytes[8] = *(((uint8_t*) &posAssignDigits) + 3);
 		break;
 	case kPositionRepeatCode:
-		displayBytes[3] = *(((uint8_t*) &posRepeatDigits) + 0);
-		displayBytes[4] = *(((uint8_t*) &posRepeatDigits) + 1);
-		displayBytes[5] = *(((uint8_t*) &posRepeatDigits) + 2);
-		displayBytes[6] = *(((uint8_t*) &posRepeatDigits) + 3);
+		displayBytes[5] = *(((uint8_t*) &posRepeatDigits) + 0);
+		displayBytes[6] = *(((uint8_t*) &posRepeatDigits) + 1);
+		displayBytes[7] = *(((uint8_t*) &posRepeatDigits) + 2);
+		displayBytes[8] = *(((uint8_t*) &posRepeatDigits) + 3);
 		break;
 	default:
 		break;
 	}
 
-	I2CM_Write_Bytes(0x60, 7, displayBytes);
+	I2CM_Write_Bytes(0x60, 9, displayBytes);
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
 }
