@@ -29,7 +29,6 @@
 #include "Commands.h"
 
 void main(void) {
-	uint8_t data;
 	FrameDataType frame[MAX_FRAME_BYTES];
 	FrameCntType frameSize;
 

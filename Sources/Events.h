@@ -1,7 +1,7 @@
 /* ###################################################################
 **     Filename    : Events.h
 **     Project     : ProcessorExpert
-**     Processor   : MC9S08QG8CDT
+**     Processor   : MC9S08SH8CTG
 **     Component   : Events
 **     Version     : Driver 01.02
 **     Compiler    : CodeWarrior HCS08 C Compiler

@@ -31,7 +31,9 @@ typedef uint8_t FrameCntType;
 #define ESC_END						0334    /* ESC ESC_END means END data byte */
 #define ESC_ESC						0335    /* ESC ESC_ESC means ESC data byte */
 
-#define readOneChar(readChar)		while (!SCIS1_RDRF) {__RESET_WATCHDOG()}; readChar = SCID;
+#define __RESET_WATCHDOG1() SRS = 0x55U; SRS = 0xAAU;
+
+#define readOneChar(readChar)		while (!SCIS1_RDRF) {__RESET_WATCHDOG1()}; readChar = SCID;
 
 
 // --------------------------------------------------------------------------
