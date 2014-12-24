@@ -41,10 +41,10 @@ const uint16_t kLeftDigitDimBits[] =  { 0x7f7f, 0x5775, 0xdf5f, 0xdf7d, 0xf775,
 		0xfd7d, 0xfd7f, 0x5f75, 0xff7f, 0xff75 };
 
 const uint8_t kSegmentMap[] = {
-// 1A (0) to 1DP (7)
-        2, 1, 15, 13, 12, 3, 14, 0,
+		// 1A (0) to 1DP (7)
+		5, 4, 10, 9, 8, 6, 7, 11,
         // 2A (8) to 2DP (15)
-        5, 4, 10, 9, 8, 7, 6, 11 };
+		1, 0, 14, 13, 12, 2, 3, 15 };
 
 const uint8_t kSegementOffBits = 0b00000001;
 const uint8_t kSegementDimBits = 0b00000010;
@@ -259,12 +259,6 @@ void displayValueAsCode(uint8_t controlValue) {
 	displayBytes[4] = gDutyCycle;
 
 	switch (controlValue) {
-		case kErrorCode:
-			displayBytes[5] = *(((uint8_t*) &errorDigits) + 0);
-			displayBytes[6] = *(((uint8_t*) &errorDigits) + 1);
-			displayBytes[7] = *(((uint8_t*) &errorDigits) + 2);
-			displayBytes[8] = *(((uint8_t*) &errorDigits) + 3);
-			break;
 		case kBayCompleteCode:
 			displayBytes[5] = *(((uint8_t*) &bayCompDigits) + 0);
 			displayBytes[6] = *(((uint8_t*) &bayCompDigits) + 1);
