@@ -242,6 +242,50 @@ void AckButtonDelay_OnInterrupt(void);
 ** ===================================================================
 */
 
+void Cpu_OnSwINT(void);
+/*
+** ===================================================================
+**     Event       :  Cpu_OnSwINT (module Events)
+**
+**     Component   :  Cpu [MC9S08SH8_16]
+**     Description :
+**         This event is called when the SWI interrupt had occurred.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void Cpu_OnReset(byte Reason);
+/*
+** ===================================================================
+**     Event       :  Cpu_OnReset (module Events)
+**
+**     Component   :  Cpu [MC9S08SH8_16]
+**     Description :
+**         This software event is called after a reset.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         Reason          - The content of the system reset
+**                           status register.
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void Cpu_OnLvwINT(void);
+/*
+** ===================================================================
+**     Event       :  Cpu_OnLvwINT (module Events)
+**
+**     Component   :  Cpu [MC9S08SH8_16]
+**     Description :
+**         This event is called when the Low voltage warning (LVW)
+**         interrupt had occurred. This event can be enabled only if
+**         both <LVD module> and <LVW Interrupt > are enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
 /* END Events */
 #endif /* __Events_H*/
 

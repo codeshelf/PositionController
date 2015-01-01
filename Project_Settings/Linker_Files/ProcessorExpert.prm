@@ -5,7 +5,7 @@
 **     Project   : ProcessorExpert
 **     Processor : MC9S08SH8CTG
 **     Compiler  : CodeWarrior HCS08 C Compiler
-**     Date/Time : 2014-12-03, 13:05, # CodeGen: 121
+**     Date/Time : 2014-12-30, 22:24, # CodeGen: 132
 **     Abstract  :
 **        This file is used by the linker. It describes files to be linked,
 **        memory ranges, stack size, etc. For detailed description of the PRM file
@@ -54,7 +54,8 @@ END
 SECTIONS
     Z_RAM                    =  READ_WRITE   0x0080 TO 0x009F;
     RAM                      =  READ_WRITE   0x00A0 TO 0x027F;
-    ROM                      =  READ_ONLY    0xE000 TO 0xFFAD;
+    ROM                      =  READ_ONLY    0xE000 TO 0xFBFF;
+    FLASH_STORAGE            =  READ_ONLY    0xFC00 TO 0xFDFF;
 END
 
 PLACEMENT
@@ -64,9 +65,10 @@ PLACEMENT
     DEFAULT_ROM, ROM_VAR, STRINGS       INTO  ROM;
     _DATA_ZEROPAGE,                     /* zero page variables */
     MY_ZEROPAGE                         INTO  Z_RAM;
+    FLASH_STORAGE						INTO FLASH_STORAGE;
 END
 
 INIT _EntryPoint                       /* The entry point of the application. This function is generated into the CPU module. */
 
-STACKSIZE 0x0040                       /* Size of the system stack. Value can be changed on the "Build options" tab */
+STACKSIZE 0x0080                       /* Size of the system stack. Value can be changed on the "Build options" tab */
 

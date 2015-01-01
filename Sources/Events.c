@@ -158,14 +158,16 @@ void HandleFlashANewBusAddr() {
 	// Write the current value to flash for permanent storage.
 	error = Flash_SetByteFlash((Flash_TAddress) &kMyPermanentBusAddr, gCurValue);
 
+	if (error != ERR_OK) {
+		RESET_MCU();
+	}
+
 	gDeviceState = eInactive;
 	gCurValue = 0;
 	gMinValue = 0;
 	gMaxValue = 0;
-
-	if (error == ERR_OK) {
-		RESET_MCU();
-	}
+	
+	clearDisplay();
 }
 
 /*
@@ -246,6 +248,62 @@ void ConfigModeWait_OnInterrupt(void) {
 void AckButtonDelay_OnInterrupt(void) {
 	gAckButtonLockout = FALSE;
 	AckButtonDelay_Disable();
+}
+
+/*
+** ===================================================================
+**     Event       :  Cpu_OnSwINT (module Events)
+**
+**     Component   :  Cpu [MC9S08SH8_16]
+**     Description :
+**         This event is called when the SWI interrupt had occurred.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Cpu_OnSwINT(void)
+{
+  /* Write your code here ... */
+	//asm(BGND);
+}
+
+/*
+** ===================================================================
+**     Event       :  Cpu_OnReset (module Events)
+**
+**     Component   :  Cpu [MC9S08SH8_16]
+**     Description :
+**         This software event is called after a reset.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         Reason          - The content of the system reset
+**                           status register.
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Cpu_OnReset(byte Reason)
+{
+  /* Write your code here ... */
+	//asm(BGND);
+}
+
+/*
+** ===================================================================
+**     Event       :  Cpu_OnLvwINT (module Events)
+**
+**     Component   :  Cpu [MC9S08SH8_16]
+**     Description :
+**         This event is called when the Low voltage warning (LVW)
+**         interrupt had occurred. This event can be enabled only if
+**         both <LVD module> and <LVW Interrupt > are enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void Cpu_OnLvwINT(void)
+{
+  /* Write your code here ... */
+	//asm(BGND);
 }
 
 /* END Events */
