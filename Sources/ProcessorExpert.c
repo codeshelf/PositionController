@@ -18,6 +18,7 @@
 #include "Flash.h"
 #include "ConfigModeWait.h"
 #include "AckButtonDelay.h"
+#include "Led.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"

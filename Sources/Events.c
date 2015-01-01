@@ -152,16 +152,22 @@ void HandleSendAckCommand() {
  * 
  */
 void HandleFlashANewBusAddr() {
+	
+	byte error;
 
 	// Write the current value to flash for permanent storage.
-	Flash_SetByteFlash((Flash_TAddress) &kMyPermanentBusAddr, gCurValue);
+	error = Flash_SetByteFlash((Flash_TAddress) &kMyPermanentBusAddr, gCurValue);
+
+	if (error != ERR_OK) {
+		RESET_MCU();
+	}
 
 	gDeviceState = eInactive;
 	gCurValue = 0;
 	gMinValue = 0;
 	gMaxValue = 0;
-
-	RESET_MCU();
+	
+	clearDisplay();
 }
 
 /*

@@ -53,7 +53,7 @@
 					<Name>General config</Name>
 					<StringAttribute>
 						<Name>Launch config name</Name>
-						<DefaultValue>PositionController_FLASH_PnE U-MultiLink (1)</DefaultValue>
+						<DefaultValue>PositionController_9S08QG</DefaultValue>
 					</StringAttribute>
 					<StringAttribute>
 						<Name>Config path</Name>
