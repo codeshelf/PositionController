@@ -57,11 +57,11 @@
 					</StringAttribute>
 					<StringAttribute>
 						<Name>Config path</Name>
-						<DefaultValue>NO_PATH</DefaultValue>
+						<DefaultValue>C:/Users/jeffw/git/PositionController</DefaultValue>
 					</StringAttribute>
 					<BoolAttribute>
 						<Name>EnableTrace</Name>
-						<DefaultValue>false</DefaultValue>
+						<DefaultValue>true</DefaultValue>
 					</BoolAttribute>
 					<BoolAttribute>
 						<Name>EnableLogging</Name>
@@ -73,14 +73,14 @@
 					</BoolAttribute>
 					<BoolAttribute>
 						<Name>StartTrace</Name>
-						<DefaultValue>false</DefaultValue>
+						<DefaultValue>true</DefaultValue>
 					</BoolAttribute>
 				</ConfigBlock>
 				<ConfigBlock>
 					<Name>TargetConfig</Name>
 					<EnumAttribute>
 						<Name>TraceType</Name>
-						<DefaultValue>PROGRAM_TRACE</DefaultValue>
+						<DefaultValue>PROFILE_ONLY</DefaultValue>
 						<EnumValues>PROGRAM_TRACE,DATA_TRACE,PROFILE_ONLY,EXPERT_SETTINGS,USER_CODE_CONFIG</EnumValues>
 					</EnumAttribute>
 					<BoolAttribute>
@@ -120,7 +120,7 @@
 					</BoolAttribute>
 					<UInt32Attribute>
 						<Name>DataBusValue</Name>
-						<DefaultValue>4294967295</DefaultValue>
+						<DefaultValue>0</DefaultValue>
 					</UInt32Attribute>
 					<Addr32Attribute>
 						<Name>PC</Name>

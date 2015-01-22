@@ -54,8 +54,8 @@ END
 SECTIONS
     Z_RAM                    =  READ_WRITE   0x0080 TO 0x009F;
     RAM                      =  READ_WRITE   0x00A0 TO 0x027F;
-    ROM                      =  READ_ONLY    0xE000 TO 0xFBFF;
-    FLASH_STORAGE            =  READ_ONLY    0xFC00 TO 0xFDFF;
+    ROM                      =  READ_ONLY    0xE000 TO 0xFEFF;
+    FLASH_STORAGE            =  READ_ONLY    0xFF00 TO 0xFFAF;
 END
 
 PLACEMENT

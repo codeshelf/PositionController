@@ -44,6 +44,9 @@
 #include "ConfigModeWait.h"
 #include "AckButtonDelay.h"
 #include "Led.h"
+#include "SharpDisplayCS.h"
+#include "Wait.h"
+#include "SharpDisplay.h"
 
 
 /*
