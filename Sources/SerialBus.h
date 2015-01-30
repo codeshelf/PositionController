@@ -12,6 +12,7 @@
 
 #include "IO_Map.h"
 #include "PE_Types.h"
+//#include "Watchdog.h"
 
 #define MAX_FRAME_BYTES		16
 #define START_FRAME			0xff
@@ -32,6 +33,7 @@ typedef uint8_t FrameCntType;
 #define ESC_ESC						0335    /* ESC ESC_ESC means ESC data byte */
 
 #define __RESET_WATCHDOG1() SRS = 0x55U; SRS = 0xAAU;
+//#define __RESET_WATCHDOG1() Watchdog_Clear();
 
 #define readOneChar(readChar)		while (!SCIS1_RDRF) {__RESET_WATCHDOG1()}; readChar = SCID;
 

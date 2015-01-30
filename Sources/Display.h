@@ -9,7 +9,7 @@
 #define DISPLAY_H_
 
 #include "PE_Types.h"
-#include "SharpDisplayCS.h"
+//#include "SharpDisplayCS.h"
 #include "Wait.h"
 
 #define DISPLAY_WIDTH		144

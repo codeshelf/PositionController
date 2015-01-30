@@ -2,7 +2,7 @@
 #include "PE_Types.h"
 #include "IO_Map.h"
 #include "string.h"
-#include "SharpDisplay.h"
+//#include "SharpDisplay.h"
 #include "FontBarcode.h"
 #include "FontArial.h"
 

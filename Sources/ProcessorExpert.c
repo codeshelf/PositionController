@@ -19,9 +19,7 @@
 #include "ConfigModeWait.h"
 #include "AckButtonDelay.h"
 #include "Led.h"
-#include "SharpDisplayCS.h"
 #include "Wait.h"
-#include "SharpDisplay.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -53,12 +51,12 @@ void main(void) {
 //	//Cpu_Delay100US(5000);
 //	setLedIndicator(0xff, 0xff, 0xff);
 
-	clearLcdDisplay();
-	//displayString(2, 4,   "15 Cs", 4);
-	//displayString(2, 36,  " 3 Ea", 4);
-	displayString(20, 10,  "32C", 2);
-	displayString(2, 100, "PACK LIGHT", 1);
-	displayBarcode(20, 50, "*01*", 1);
+//	clearLcdDisplay();
+//	//displayString(2, 4,   "15 Cs", 4);
+//	//displayString(2, 36,  " 3 Ea", 4);
+//	displayString(20, 10,  "32C", 2);
+//	displayString(2, 100, "PACK LIGHT", 1);
+//	displayBarcode(20, 50, "*01*", 1);
 	
 	for (;;) {
 		// Read a frame from the serial bus and then process it.

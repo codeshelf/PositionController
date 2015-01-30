@@ -53,6 +53,6 @@ void displayValue(uint8_t currentValue);
 void displayValueBlink(uint8_t currentValue);
 void displayValueAsCode(uint8_t controlValue);
 void setLedIndicator(uint8_t redValue, uint8_t greenValue, uint8_t blueValue);
-void setLedSegments(uint8_t* displayBytesPtr);
+void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t secondDigitVal);
 
 #endif /* COMMANDS_H_ */

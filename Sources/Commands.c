@@ -282,7 +282,10 @@ void displayValueAsCode(uint8_t controlValue) {
 			displayBytes[6] = 0;
 			displayBytes[7] = 0;
 			displayBytes[8] = 0;
-			setLedSegments(&displayBytes);
+			setLedSegments(&displayBytes, gMinValue, gMaxValue);
+			gMinValue = 0;
+			gMaxValue = 0;
+			gCurValue = 0;
 			break;
 		default:
 			break;
@@ -295,7 +298,7 @@ void displayValueAsCode(uint8_t controlValue) {
 
 // --------------------------------------------------------------------------
 
-void setLedSegments(uint8_t* displayBytesPtr) {
+void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t secondDigitVal) {
 
 	uint8_t bitPos;
 	uint8_t mappedBitPos;
@@ -308,11 +311,11 @@ void setLedSegments(uint8_t* displayBytesPtr) {
 	for (bitPos = 0; bitPos < 16; ++bitPos) {
 		segmentIsOn = FALSE;
 		if (bitPos < 8) {
-			if (gMinValue & (0x01 << bitPos)) {
+			if (firstDigitVal & (0x01 << bitPos)) {
 				segmentIsOn = TRUE;
 			}
 		} else {
-			if (gMaxValue & (0x01 << (bitPos - 8))) {
+			if (secondDigitVal & (0x01 << (bitPos - 8))) {
 				segmentIsOn = TRUE;
 			}
 		}
