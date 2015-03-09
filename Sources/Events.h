@@ -36,15 +36,17 @@
 #include "IO_Map.h"
 #include "KBI.h"
 #include "ASYNC.h"
-#include "IIC.h"
-#include "RS485_DRV.h"
-#include "DISPLAY_RESET.h"
+#include "Rs485Dir.h"
+#include "StatusLedClk.h"
+#include "StatusLedSdi.h"
 #include "DebounceTimer.h"
 #include "Flash.h"
 #include "ConfigModeWait.h"
 #include "AckButtonDelay.h"
-#include "Led.h"
+#include "SharpDisplayCS.h"
 #include "Wait.h"
+#include "SharpDisplay.h"
+#include "LdoEnable.h"
 
 
 /*

@@ -10,7 +10,7 @@
 #include "Commands.h"
 #include <string.h>
 #include <Flash.h>
-#include "Led.h"
+//#include "Led.h"
 
 // The bits for the LED segments get loaded into a register via SPI.
 // The pattern to light the LED element go like this:

@@ -126,7 +126,7 @@ void HandleSendAckCommand() {
 
 	commandBytes[BUTTON_CMD_DATA_POS] = gCurValue;
 	// Turn on the RS485 driver.
-	RS485_DRV_PutVal(1);
+	Rs485Dir_PutVal(1);
 	for (pos = 0; pos <= 3; ++pos) {
 		// Wait while the TX buffer is full.
 		while (SCIS1_TDRE == 0) {
@@ -142,7 +142,7 @@ void HandleSendAckCommand() {
 	Cpu_Delay100US(20);
 
 	// Turn off the 485 driver.
-	RS485_DRV_PutVal(0);
+	Rs485Dir_PutVal(0);
 
 	// Don't clear the display - wait for the host to ACK that it got our button press correctly.
 	//clearDisplay();

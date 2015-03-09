@@ -11,20 +11,22 @@
 #include "Events.h"
 #include "KBI.h"
 #include "ASYNC.h"
-#include "IIC.h"
-#include "RS485_DRV.h"
-#include "DISPLAY_RESET.h"
+#include "Rs485Dir.h"
+#include "StatusLedClk.h"
+#include "StatusLedSdi.h"
 #include "DebounceTimer.h"
 #include "Flash.h"
 #include "ConfigModeWait.h"
 #include "AckButtonDelay.h"
-#include "Led.h"
+#include "SharpDisplayCS.h"
 #include "Wait.h"
+#include "SharpDisplay.h"
+#include "LdoEnable.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-#include "I2CMaster.h"
+//#include "I2CMaster.h"
 #include "Display.h"
 #include "SerialBus.h"
 #include "Commands.h"
@@ -39,24 +41,12 @@ void main(void) {
 	
 //	Init_I2CM();
 	initDisplay();
-//	setLedIndicator(0xff, 0x00, 0x00);
-//	//Cpu_Delay100US(5000);
-//	setLedIndicator(0x00, 0xff, 0x00);
-//	//Cpu_Delay100US(5000);
-//	setLedIndicator(0x00, 0x00, 0xff);
-//	//Cpu_Delay100US(5000);
-//	setLedIndicator(0xff, 0xff, 0x00);
-//	//Cpu_Delay100US(5000);
-//	setLedIndicator(0x00, 0xff, 0xff);
-//	//Cpu_Delay100US(5000);
-//	setLedIndicator(0xff, 0xff, 0xff);
+	setStatusLed(0, 2, 10);
 
-//	clearLcdDisplay();
-//	//displayString(2, 4,   "15 Cs", 4);
-//	//displayString(2, 36,  " 3 Ea", 4);
-//	displayString(20, 10,  "32C", 2);
-//	displayString(2, 100, "PACK LIGHT", 1);
-//	displayBarcode(20, 50, "*01*", 1);
+	clearLcdDisplay();
+	displayString(20, 10,  "32C", 2);
+	displayString(2, 100, "PACK LIGHT", 1);
+	displayBarcode(20, 50, "*01*", 1);
 	
 	for (;;) {
 		// Read a frame from the serial bus and then process it.

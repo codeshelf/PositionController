@@ -52,5 +52,6 @@ void sendRowBuffer(uint16_t row, byte *rowBufferPtr);
 void displayString(uint16_t x, uint16_t y, char_t *stringPtr, uint8_t size);
 void displayBarcode(uint16_t x, uint16_t y, char_t *stringPtr, uint8_t size);
 void displayMessage(uint8_t line, char_t *stringPtr, uint8_t maxChars, uint8_t size);
+void setStatusLed(uint8_t red, uint8_t green, uint8_t blue);
 
 #endif /* DISPLAY_H_ */
