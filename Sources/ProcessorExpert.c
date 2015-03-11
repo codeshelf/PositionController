@@ -39,6 +39,8 @@ void main(void) {
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
 	
+	LdoEnable_SetVal();
+	
 //	Init_I2CM();
 	initDisplay();
 	setStatusLed(0, 2, 10);
