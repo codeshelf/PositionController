@@ -39,7 +39,8 @@ void main(void) {
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
 	
-	LdoEnable_SetVal();
+	// Disable SPI MISO.  (Don't know why.)
+	SPIC2_SPC0 = 1;
 	
 //	Init_I2CM();
 	initDisplay();
