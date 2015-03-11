@@ -41,6 +41,7 @@ void main(void) {
 	
 	// Disable SPI MISO.  (Don't know why.)
 	SPIC2_SPC0 = 1;
+	SPIC2_BIDIROE = 1;
 	
 //	Init_I2CM();
 	initDisplay();
