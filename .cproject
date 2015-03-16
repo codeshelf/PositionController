@@ -206,7 +206,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Generated_Code&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources&quot;"/>
 								</option>
-								<option id="hc08.toolchain.compiler.base.opt.o0.19721995" name="Disable optimization (-O0) " superClass="hc08.toolchain.compiler.base.opt.o0" value="false" valueType="boolean"/>
+								<option id="hc08.toolchain.compiler.base.opt.o0.19721995" name="Disable optimization (-O0) " superClass="hc08.toolchain.compiler.base.opt.o0" value="true" valueType="boolean"/>
 								<option id="hc08.toolchain.compiler.BranchOpt.JSRtoBSR.1809471831" name="Disable Branch JSR to BSR optimization (-OnB=b)" superClass="hc08.toolchain.compiler.BranchOpt.JSRtoBSR" value="false" valueType="boolean"/>
 								<inputType id="hcs08.toolchain.compiler.base.input.c.101345048" name="HCS08 Compiler C Input" superClass="hcs08.toolchain.compiler.base.input.c"/>
 								<inputType id="hcs08.toolchain.compiler.base.input.cpp.346223724" name="HCS08 Compiler CPP Input" superClass="hcs08.toolchain.compiler.base.input.cpp"/>
@@ -219,7 +219,7 @@
 					</folderInfo>
 					<fileInfo id="toolchain.config.hcs08.release.1450080718.1131877108.708241817..settings/com.freescale.processorexpert.core.prefs" name="com.freescale.processorexpert.core.prefs" rcbsApplicability="disable" resourcePath=".settings/com.freescale.processorexpert.core.prefs" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding=".settings/com.freescale.processorexpert.core.prefs" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Sources/CommandsLed.c|.settings/com.freescale.processorexpert.core.prefs" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

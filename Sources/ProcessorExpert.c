@@ -38,20 +38,13 @@ void main(void) {
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
-	
-	// Disable SPI MISO.  (Don't know why.)
-	SPIC2_SPC0 = 1;
-	SPIC2_BIDIROE = 1;
-	
-//	Init_I2CM();
+		
+#ifdef __IIC
+	Init_I2CM();
+#endif
 	initDisplay();
-	setStatusLed(0, 2, 10);
+	setStatusLed(0, 1, 2);
 
-	clearLcdDisplay();
-	displayString(20, 10,  "32C", 2);
-	displayString(2, 100, "PACK LIGHT", 1);
-	displayBarcode(20, 50, "*01*", 1);
-	
 	for (;;) {
 		// Read a frame from the serial bus and then process it.
 		frameSize = serialReceiveFrame(frame, MAX_FRAME_BYTES);

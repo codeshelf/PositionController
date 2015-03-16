@@ -12,8 +12,8 @@
 //#include "SharpDisplayCS.h"
 #include "Wait.h"
 
-#define DISPLAY_WIDTH		144
-#define DISPLAY_HEIGHT		168
+#define DISPLAY_WIDTH		168
+#define DISPLAY_HEIGHT		144
 
 #define WHITE				1
 #define	BLACK				0
@@ -25,7 +25,7 @@
 #define LCDCMD_CLEAR		0x20
 
 #define DISPLAY_CS_ON     	SharpDisplayCS_SetVal();
-#define DISPLAY_CS_OFF    	Wait_Waitus(5); SharpDisplayCS_ClrVal();
+#define DISPLAY_CS_OFF    	while (!SPI_TX_READY); /* Wait_Waitus(1); */ SharpDisplayCS_ClrVal();
 
 #define readFontByte(addr) (*(const unsigned char *)(addr))
 #define swap(a, b) { uint16_t t = a; a = b; b = t; }

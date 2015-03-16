@@ -16,8 +16,7 @@ void sendByte(uint8_t data) {
 	while (!SPI_TX_READY)
 		;
 	SPI_WriteData8Bits(data);
-	Wait_Waitns(2000);
-
+	Wait_Waitns(20000);
 }
 
 void sendByteLSB(uint8_t data) {
@@ -27,7 +26,7 @@ void sendByteLSB(uint8_t data) {
 	while (!SPI_TX_READY)
 		;
 	SPI_WriteData8Bits(data);
-	Wait_Waitns(2000);
+	Wait_Waitns(20000);
 
 	SPI_SetDataShiftOrder(SPI_PDD_MSB_FIRST);
 }
@@ -88,6 +87,7 @@ void putCharSliceInRowBuffer(uint16_t x, unsigned char drawChar, uint8_t *rowBuf
 	charDescOffset = (uint8_t) (drawChar - arial_16ptFontInfo.startChar);
 	pixDataOffset = arial_16ptDescriptors[charDescOffset].offset;
 
+	sliceByteOffset = 0;
 	if (slice > 0) {
 		sliceByteOffset = slice * (arial_16ptDescriptors[charDescOffset].widthBits / 8);
 		if (arial_16ptDescriptors[charDescOffset].widthBits % 8) {
@@ -166,6 +166,7 @@ void putBarcodeSliceInRowBuffer(uint16_t x, unsigned char drawChar, uint8_t *row
 	charDescOffset = (uint8_t) (drawChar - barcodeFontInfo.startChar);
 	pixDataOffset = barcodeDescriptors[charDescOffset].offset;
 
+	sliceByteOffset = 0;
 	if (slice > 0) {
 		sliceByteOffset = slice * (barcodeDescriptors[charDescOffset].widthBits / 8);
 		if (barcodeDescriptors[charDescOffset].widthBits % 8) {
