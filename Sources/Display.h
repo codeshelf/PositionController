@@ -12,8 +12,8 @@
 //#include "SharpDisplayCS.h"
 #include "Wait.h"
 
-#define DISPLAY_WIDTH		168
-#define DISPLAY_HEIGHT		144
+#define DISPLAY_WIDTH		128
+#define DISPLAY_HEIGHT		128
 
 #define WHITE				1
 #define	BLACK				0

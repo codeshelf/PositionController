@@ -42,6 +42,13 @@ void main(void) {
 #ifdef __IIC
 	Init_I2CM();
 #endif
+	
+#ifdef __SharpDisplay
+	SPIC2_SPC0 = 0x01;
+	SPIC2_BIDIROE = 0x01;
+#endif
+	
+	Wait_Waitms(20);
 	initDisplay();
 	setStatusLed(0, 1, 2);
 
