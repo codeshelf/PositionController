@@ -30,22 +30,24 @@
 #include "Cpu.h"
 #include "Events.h"
 #include "Commands.h"
+#include "Display.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
 #define RESET_MCU()		__asm DCB 0x8D
 
-void HandleKeypress();
-void HandleSendAckCommand(void);
-void HandleFlashANewBusAddr(void);
-
-bool gKeypressPending = FALSE;
-bool gAckButtonLockout = FALSE;
 extern uint8_t gCurValue;
 extern uint8_t gMinValue;
 extern uint8_t gMaxValue;
 extern uint8_t kMyPermanentBusAddr;
+extern uint8_t gMyBusAddr;
 extern EDeviceState gDeviceState;
+
+void handleKeypress(void);
+void handleFlashANewBusAddr(void);
+
+bool gKeypressPending = FALSE;
+bool gAckButtonLockout = FALSE;
 
 /*
  ** ===================================================================
@@ -67,14 +69,14 @@ void KBI_OnInterrupt(void) {
 		gKeypressPending = TRUE;
 		DebounceTimer_Enable();
 		ConfigModeWait_Enable();
-		HandleKeypress();
+		handleKeypress();
 	}
 }
 
 /*
  * After a debounce we finally handle a keypress.
  */
-void HandleKeypress() {
+void handleKeypress() {
 
 	uint8_t kbiValue = KBI_GetVal();
 
@@ -87,7 +89,7 @@ void HandleKeypress() {
 					gCurValue++;
 					if (gDeviceState == eActive) {
 						displayValue(gCurValue);
-					} else {
+					} else if (gDeviceState == eConfigMode) {
 						displayValueBlink(gCurValue);
 					}
 				}
@@ -96,7 +98,7 @@ void HandleKeypress() {
 					gCurValue--;
 					if (gDeviceState == eActive) {
 						displayValue(gCurValue);
-					} else {
+					} else if (gDeviceState == eConfigMode) {
 						displayValueBlink(gCurValue);
 					}
 				}
@@ -105,9 +107,11 @@ void HandleKeypress() {
 					if (gDeviceState == eActive) {
 						gAckButtonLockout = TRUE;
 						AckButtonDelay_Enable();
-						HandleSendAckCommand();
+						sendAckCommand();
+					} else if (gDeviceState == eConfigMode) {
+						handleFlashANewBusAddr();
 					} else {
-						HandleFlashANewBusAddr();
+						clearDisplay();
 					}
 				}
 			}
@@ -118,40 +122,7 @@ void HandleKeypress() {
 /*
  * 
  */
-void HandleSendAckCommand() {
-	uint8_t commandBytes[] = { BUTTON_COMMAND, 0x00, 0x00 };
-	uint8_t pos;
-
-	commandBytes[1] = kMyPermanentBusAddr;
-
-	commandBytes[BUTTON_CMD_DATA_POS] = gCurValue;
-	// Turn on the RS485 driver.
-	Rs485Dir_PutVal(1);
-	for (pos = 0; pos <= 3; ++pos) {
-		// Wait while the TX buffer is full.
-		while (SCIS1_TDRE == 0) {
-
-		}
-		ASYNC_SendChar(commandBytes[pos]);
-	}
-	// Wait while the TX buffer is full.
-	while (SCIS1_TDRE == 0) {
-
-	}
-	// The last TX character takes a few ms to transmit through.
-	Cpu_Delay100US(20);
-
-	// Turn off the 485 driver.
-	Rs485Dir_PutVal(0);
-
-	// Don't clear the display - wait for the host to ACK that it got our button press correctly.
-	//clearDisplay();
-}
-
-/*
- * 
- */
-void HandleFlashANewBusAddr() {
+void handleFlashANewBusAddr() {
 	
 	byte error;
 
@@ -168,6 +139,8 @@ void HandleFlashANewBusAddr() {
 	gMaxValue = 0;
 	
 	clearDisplay();
+	
+	sendIdSetupIncCommand();
 }
 
 /*
@@ -227,6 +200,10 @@ void ConfigModeWait_OnInterrupt(void) {
 		gMinValue = 1;
 		gMaxValue = 99;
 		displayValueBlink(gCurValue);
+	} else if (((kbiVal & UP_BUTTON) == 0) && ((kbiVal & DOWN_BUTTON) == 0) && ((kbiVal & ACK_BUTTON) != 0)) {
+		// Up/Down buttons only are down.
+		gDeviceState = eFirmwareDisplayMode;
+		displayFirmwareVersion();
 	}
 	ConfigModeWait_Disable();
 }

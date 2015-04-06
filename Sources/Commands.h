@@ -17,6 +17,10 @@
 #define CLEAR_COMMAND			0x01
 #define DISPLAY_COMMAND			0x02
 #define BUTTON_COMMAND			0x03
+#define QUERY_COMMAND			0x04
+#define RESPONSE_COMMAND		0x05
+#define IDSETUPSTART_COMMAND	0x06
+#define IDSETUPINC_COMMAND		0x07
 
 #define COMMANDID_POS			0x00
 #define COMMAND_BUSADDR_POS		COMMANDID_POS + 1
@@ -36,23 +40,16 @@
 #define UP_BUTTON				KBI_NUM_PIN1
 #define ACK_BUTTON				KBI_NUM_PIN2
 
-#define I2C_DELAY_40MS 			400
-
-#define BLINK_FREQ 				0x15
-#define BLINK_DUTYCYCLE 		0x40
-
 typedef enum {
-	eInactive, eActive, eConfigMode
+	eInactive, eActive, eConfigMode, eFirmwareDisplayMode
 } EDeviceState;
 
 void processFrame(FramePtrType, FrameCntType);
-void initDisplay(void);
-void clearDisplay(void);
-void setValues(FramePtrType, FrameCntType);
-void displayValue(uint8_t currentValue);
-void displayValueBlink(uint8_t currentValue);
-void displayValueAsCode(uint8_t controlValue);
-void setLedIndicator(uint8_t redValue, uint8_t greenValue, uint8_t blueValue);
-void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t secondDigitVal);
+void startConfigMode(void);
+void incrementConfigMode(void);
+
+void sendResponseCommand(void);
+void sendIdSetupIncCommand(void);
+void sendAckCommand(void);
 
 #endif /* COMMANDS_H_ */

@@ -12,6 +12,7 @@
 
 #include "IO_Map.h"
 #include "PE_Types.h"
+#include "Rs485Dir.h"
 //#include "Watchdog.h"
 
 #define MAX_FRAME_BYTES		16
@@ -24,6 +25,9 @@ typedef uint8_t FrameCntType;
 
 // --------------------------------------------------------------------------
 // Defines.
+
+#define RS485_TX				Rs485Dir_PutVal(1);
+#define RS485_RX				Rs485Dir_PutVal(0);
 
 #define GATEWAY_MGMT_QUEUE_SIZE		10
 

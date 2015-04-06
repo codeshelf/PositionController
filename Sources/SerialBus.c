@@ -8,11 +8,15 @@
  */
 
 #include "SerialBus.h"
+#include "Uart.h"
 
 // --------------------------------------------------------------------------
 
 void sendOneChar(FrameDataType data) {
-
+	Uart_SendChar(data);
+	// Wait while the TX buffer is full.
+	while (SCIS1_TDRE == 0) {
+	}
 }
 
 // --------------------------------------------------------------------------
@@ -21,6 +25,8 @@ void serialTransmitFrame(FramePtrType framePtr, FrameCntType frameSize) {
 
 	FrameCntType totalBytesSent;
 	FrameCntType charsSent;
+	
+	RS485_TX;
 
 	// Send the frame contents to the controller via the serial port.
 	// First send the framing character.
@@ -63,6 +69,14 @@ void serialTransmitFrame(FramePtrType framePtr, FrameCntType frameSize) {
 	// Send another framing character. (For some stupid reason the USB routine doesn't try very hard, so we have to loop until it succeeds.)
 	sendOneChar(END);
 	sendOneChar(END);
+	
+	// Wait while the TX buffer is full.
+	while (SCIS1_TDRE == 0) {
+	}
+	// The last TX character takes a few ms to transmit through.
+	Cpu_Delay100US(20);
+
+	RS485_RX;
 }
 
 // --------------------------------------------------------------------------
@@ -104,16 +118,16 @@ FrameCntType serialReceiveFrame(FramePtrType framePtr, FrameCntType maxFrameSize
 						nextByte = ESC;
 						break;
 				}
+				if (bytesReceived < maxFrameSize)
+					framePtr[bytesReceived++] = nextByte;
 				break;
 
 				// Here we fall into the default handler and let it store the character for us.
 			default:
+				if (bytesReceived < maxFrameSize)
+					framePtr[bytesReceived++] = nextByte;
 				break;
-
 		}
-		if (bytesReceived < maxFrameSize)
-			framePtr[bytesReceived++] = nextByte;
-
 	}
 
 	return bytesReceived;

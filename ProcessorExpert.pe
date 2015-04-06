@@ -3,8 +3,8 @@
   <Header>
     <Name>ProcessorExpert</Name>
     <SavedBy>jeffw</SavedBy>
-    <ModificationStamp>139</ModificationStamp>
-    <Date>2015-03-15</Date>
+    <ModificationStamp>145</ModificationStamp>
+    <Date>2015-04-06</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -28,7 +28,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>133</ProjectCompNumb>
+    <ProjectCompNumb>141</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -5259,7 +5259,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>TPM1Aligned</ItemSymbol>
@@ -5285,7 +5285,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>TPM2Aligned</ItemSymbol>
@@ -5552,14 +5552,14 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>FLL</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>HighBDIV</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>2</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>High_BDIV</ItemSymbol>
@@ -5577,13 +5577,13 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>HighFixedClk</ItemSymbol>
-        <Value />
+        <Value>0.015625</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>HighCGMMode</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value />
+        <Value>FEI</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>HighFLLMode</ItemSymbol>
@@ -5598,11 +5598,11 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>IREFSIntClk</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>HighIREFSClkSel_user</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
+        <ReadOnly>true</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Index>0</Index>
@@ -5611,14 +5611,14 @@
       <ItemState>
         <ItemSymbol>HighFrclk_MHz</ItemSymbol>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>0</Value>
+        <Value>0.03125</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>HighRDIV</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>Auto select</Value>
+        <Value>1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>High_RDIV</ItemSymbol>
@@ -5629,17 +5629,17 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>HighFrclkdiv_MHz</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
+        <ReadOnly>true</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Value>0.03125</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>HighFdcoout_MHz</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
+        <ReadOnly>true</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>8</Value>
+        <Value>32</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>LowSpeed</ItemSymbol>
@@ -5919,24 +5919,24 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>SetIntVect</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
+        <ReadOnly>true</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <Value>true</Value>
+        <Index>1</Index>
+        <Value>false</Value>
         <LastSelection>true</LastSelection>
-        <LastUserSel>yes</LastUserSel>
+        <LastUserSel>never</LastUserSel>
         <UsrMethodName>SetIntVect</UsrMethodName>
       </ItemState>
       <ItemState>
         <ItemSymbol>GetIntVect</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
+        <ReadOnly>true</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <Value>true</Value>
+        <Index>1</Index>
+        <Value>false</Value>
         <LastSelection>true</LastSelection>
-        <LastUserSel>yes</LastUserSel>
+        <LastUserSel>never</LastUserSel>
         <UsrMethodName>GetIntVect</UsrMethodName>
       </ItemState>
       <ItemState>
@@ -6470,7 +6470,7 @@
           <ItemSymbol>C_StackSize</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>128</Value>
+          <Value>64</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Base>HEX</Base>
         </ItemState>
@@ -6478,7 +6478,7 @@
           <ItemSymbol>C_StackAddr</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-          <Value>0</Value>
+          <Value>639</Value>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Base>HEX</Base>
         </ItemState>
@@ -6491,7 +6491,7 @@
         <ItemState>
           <ItemSymbol>C_RomRamList</ItemSymbol>
           <ReadOnly>false</ReadOnly>
-          <ListItemCount>0</ListItemCount>
+          <ListItemCount>3</ListItemCount>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Expanded>true</Expanded>
         </ItemState>
@@ -6604,6 +6604,141 @@
           <ItemSymbol>MetrowerksCC_68HCS08_Directory</ItemSymbol>
           <ReadOnly>false</ReadOnly>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_MemoryArea0</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Expanded>true</Expanded>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamArea0</ItemSymbol>
+          <ReadOnly>true</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Value>true</Value>
+          <Expanded>true</Expanded>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamName0</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <Value>ROM</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamAddr0</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <Value>57344</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Base>HEX</Base>
+          <Area />
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamSize0</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <Value>8110</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Base>HEX</Base>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamQualifier0</ItemSymbol>
+          <ReadOnly>true</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Index>1</Index>
+          <EnumSymbVal>READ_ONLY</EnumSymbVal>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_MemoryArea1</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Expanded>true</Expanded>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamArea1</ItemSymbol>
+          <ReadOnly>true</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Value>true</Value>
+          <Expanded>true</Expanded>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamName1</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <Value>Z_RAM</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamAddr1</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <Value>128</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Base>HEX</Base>
+          <Area />
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamSize1</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <Value>32</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Base>HEX</Base>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamQualifier1</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Index>0</Index>
+          <EnumSymbVal>READ_WRITE</EnumSymbVal>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_MemoryArea2</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Expanded>true</Expanded>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamArea2</ItemSymbol>
+          <ReadOnly>true</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Value>true</Value>
+          <Expanded>true</Expanded>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamName2</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <Value>RAM</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamAddr2</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <Value>160</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Base>HEX</Base>
+          <Area />
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamSize2</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <Value>480</Value>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Base>HEX</Base>
+        </ItemState>
+        <ItemState>
+          <ItemSymbol>C_RomRamQualifier2</ItemSymbol>
+          <ReadOnly>false</ReadOnly>
+          <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+          <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+          <Index>0</Index>
+          <EnumSymbVal>READ_WRITE</EnumSymbVal>
         </ItemState>
       </CompilerProperties>
       <DestLanguage>Ansi-C</DestLanguage>
@@ -9249,351 +9384,16 @@
     </Cpu_State>
   </CPU>
   <Configuration>
-    <CompNumb>1</CompNumb>
-    <NodeName>Release_S08QG8CFK</NodeName>
-    <CnfgEnabled>false</CnfgEnabled>
-    <TargetCPU>2</TargetCPU>
-    <ConfigurationComment lines_count="0" />
-    <BoolList_FpgaConfig>
-      <Count>0</Count>
-    </BoolList_FpgaConfig>
-    <BoolList_BeanConfig>
-      <Count>21</Count>
-      <ItemId0>2</ItemId0>
-      <Value0>false</Value0>
-      <ItemId1>8</ItemId1>
-      <Value1>true</Value1>
-      <ItemId2>15</ItemId2>
-      <Value2>true</Value2>
-      <ItemId3>17</ItemId3>
-      <Value3>true</Value3>
-      <ItemId4>24</ItemId4>
-      <Value4>true</Value4>
-      <ItemId5>25</ItemId5>
-      <Value5>true</Value5>
-      <ItemId6>29</ItemId6>
-      <Value6>true</Value6>
-      <ItemId7>35</ItemId7>
-      <Value7>true</Value7>
-      <ItemId8>39</ItemId8>
-      <Value8>true</Value8>
-      <ItemId9>43</ItemId9>
-      <Value9>true</Value9>
-      <ItemId10>53</ItemId10>
-      <Value10>true</Value10>
-      <ItemId11>73</ItemId11>
-      <Value11>false</Value11>
-      <ItemId12>75</ItemId12>
-      <Value12>true</Value12>
-      <ItemId13>88</ItemId13>
-      <Value13>true</Value13>
-      <ItemId14>92</ItemId14>
-      <Value14>true</Value14>
-      <ItemId15>93</ItemId15>
-      <Value15>true</Value15>
-      <ItemId16>106</ItemId16>
-      <Value16>true</Value16>
-      <ItemId17>110</ItemId17>
-      <Value17>true</Value17>
-      <ItemId18>112</ItemId18>
-      <Value18>true</Value18>
-      <ItemId19>119</ItemId19>
-      <Value19>true</Value19>
-      <ItemId20>120</ItemId20>
-      <Value20>true</Value20>
-    </BoolList_BeanConfig>
-    <BoolList_TaskConfig>
-      <Count>0</Count>
-    </BoolList_TaskConfig>
-    <BoolList_ProgConfig>
-      <Count>0</Count>
-    </BoolList_ProgConfig>
-    <ItemState>
-      <ItemSymbol>Optimizations</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <Expanded>true</Expanded>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>Not_for_MPC512x</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoRangeChck</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoEnableTest</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoSpeedTest</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoInitRegReset</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>Not_for_MPC5500_MCF</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_PIB_full_Init</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-  </Configuration>
-  <Configuration>
-    <CompNumb>3</CompNumb>
-    <NodeName>Debug_S08QG8CFK</NodeName>
-    <CnfgEnabled>false</CnfgEnabled>
-    <TargetCPU>8</TargetCPU>
-    <ConfigurationComment lines_count="0" />
-    <BoolList_FpgaConfig>
-      <Count>0</Count>
-    </BoolList_FpgaConfig>
-    <BoolList_BeanConfig>
-      <Count>21</Count>
-      <ItemId0>2</ItemId0>
-      <Value0>false</Value0>
-      <ItemId1>8</ItemId1>
-      <Value1>true</Value1>
-      <ItemId2>15</ItemId2>
-      <Value2>true</Value2>
-      <ItemId3>17</ItemId3>
-      <Value3>true</Value3>
-      <ItemId4>24</ItemId4>
-      <Value4>true</Value4>
-      <ItemId5>25</ItemId5>
-      <Value5>false</Value5>
-      <ItemId6>29</ItemId6>
-      <Value6>true</Value6>
-      <ItemId7>35</ItemId7>
-      <Value7>true</Value7>
-      <ItemId8>39</ItemId8>
-      <Value8>true</Value8>
-      <ItemId9>43</ItemId9>
-      <Value9>true</Value9>
-      <ItemId10>53</ItemId10>
-      <Value10>true</Value10>
-      <ItemId11>73</ItemId11>
-      <Value11>false</Value11>
-      <ItemId12>75</ItemId12>
-      <Value12>true</Value12>
-      <ItemId13>88</ItemId13>
-      <Value13>true</Value13>
-      <ItemId14>92</ItemId14>
-      <Value14>true</Value14>
-      <ItemId15>93</ItemId15>
-      <Value15>true</Value15>
-      <ItemId16>106</ItemId16>
-      <Value16>true</Value16>
-      <ItemId17>110</ItemId17>
-      <Value17>true</Value17>
-      <ItemId18>112</ItemId18>
-      <Value18>true</Value18>
-      <ItemId19>119</ItemId19>
-      <Value19>true</Value19>
-      <ItemId20>120</ItemId20>
-      <Value20>true</Value20>
-    </BoolList_BeanConfig>
-    <BoolList_TaskConfig>
-      <Count>0</Count>
-    </BoolList_TaskConfig>
-    <BoolList_ProgConfig>
-      <Count>0</Count>
-    </BoolList_ProgConfig>
-    <ItemState>
-      <ItemSymbol>Optimizations</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <Expanded>true</Expanded>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>Not_for_MPC512x</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoRangeChck</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoEnableTest</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoSpeedTest</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoInitRegReset</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>Not_for_MPC5500_MCF</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_PIB_full_Init</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-  </Configuration>
-  <Configuration>
-    <CompNumb>72</CompNumb>
-    <NodeName>Release_S08SH8CTG</NodeName>
-    <CnfgEnabled>false</CnfgEnabled>
-    <TargetCPU>73</TargetCPU>
-    <ConfigurationComment lines_count="0" />
-    <BoolList_FpgaConfig>
-      <Count>0</Count>
-    </BoolList_FpgaConfig>
-    <BoolList_BeanConfig>
-      <Count>21</Count>
-      <ItemId0>53</ItemId0>
-      <Value0>true</Value0>
-      <ItemId1>43</ItemId1>
-      <Value1>true</Value1>
-      <ItemId2>39</ItemId2>
-      <Value2>true</Value2>
-      <ItemId3>35</ItemId3>
-      <Value3>true</Value3>
-      <ItemId4>29</ItemId4>
-      <Value4>true</Value4>
-      <ItemId5>25</ItemId5>
-      <Value5>true</Value5>
-      <ItemId6>24</ItemId6>
-      <Value6>true</Value6>
-      <ItemId7>17</ItemId7>
-      <Value7>true</Value7>
-      <ItemId8>15</ItemId8>
-      <Value8>true</Value8>
-      <ItemId9>2</ItemId9>
-      <Value9>false</Value9>
-      <ItemId10>8</ItemId10>
-      <Value10>false</Value10>
-      <ItemId11>73</ItemId11>
-      <Value11>false</Value11>
-      <ItemId12>75</ItemId12>
-      <Value12>true</Value12>
-      <ItemId13>88</ItemId13>
-      <Value13>true</Value13>
-      <ItemId14>92</ItemId14>
-      <Value14>true</Value14>
-      <ItemId15>93</ItemId15>
-      <Value15>true</Value15>
-      <ItemId16>106</ItemId16>
-      <Value16>true</Value16>
-      <ItemId17>110</ItemId17>
-      <Value17>true</Value17>
-      <ItemId18>112</ItemId18>
-      <Value18>true</Value18>
-      <ItemId19>119</ItemId19>
-      <Value19>true</Value19>
-      <ItemId20>120</ItemId20>
-      <Value20>true</Value20>
-    </BoolList_BeanConfig>
-    <BoolList_TaskConfig>
-      <Count>0</Count>
-    </BoolList_TaskConfig>
-    <BoolList_ProgConfig>
-      <Count>0</Count>
-    </BoolList_ProgConfig>
-    <ItemState>
-      <ItemSymbol>Optimizations</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-      <Expanded>true</Expanded>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>Not_for_MPC512x</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoRangeChck</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoEnableTest</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoSpeedTest</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_NoInitRegReset</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>Not_for_MPC5500_MCF</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-    </ItemState>
-    <ItemState>
-      <ItemSymbol>O_PIB_full_Init</ItemSymbol>
-      <ReadOnly>false</ReadOnly>
-      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-      <Index>1</Index>
-      <Value>false</Value>
-    </ItemState>
-  </Configuration>
-  <Configuration>
     <CompNumb>74</CompNumb>
-    <NodeName>Debug_S08SH8CTG</NodeName>
-    <CnfgEnabled>false</CnfgEnabled>
+    <NodeName>Blinky</NodeName>
+    <CnfgEnabled>true</CnfgEnabled>
     <TargetCPU>75</TargetCPU>
     <ConfigurationComment lines_count="0" />
     <BoolList_FpgaConfig>
       <Count>0</Count>
     </BoolList_FpgaConfig>
     <BoolList_BeanConfig>
-      <Count>21</Count>
+      <Count>22</Count>
       <ItemId0>53</ItemId0>
       <Value0>true</Value0>
       <ItemId1>43</ItemId1>
@@ -9636,6 +9436,8 @@
       <Value19>true</Value19>
       <ItemId20>120</ItemId20>
       <Value20>true</Value20>
+      <ItemId21>137</ItemId21>
+      <Value21>true</Value21>
     </BoolList_BeanConfig>
     <BoolList_TaskConfig>
       <Count>0</Count>
@@ -9703,24 +9505,24 @@
   <Configuration>
     <CompNumb>111</CompNumb>
     <NodeName>Inky</NodeName>
-    <CnfgEnabled>true</CnfgEnabled>
+    <CnfgEnabled>false</CnfgEnabled>
     <TargetCPU>75</TargetCPU>
     <ConfigurationComment lines_count="0" />
     <BoolList_FpgaConfig>
       <Count>0</Count>
     </BoolList_FpgaConfig>
     <BoolList_BeanConfig>
-      <Count>21</Count>
+      <Count>22</Count>
       <ItemId0>110</ItemId0>
       <Value0>true</Value0>
       <ItemId1>106</ItemId1>
       <Value1>false</Value1>
       <ItemId2>93</ItemId2>
-      <Value2>false</Value2>
+      <Value2>true</Value2>
       <ItemId3>92</ItemId3>
       <Value3>true</Value3>
       <ItemId4>88</ItemId4>
-      <Value4>false</Value4>
+      <Value4>true</Value4>
       <ItemId5>53</ItemId5>
       <Value5>true</Value5>
       <ItemId6>43</ItemId6>
@@ -9730,11 +9532,11 @@
       <ItemId8>35</ItemId8>
       <Value8>true</Value8>
       <ItemId9>29</ItemId9>
-      <Value9>true</Value9>
+      <Value9>false</Value9>
       <ItemId10>25</ItemId10>
-      <Value10>true</Value10>
+      <Value10>false</Value10>
       <ItemId11>24</ItemId11>
-      <Value11>true</Value11>
+      <Value11>false</Value11>
       <ItemId12>17</ItemId12>
       <Value12>true</Value12>
       <ItemId13>15</ItemId13>
@@ -9753,6 +9555,8 @@
       <Value19>true</Value19>
       <ItemId20>120</ItemId20>
       <Value20>true</Value20>
+      <ItemId21>137</ItemId21>
+      <Value21>true</Value21>
     </BoolList_BeanConfig>
     <BoolList_TaskConfig>
       <Count>0</Count>
@@ -10151,7 +9955,7 @@
   </Bean>
   <Bean>
     <BeanType>AsynchroSerial</BeanType>
-    <Name>ASYNC</Name>
+    <Name>Uart</Name>
     <CompNumb>17</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -10166,7 +9970,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC</Value>
+        <Value>Uart</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>Ser</ItemSymbol>
@@ -11552,7 +11356,7 @@
         <ItemSymbol>BeforeNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_BeforeNewSpeed</Value>
+        <Value>Uart_BeforeNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>AfterNewSpeed</ItemSymbol>
@@ -11568,7 +11372,7 @@
         <ItemSymbol>AfterNewSpeedName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_AfterNewSpeed</Value>
+        <Value>Uart_AfterNewSpeed</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnError</ItemSymbol>
@@ -11584,7 +11388,7 @@
         <ItemSymbol>OnErrorName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnError</Value>
+        <Value>Uart_OnError</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnErrorPriority</ItemSymbol>
@@ -11606,7 +11410,7 @@
         <ItemSymbol>OnRxCharName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnRxChar</Value>
+        <Value>Uart_OnRxChar</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnRxCharPriority</ItemSymbol>
@@ -11628,7 +11432,7 @@
         <ItemSymbol>OnRxCharExtName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnRxCharExt</Value>
+        <Value>Uart_OnRxCharExt</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnRxCharExtPriority</ItemSymbol>
@@ -11650,7 +11454,7 @@
         <ItemSymbol>OnTxCharName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnTxChar</Value>
+        <Value>Uart_OnTxChar</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnTxCharPriority</ItemSymbol>
@@ -11672,7 +11476,7 @@
         <ItemSymbol>OnFullRxBufName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnFullRxBuf</Value>
+        <Value>Uart_OnFullRxBuf</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnFullRxBufPriority</ItemSymbol>
@@ -11694,7 +11498,7 @@
         <ItemSymbol>OnFreeTxBufName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnFreeTxBuf</Value>
+        <Value>Uart_OnFreeTxBuf</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnFreeTxBufPriority</ItemSymbol>
@@ -11716,7 +11520,7 @@
         <ItemSymbol>OnBreakName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnBreak</Value>
+        <Value>Uart_OnBreak</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnBreakPriority</ItemSymbol>
@@ -11743,7 +11547,7 @@
         <ItemSymbol>OnIdleName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnIdle</Value>
+        <Value>Uart_OnIdle</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnIdlePriority</ItemSymbol>
@@ -11775,7 +11579,7 @@
         <ItemSymbol>OnTxCompleteName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnTxComplete</Value>
+        <Value>Uart_OnTxComplete</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnTxCompletePriority</ItemSymbol>
@@ -11802,7 +11606,7 @@
         <ItemSymbol>OnRxActiveEdgeName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>ASYNC_OnRxActiveEdge</Value>
+        <Value>Uart_OnRxActiveEdge</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>OnRxActiveEdgePriority</ItemSymbol>
@@ -11816,7 +11620,7 @@
     <BeanType>Init_IIC_HCS08</BeanType>
     <Name>IIC</Name>
     <CompNumb>24</CompNumb>
-    <CompEnabled>false</CompEnabled>
+    <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>PERIPHINSP</IconName>
     <UserFolderName />
@@ -12217,7 +12021,7 @@
     <BeanType>BitIO</BeanType>
     <Name>Rs485Dir</Name>
     <CompNumb>25</CompNumb>
-    <CompEnabled>false</CompEnabled>
+    <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -12488,7 +12292,7 @@
     <BeanType>BitIO</BeanType>
     <Name>LedDriverReset</Name>
     <CompNumb>29</CompNumb>
-    <CompEnabled>false</CompEnabled>
+    <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -15402,7 +15206,7 @@
     <BeanType>BitIO</BeanType>
     <Name>SharpDisplayCS</Name>
     <CompNumb>88</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -15869,7 +15673,7 @@
     <BeanType>Init_SPI_HCS08</BeanType>
     <Name>SharpDisplay</Name>
     <CompNumb>93</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>PERIPHINSP</IconName>
     <UserFolderName />
@@ -16864,7 +16668,7 @@
     <BeanType>BitIO</BeanType>
     <Name>LdoEnable</Name>
     <CompNumb>110</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -17139,7 +16943,7 @@
     <BeanType>BitIO</BeanType>
     <Name>Rs485Dir</Name>
     <CompNumb>112</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -17414,7 +17218,7 @@
     <BeanType>BitIO</BeanType>
     <Name>StatusLedClk</Name>
     <CompNumb>119</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -17689,7 +17493,7 @@
     <BeanType>BitIO</BeanType>
     <Name>StatusLedSdi</Name>
     <CompNumb>120</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -17709,6 +17513,281 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <Value>PTB6_SDA_XTAL</Value>
+        <SharedPrphMode>false</SharedPrphMode>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>PinSignal</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value />
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>FeatureCondGrpLDD</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>InheritedComponent</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value />
+        <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        <RegCompType />
+        <InheritedComponentState />
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>ElProp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>PullMode</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <TypeSpecNameState>typePULL</TypeSpecNameState>
+        <Index>5</Index>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>ODE</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Reduce</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>LEDdrive</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Dir</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>2</Index>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>InitGrp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>InitDir</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>InitValue</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>SafeMode</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Optimization</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>SimulinkGrp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>DeviceNameSimulink</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>DirSimulink</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      </ItemState>
+    </Properties>
+    <Methods>
+      <ItemState>
+        <ItemSymbol>GetDir</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>no</LastUserSel>
+        <UsrMethodName>GetDir</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>SetDir</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>yes</LastUserSel>
+        <UsrMethodName>SetDir</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>SetInput</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>no</LastUserSel>
+        <UsrMethodName>SetInput</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>SetOutput</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>no</LastUserSel>
+        <UsrMethodName>SetOutput</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>GetVal</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>yes</LastUserSel>
+        <UsrMethodName>GetVal</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>PutVal</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>yes</LastUserSel>
+        <UsrMethodName>PutVal</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>ClrVal</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>yes</LastUserSel>
+        <UsrMethodName>ClrVal</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>SetVal</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>0</Index>
+        <Value>true</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>yes</LastUserSel>
+        <UsrMethodName>SetVal</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>NegVal</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <Index>1</Index>
+        <Value>false</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>no</LastUserSel>
+        <UsrMethodName>NegVal</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>56800grp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>ConnectPin</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        <Index>1</Index>
+        <Value>false</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>no</LastUserSel>
+        <UsrMethodName>ConnectPin</UsrMethodName>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>Hcs12Grp</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>GetRawVal</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+        <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+        <Index>1</Index>
+        <Value>false</Value>
+        <LastSelection>true</LastSelection>
+        <LastUserSel>no</LastUserSel>
+        <UsrMethodName>GetRawVal</UsrMethodName>
+      </ItemState>
+    </Methods>
+    <Events />
+  </Bean>
+  <Bean>
+    <BeanType>BitIO</BeanType>
+    <Name>StatusLedClkDo</Name>
+    <CompNumb>137</CompNumb>
+    <CompEnabled>true</CompEnabled>
+    <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
+    <IconName>BITIO</IconName>
+    <UserFolderName />
+    <Comment lines_count="0" />
+    <Template />
+    <BeanVersion>02.086</BeanVersion>
+    <LightErrorsIgnored>false</LightErrorsIgnored>
+    <Properties>
+      <ItemState>
+        <ItemSymbol>DeviceName</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>StatusLedClkDo</Value>
+      </ItemState>
+      <ItemState>
+        <ItemSymbol>_Pin</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>PTB4_TPM2CH1_MISO</Value>
         <SharedPrphMode>false</SharedPrphMode>
       </ItemState>
       <ItemState>

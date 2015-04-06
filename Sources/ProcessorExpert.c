@@ -10,26 +10,24 @@
 #include "Cpu.h"
 #include "Events.h"
 #include "KBI.h"
-#include "ASYNC.h"
+#include "Uart.h"
+#include "IIC.h"
 #include "Rs485Dir.h"
-#include "StatusLedClk.h"
-#include "StatusLedSdi.h"
+#include "LedDriverReset.h"
 #include "DebounceTimer.h"
 #include "Flash.h"
 #include "ConfigModeWait.h"
 #include "AckButtonDelay.h"
-#include "SharpDisplayCS.h"
 #include "Wait.h"
-#include "SharpDisplay.h"
-#include "LdoEnable.h"
+#include "StatusLedClkDo.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
 #include "IO_Map.h"
-//#include "I2CMaster.h"
-#include "Display.h"
+#include "StatusLed.h"
 #include "SerialBus.h"
 #include "Commands.h"
+#include "Display.h"
 
 void main(void) {
 	FrameDataType frame[MAX_FRAME_BYTES];
@@ -50,7 +48,7 @@ void main(void) {
 	
 	Wait_Waitms(20);
 	initDisplay();
-	setStatusLed(0, 1, 2);
+	RS485_RX;
 
 	for (;;) {
 		// Read a frame from the serial bus and then process it.
