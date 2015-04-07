@@ -45,6 +45,8 @@ typedef enum {
 } EDeviceState;
 
 void processFrame(FramePtrType, FrameCntType);
+void setValues(FramePtrType, FrameCntType);
+
 void startConfigMode(void);
 void incrementConfigMode(void);
 

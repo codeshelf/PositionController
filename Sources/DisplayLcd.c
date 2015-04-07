@@ -1,14 +1,38 @@
 #include "Display.h"
+#include "DisplayLcd.h"
 #include "PE_Types.h"
 #include "IO_Map.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "string.h"
 #include "SharpDisplayCS.h"
 #include "FontBarcode.h"
 #include "FontArial.h"
 #include "StatusLedClk.h"
-#include "StatusLedSdi.h"
+#include "StatusLedData.h"
 
-//extern const unsigned char lcdfont[];
+#include <stdio.h>
+
+char* itoa(int i, char b[]) {
+	int shifter;
+	char const digit[] = "0123456789";
+	char* p = b;
+	if (i < 0) {
+		*p++ = '-';
+		i *= -1;
+	}
+	shifter = i;
+	do { //Move to where representation ends
+		++p;
+		shifter = shifter / 10;
+	} while (shifter);
+	*p = '\0';
+	do { //Move back, inserting digits as u go
+		*--p = digit[i % 10];
+		i = i / 10;
+	} while (i);
+	return b;
+}
 
 void sendByte(uint8_t data) {
 
@@ -59,6 +83,24 @@ void sendRowBuffer(uint16_t row, byte* rowBuffer) {
 	sendByteLSB(LCDCMD_DUMMY);
 
 	DISPLAY_CS_OFF
+}
+
+void initDisplay(void) {
+	clearLcdDisplay();
+}
+
+void clearDisplay(void) {
+	clearLcdDisplay();
+}
+
+void displayValue(uint8_t value) {
+	char buffer[4];
+	itoa(value, buffer);
+	displayString(10, 25, buffer, 2);
+}
+
+void displayValueBlink(uint8_t value) {
+	displayValue(value);
 }
 
 void clearLcdDisplay() {

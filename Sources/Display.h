@@ -8,9 +8,12 @@
 #ifndef DISPLAY_H_
 #define DISPLAY_H_
 
+#include "PE_Types.h"
+#include "PE_Error.h"
+#include "PE_Const.h"
+
 void initDisplay(void);
 void clearDisplay(void);
-void setValues(FramePtrType, FrameCntType);
 void displayValue(uint8_t displayValue);
 void displayValueBlink(uint8_t displayValue);
 void displayFirmwareVersion(void);

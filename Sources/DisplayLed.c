@@ -20,8 +20,8 @@ extern uint8_t kMyPermanentBusAddr;
 extern uint8_t gMyBusAddr;
 extern EDeviceState gDeviceState;
 
-uint8_t gFreq = 0;
-uint8_t gDutyCycle;
+extern uint8_t gFreq;
+extern uint8_t gDutyCycle;
 
 // The bits for the LED segments get loaded into a register via SPI.
 // The pattern to light the LED element go like this:
@@ -123,37 +123,6 @@ void clearDisplay() {
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
 
-}
-
-// --------------------------------------------------------------------------
-/*
- * When the CHE controller intialize the display value and the show it.
- * 
- * Frame format:
- * 1B - command ID
- * 2B - quantity to display
- * 2B - max quantity (usually same as quantity to display)
- * 2B - min quantity (usually zero)
- */
-void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
-
-	if ((gMyBusAddr == framePtr[COMMAND_BUSADDR_POS]) || (BROADCAST_BUSADDR == framePtr[COMMAND_BUSADDR_POS])) {
-		uint8_t curValue = framePtr[DISPLAY_CMD_VAL_POS];
-		uint8_t minValue = framePtr[DISPLAY_CMD_MIN_POS];
-		uint8_t maxValue = framePtr[DISPLAY_CMD_MAX_POS];
-		uint8_t freq = framePtr[DISPLAY_CMD_FREQ_POS];
-		uint8_t dutyCycle = framePtr[DISPLAY_CMD_DUTY_POS];
-
-		gFreq = freq;
-		gDutyCycle = dutyCycle;
-
-		if (curValue <= 99) {
-			gCurValue = curValue;
-			gMinValue = minValue;
-			gMaxValue = maxValue;
-			displayValue(gCurValue);
-		}
-	}
 }
 
 // --------------------------------------------------------------------------

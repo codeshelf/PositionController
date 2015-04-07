@@ -3,7 +3,7 @@
   <Header>
     <Name>ProcessorExpert</Name>
     <SavedBy>jeffw</SavedBy>
-    <ModificationStamp>145</ModificationStamp>
+    <ModificationStamp>147</ModificationStamp>
     <Date>2015-04-06</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
@@ -9429,13 +9429,13 @@
       <ItemId16>106</ItemId16>
       <Value16>false</Value16>
       <ItemId17>110</ItemId17>
-      <Value17>true</Value17>
+      <Value17>false</Value17>
       <ItemId18>112</ItemId18>
-      <Value18>true</Value18>
+      <Value18>false</Value18>
       <ItemId19>119</ItemId19>
-      <Value19>true</Value19>
+      <Value19>false</Value19>
       <ItemId20>120</ItemId20>
-      <Value20>true</Value20>
+      <Value20>false</Value20>
       <ItemId21>137</ItemId21>
       <Value21>true</Value21>
     </BoolList_BeanConfig>
@@ -9556,7 +9556,7 @@
       <ItemId20>120</ItemId20>
       <Value20>true</Value20>
       <ItemId21>137</ItemId21>
-      <Value21>true</Value21>
+      <Value21>false</Value21>
     </BoolList_BeanConfig>
     <BoolList_TaskConfig>
       <Count>0</Count>
@@ -17491,7 +17491,7 @@
   </Bean>
   <Bean>
     <BeanType>BitIO</BeanType>
-    <Name>StatusLedSdi</Name>
+    <Name>StatusLedData</Name>
     <CompNumb>120</CompNumb>
     <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -17506,7 +17506,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>StatusLedSdi</Value>
+        <Value>StatusLedData</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>_Pin</ItemSymbol>
