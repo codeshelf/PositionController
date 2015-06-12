@@ -129,6 +129,8 @@ void handleFlashANewBusAddr() {
 	// Write the current value to flash for permanent storage.
 	error = Flash_SetByteFlash((Flash_TAddress) &kMyPermanentBusAddr, gCurValue);
 
+	RESET_MCU();
+
 	if (error != ERR_OK) {
 		RESET_MCU();
 	}

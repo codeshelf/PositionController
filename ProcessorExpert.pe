@@ -2,9 +2,9 @@
 <PEproject>
   <Header>
     <Name>ProcessorExpert</Name>
-    <SavedBy>andrewhuff</SavedBy>
-    <ModificationStamp>152</ModificationStamp>
-    <Date>2015-05-04</Date>
+    <SavedBy>jeffw</SavedBy>
+    <ModificationStamp>156</ModificationStamp>
+    <Date>2015-06-11</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.9.2.RT6_b1446-0504</PEversion>
   </Header>
@@ -28,7 +28,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>147</ProjectCompNumb>
+    <ProjectCompNumb>150</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -7166,7 +7166,7 @@
         <ItemSymbol>Flash</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>ECCCpuCondGrp</ItemSymbol>
@@ -9021,7 +9021,7 @@
           <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
           <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
           <Value>false</Value>
-          <Expanded>false</Expanded>
+          <Expanded>true</Expanded>
         </ItemState>
         <ItemState>
           <ItemSymbol>StackSizeGrp</ItemSymbol>
@@ -9386,7 +9386,7 @@
   <Configuration>
     <CompNumb>74</CompNumb>
     <NodeName>Blinky</NodeName>
-    <CnfgEnabled>false</CnfgEnabled>
+    <CnfgEnabled>true</CnfgEnabled>
     <TargetCPU>75</TargetCPU>
     <ConfigurationComment lines_count="0" />
     <BoolList_FpgaConfig>
@@ -9505,7 +9505,7 @@
   <Configuration>
     <CompNumb>111</CompNumb>
     <NodeName>Inky</NodeName>
-    <CnfgEnabled>true</CnfgEnabled>
+    <CnfgEnabled>false</CnfgEnabled>
     <TargetCPU>75</TargetCPU>
     <ConfigurationComment lines_count="0" />
     <BoolList_FpgaConfig>
@@ -11620,7 +11620,7 @@
     <BeanType>Init_IIC_HCS08</BeanType>
     <Name>IIC</Name>
     <CompNumb>24</CompNumb>
-    <CompEnabled>false</CompEnabled>
+    <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>PERIPHINSP</IconName>
     <UserFolderName />
@@ -12021,7 +12021,7 @@
     <BeanType>BitIO</BeanType>
     <Name>Rs485Dir</Name>
     <CompNumb>25</CompNumb>
-    <CompEnabled>false</CompEnabled>
+    <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -12292,7 +12292,7 @@
     <BeanType>BitIO</BeanType>
     <Name>LedDriverReset</Name>
     <CompNumb>29</CompNumb>
-    <CompEnabled>false</CompEnabled>
+    <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -15206,7 +15206,7 @@
     <BeanType>BitIO</BeanType>
     <Name>SharpDisplayCS</Name>
     <CompNumb>88</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -15673,7 +15673,7 @@
     <BeanType>Init_SPI_HCS08</BeanType>
     <Name>SharpDisplay</Name>
     <CompNumb>93</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>PERIPHINSP</IconName>
     <UserFolderName />
@@ -16668,7 +16668,7 @@
     <BeanType>BitIO</BeanType>
     <Name>LdoEnable</Name>
     <CompNumb>110</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -16943,7 +16943,7 @@
     <BeanType>BitIO</BeanType>
     <Name>Rs485Dir</Name>
     <CompNumb>112</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -17218,7 +17218,7 @@
     <BeanType>BitIO</BeanType>
     <Name>StatusLedClk</Name>
     <CompNumb>119</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -17493,7 +17493,7 @@
     <BeanType>BitIO</BeanType>
     <Name>StatusLedData</Name>
     <CompNumb>120</CompNumb>
-    <CompEnabled>true</CompEnabled>
+    <CompEnabled>false</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
@@ -17768,7 +17768,7 @@
     <BeanType>BitIO</BeanType>
     <Name>StatusLedClkDo</Name>
     <CompNumb>137</CompNumb>
-    <CompEnabled>false</CompEnabled>
+    <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>BITIO</IconName>
     <UserFolderName />
