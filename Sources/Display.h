@@ -17,5 +17,6 @@ void clearDisplay(void);
 void displayValue(uint8_t displayValue);
 void displayValueBlink(uint8_t displayValue);
 void displayFirmwareVersion(void);
+void setLedSegments(uint8_t firstDigitVal, uint8_t secondDigitVal);
 
 #endif /* DISPLAY_H_ */

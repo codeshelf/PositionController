@@ -16,6 +16,9 @@
 const uint8_t kMyPermanentBusAddr = UNSET_BUSADDR;
 #pragma CONST_SEG DEFAULT  
 
+// Send the bit-encoded LED segments in the min and max bytes.
+const uint8_t kLedSegmentsCode = 240;
+
 EDeviceState gDeviceState = eInactive;
 uint8_t gMyBusAddr;
 uint8_t gMessageBuffer[MAX_FRAME_BYTES];
@@ -86,6 +89,11 @@ void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 			gMinValue = minValue;
 			gMaxValue = maxValue;
 			displayValue(gCurValue);
+		} else if (curValue == kLedSegmentsCode) {
+			gMinValue = 0;
+			gMaxValue = 0;
+			gCurValue = 0;
+			setLedSegments(minValue, maxValue);
 		}
 	}
 }

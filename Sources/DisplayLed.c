@@ -60,9 +60,6 @@ const uint8_t kSegmentMap[] = {
 const uint8_t kSegementOffBits = 0b00000001;
 const uint8_t kSegementDimBits = 0b00000010;
 
-// Send the bit-encoded LED segments in the min and max bytes.
-const uint8_t kLedSegmentsCode = 240;
-
 // --------------------------------------------------------------------------
 /*
  * When the CHE controller initializes it sends the init command.
@@ -158,19 +155,33 @@ void displayValue(uint8_t displayValue) {
 	I2CM_Write_Bytes(0x60, 7, displayBytes);
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
-
 }
 
 // --------------------------------------------------------------------------
 
-void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t secondDigitVal) {
+void setLedSegments(uint8_t firstDigitVal, uint8_t secondDigitVal) {
 
+	static uint8_t displayBytes[] = { 0x12, // Start writing at register LED 0-3
+	        0x00, // Frequency
+	        0x00, // DUTY Cycle
+	        0x00, // Frequency
+	        0x00, // DUTY Cycle
+	        0x00, // LED 0-3
+	        0x00, // LED 4-7
+	        0x00, // LED 8-B
+	        0x00 // LED C-F
+	        };
 	uint8_t bitPos;
 	uint8_t mappedBitPos;
 	bool segmentIsOn;
 	uint8_t bytePos;
 	uint8_t shiftBits;
 	uint8_t bitVal;
+
+	displayBytes[1] = gFreq;
+	displayBytes[2] = gDutyCycle;
+	displayBytes[3] = gFreq;
+	displayBytes[4] = gDutyCycle;
 
 	// Loop through the bits and set the segments.
 	for (bitPos = 0; bitPos < 16; ++bitPos) {
@@ -193,8 +204,12 @@ void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t sec
 		} else {
 			bitVal = (uint8_t) (kSegementOffBits << shiftBits);
 		}
-		displayBytesPtr[5 + bytePos] |= bitVal;
+		displayBytes[5 + bytePos] |= bitVal;
 	}
+	
+	I2CM_Write_Bytes(0x60, 9, displayBytes);
+	// Give it some time to write out to the bus.
+	Cpu_Delay100US(I2C_DELAY_40MS);
 }
 
 // --------------------------------------------------------------------------
