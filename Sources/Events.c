@@ -137,6 +137,7 @@ void handleFlashANewBusAddr() {
 	gCurValue = 0;
 	gMinValue = 0;
 	gMaxValue = 0;
+	gMyBusAddr = kMyPermanentBusAddr;
 	
 	clearDisplay();
 	

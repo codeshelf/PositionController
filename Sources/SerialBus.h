@@ -26,7 +26,7 @@ typedef uint8_t FrameCntType;
 // --------------------------------------------------------------------------
 // Defines.
 
-#define RS485_TX				Rs485Dir_PutVal(1);
+#define RS485_TX				Rs485Dir_PutVal(1)
 #define RS485_RX				Rs485Dir_PutVal(0);
 
 #define GATEWAY_MGMT_QUEUE_SIZE		10

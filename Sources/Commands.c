@@ -84,15 +84,16 @@ void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 		gFreq = freq;
 		gDutyCycle = dutyCycle;
 
+		clearDisplay();
 		if (curValue <= 99) {
 			gCurValue = curValue;
 			gMinValue = minValue;
 			gMaxValue = maxValue;
 			displayValue(gCurValue);
 		} else if (curValue == kLedSegmentsCode) {
-			gMinValue = 0;
-			gMaxValue = 0;
-			gCurValue = 0;
+			gMinValue = 255;
+			gMaxValue = 255;
+			gCurValue = 255;
 			setLedSegments(minValue, maxValue);
 		}
 	}
@@ -130,7 +131,7 @@ void sendIdSetupIncCommand() {
 void sendAckCommand() {
 	uint8_t commandBytes[] = { BUTTON_COMMAND, 0x00, 0x00 };
 
-	commandBytes[1] = kMyPermanentBusAddr;
+	commandBytes[COMMAND_BUSADDR_POS] = gMyBusAddr; //kMyPermanentBusAddr;
 	commandBytes[BUTTON_CMD_DATA_POS] = gCurValue;
 
 	serialTransmitFrame((FramePtrType) &commandBytes, 3);
