@@ -60,8 +60,7 @@ const uint8_t kSegmentMap[] = {
 const uint8_t kSegementOffBits = 0b00000001;
 const uint8_t kSegementDimBits = 0b00000010;
 
-// Send the bit-encoded LED segments in the min and max bytes.
-const uint8_t kLedSegmentsCode = 240;
+uint8_t gDisplayBytes[12];
 
 // --------------------------------------------------------------------------
 /*
@@ -73,21 +72,21 @@ const uint8_t kLedSegmentsCode = 240;
  */
 void initDisplay() {
 
-	static uint8_t displayInitBytes[] = { 0x12, // Start writing register bytes with register PSC0
-	        0x15, // PSC0 - low freq: appears to blink (0.5 sec cycle time)
-	        0x40, // PWM0 - 80% duty cycle
-	        0x00, // PSC1 - high freq: appears to dim (1/44th sec cycle time)
-	        0x40, // PWM1 - 5% duty cycle
-	        0x55, // LED 0-3
-	        0x55, // LED 4-7
-	        0x55, // LED 8-C
-	        0x55 // LED C-F
-	        };
 	static uint16_t bytesSent = 0;
+	
+	gDisplayBytes[0] = 0x12; // Start writing register bytes with register PSC0
+	gDisplayBytes[1] = 0x15; // PSC0 - low freq: appears to blink (0.5 sec cycle time)
+	gDisplayBytes[2] = 0x40; // PWM0 - 80% duty cycle
+	gDisplayBytes[3] = 0x00; // PSC1 - high freq: appears to dim (1/44th sec cycle time)
+	gDisplayBytes[4] = 0x40; // PWM1 - 5% duty cycle
+	gDisplayBytes[5] = 0x55; // LED 0-3
+	gDisplayBytes[6] = 0x55; // LED 4-7
+	gDisplayBytes[7] = 0x55; // LED 8-C
+	gDisplayBytes[8] = 0x55; // LED C-F
 
 //	error = I2C_SelectSlave(0xC0);
 //	error = I2C_SendBlock(displayInitBytes, 10, &bytesSent);
-	I2CM_Write_Bytes(0x60, 9, displayInitBytes);
+	I2CM_Write_Bytes(0x60, 9, gDisplayBytes);
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
 
@@ -112,14 +111,13 @@ void initDisplay() {
  */
 void clearDisplay() {
 
-	static uint8_t displayBytes[] = { 0x16, // Start writing at register LED 0-3
-	        0x55, // LED 0-3
-	        0x55, // LED 4-7
-	        0x55, // LED 8-B
-	        0x55 // LED C-F
-	        };
+	gDisplayBytes[0] = 0x16; // Start writing register bytes with register PSC0
+	gDisplayBytes[1] = 0x55; // LED 0-3
+	gDisplayBytes[2] = 0x55; // LED 4-7
+	gDisplayBytes[3] = 0x55; // LED 8-C
+	gDisplayBytes[4] = 0x55; // LED C-F
 
-	I2CM_Write_Bytes(0x60, 5, displayBytes);
+	I2CM_Write_Bytes(0x60, 5, gDisplayBytes);
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
 
@@ -128,42 +126,38 @@ void clearDisplay() {
 // --------------------------------------------------------------------------
 
 void displayValue(uint8_t displayValue) {
-	static uint8_t displayBytes[] = { 0x14, // Start writing at register LED 0-3
-	        0x00, // Frequency
-	        0x00, // DUTY Cycle
-	        0x00, // LED 0-3
-	        0x00, // LED 4-7
-	        0x00, // LED 8-B
-	        0x00 // LED C-F
-	        };
 	uint8_t tens;
 	uint8_t ones;
 
-	displayBytes[1] = gFreq;
-	displayBytes[2] = gDutyCycle;
+	gDisplayBytes[0] = 0x14; // Start writing register bytes with register PSC0
+	gDisplayBytes[1] = gFreq; // PSC1 - high freq: appears to dim (1/44th sec cycle time)
+	gDisplayBytes[2] = gDutyCycle; // PWM1 - 5% duty cycle
+	gDisplayBytes[3] = 0x55; // LED 0-3
+	gDisplayBytes[4] = 0x55; // LED 4-7
+	gDisplayBytes[5] = 0x55; // LED 8-C
+	gDisplayBytes[6] = 0x55; // LED C-F
 
 	tens = displayValue / 10;
 	ones = displayValue % 10;
 
-	displayBytes[4] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 0);
-	displayBytes[5] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 1);
+	gDisplayBytes[4] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 0);
+	gDisplayBytes[5] = *(((uint8_t*) &kRightDigitDimBits[ones]) + 1);
 	if (tens > 0) {
-		displayBytes[3] = *(((uint8_t*) &kLeftDigitDimBits[tens]) + 0);
-		displayBytes[6] = *(((uint8_t*) &kLeftDigitDimBits[tens]) + 1);
+		gDisplayBytes[3] = *(((uint8_t*) &kLeftDigitDimBits[tens]) + 0);
+		gDisplayBytes[6] = *(((uint8_t*) &kLeftDigitDimBits[tens]) + 1);
 	} else {
-		displayBytes[3] = 0x55;
-		displayBytes[6] = 0x55;
+		gDisplayBytes[3] = 0x55;
+		gDisplayBytes[6] = 0x55;
 	}
 
-	I2CM_Write_Bytes(0x60, 7, displayBytes);
+	I2CM_Write_Bytes(0x60, 7, gDisplayBytes);
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
-
 }
 
 // --------------------------------------------------------------------------
 
-void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t secondDigitVal) {
+void setLedSegments(uint8_t firstDigitVal, uint8_t secondDigitVal) {
 
 	uint8_t bitPos;
 	uint8_t mappedBitPos;
@@ -171,6 +165,16 @@ void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t sec
 	uint8_t bytePos;
 	uint8_t shiftBits;
 	uint8_t bitVal;
+
+	gDisplayBytes[0] = 0x12; // Start writing register bytes with register PSC0
+	gDisplayBytes[1] = gFreq; // PSC0 - low freq: appears to blink (0.5 sec cycle time)
+	gDisplayBytes[2] = gDutyCycle; // PWM0 - 80% duty cycle
+	gDisplayBytes[3] = gFreq; // PSC1 - high freq: appears to dim (1/44th sec cycle time)
+	gDisplayBytes[4] = gDutyCycle; // PWM1 - 5% duty cycle
+	gDisplayBytes[5] = 0x55; // LED 0-3
+	gDisplayBytes[6] = 0x55; // LED 4-7
+	gDisplayBytes[7] = 0x55; // LED 8-C
+	gDisplayBytes[8] = 0x55; // LED C-F
 
 	// Loop through the bits and set the segments.
 	for (bitPos = 0; bitPos < 16; ++bitPos) {
@@ -193,82 +197,78 @@ void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t sec
 		} else {
 			bitVal = (uint8_t) (kSegementOffBits << shiftBits);
 		}
-		displayBytesPtr[5 + bytePos] |= bitVal;
+		gDisplayBytes[5 + bytePos] |= bitVal;
 	}
+	
+	I2CM_Write_Bytes(0x60, 9, gDisplayBytes);
+	// Give it some time to write out to the bus.
+	Cpu_Delay100US(I2C_DELAY_40MS);
 }
 
 // --------------------------------------------------------------------------
 
 void displayValueBlink(uint8_t displayValue) {
 
-	static uint8_t displayBytes[] = { 0x14, // Start writing at register LED 0-3
-	        0x00, // Frequency
-	        0x00, // DUTY Cycle
-	        0x00, // LED 0-3
-	        0x00, // LED 4-7
-	        0x00, // LED 8-B
-	        0x00 // LED C-F
-	        };
-
 	uint8_t tens;
 	uint8_t ones;
 
-	displayBytes[1] = gFreq;
-	displayBytes[2] = gDutyCycle;
+	gDisplayBytes[0] = 0x14; // Start writing register bytes with register PSC0
+	gDisplayBytes[1] = gFreq; // PSC1 - high freq: appears to dim (1/44th sec cycle time)
+	gDisplayBytes[2] = gDutyCycle; // PWM1 - 5% duty cycle
+	gDisplayBytes[3] = 0x55; // LED 0-3
+	gDisplayBytes[4] = 0x55; // LED 4-7
+	gDisplayBytes[5] = 0x55; // LED 8-C
+	gDisplayBytes[6] = 0x55; // LED C-F
 
 	tens = displayValue / 10;
 	ones = displayValue % 10;
 	
-	displayBytes[4] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 0);
-	displayBytes[5] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 1);
+	gDisplayBytes[4] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 0);
+	gDisplayBytes[5] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 1);
 	if (tens > 0) {
-		displayBytes[3] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 0);
-		displayBytes[6] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 1);
+		gDisplayBytes[3] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 0);
+		gDisplayBytes[6] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 1);
 	} else {
-		displayBytes[3] = 0x55;
-		displayBytes[6] = 0x55;
+		gDisplayBytes[3] = 0x55;
+		gDisplayBytes[6] = 0x55;
 	}
 
-	I2CM_Write_Bytes(0x60, 7, displayBytes);
+	I2CM_Write_Bytes(0x60, 7, gDisplayBytes);
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
 
 }
 
 void displayFirmwareVersion() {
-	static uint8_t displayBytes[] = { 0x14, // Start writing at register LED 0-3
-	        0x00, // Frequency
-	        0x00, // DUTY Cycle
-	        0x00, // LED 0-3
-	        0x00, // LED 4-7
-	        0x00, // LED 8-B
-	        0x00 // LED C-F
-	        };
-
 	uint8_t tens;
 	uint8_t ones;
 
-	displayBytes[1] = gFreq;
-	displayBytes[2] = gDutyCycle;
+	gDisplayBytes[0] = 0x14; // Start writing register bytes with register PSC0
+	gDisplayBytes[1] = gFreq; // PSC1 - high freq: appears to dim (1/44th sec cycle time)
+	gDisplayBytes[2] = gDutyCycle; // PWM1 - 5% duty cycle
+	gDisplayBytes[3] = 0x55; // LED 0-3
+	gDisplayBytes[4] = 0x55; // LED 4-7
+	gDisplayBytes[5] = 0x55; // LED 8-C
+	gDisplayBytes[6] = 0x55; // LED C-F
 
 	tens = FWVERSION_MAJOR;
 	ones = FWVERSION_MINOR;
 	
-	displayBytes[4] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 0);
-	displayBytes[5] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 1);
+	gDisplayBytes[4] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 0);
+	gDisplayBytes[5] = *(((uint8_t*) &kRightDigitBlinkBits[ones]) + 1);
 	if (tens > 0) {
-		displayBytes[3] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 0);
-		displayBytes[6] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 1);
+		gDisplayBytes[3] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 0);
+		gDisplayBytes[6] = *(((uint8_t*) &kLeftDigitBlinkBits[tens]) + 1);
 	} else {
-		displayBytes[3] = 0x55;
-		displayBytes[6] = 0x55;
+		gDisplayBytes[3] = 0x55;
+		gDisplayBytes[6] = 0x55;
 	}
 	
 	// Set the decimal point LED element to 10;
-	displayBytes[6] |= 0x80;
-	displayBytes[6] &= 0xbf;
+	gDisplayBytes[6] |= 0x80;
+	gDisplayBytes[6] &= 0xbf;
 
-	I2CM_Write_Bytes(0x60, 7, displayBytes);
+	I2CM_Write_Bytes(0x60, 7, gDisplayBytes);
 	// Give it some time to write out to the bus.
 	Cpu_Delay100US(I2C_DELAY_40MS);
 }

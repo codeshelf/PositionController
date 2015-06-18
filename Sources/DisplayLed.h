@@ -15,6 +15,6 @@
 #define BLINK_FREQ 				0x15
 #define BLINK_DUTYCYCLE 		0x40
 
-void setLedSegments(uint8_t* displayBytesPtr, uint8_t firstDigitVal, uint8_t secondDigitVal);
+//void setLedSegments(uint8_t firstDigitVal, uint8_t secondDigitVal);
 
 #endif /* DISPLAYLED_H_ */

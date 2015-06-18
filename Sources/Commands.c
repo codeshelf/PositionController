@@ -16,6 +16,9 @@
 const uint8_t kMyPermanentBusAddr = UNSET_BUSADDR;
 #pragma CONST_SEG DEFAULT  
 
+// Send the bit-encoded LED segments in the min and max bytes.
+const uint8_t kLedSegmentsCode = 240;
+
 EDeviceState gDeviceState = eInactive;
 uint8_t gMyBusAddr;
 uint8_t gMessageBuffer[MAX_FRAME_BYTES];
@@ -81,11 +84,17 @@ void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 		gFreq = freq;
 		gDutyCycle = dutyCycle;
 
+		clearDisplay();
 		if (curValue <= 99) {
 			gCurValue = curValue;
 			gMinValue = minValue;
 			gMaxValue = maxValue;
 			displayValue(gCurValue);
+		} else if (curValue == kLedSegmentsCode) {
+			gMinValue = 255;
+			gMaxValue = 255;
+			gCurValue = 255;
+			setLedSegments(minValue, maxValue);
 		}
 	}
 }
@@ -122,7 +131,7 @@ void sendIdSetupIncCommand() {
 void sendAckCommand() {
 	uint8_t commandBytes[] = { BUTTON_COMMAND, 0x00, 0x00 };
 
-	commandBytes[1] = kMyPermanentBusAddr;
+	commandBytes[COMMAND_BUSADDR_POS] = gMyBusAddr; //kMyPermanentBusAddr;
 	commandBytes[BUTTON_CMD_DATA_POS] = gCurValue;
 
 	serialTransmitFrame((FramePtrType) &commandBytes, 3);
