@@ -33,7 +33,6 @@ void serialTransmitFrame(FramePtrType framePtr, FrameCntType frameSize) {
 #pragma MESSAGE DISABLE C2706 /* WARNING C2706: Octal # */
 	// Send another framing character. (For some stupid reason the USB routine doesn't try very hard, so we have to loop until it succeeds.)
 	sendOneChar(END);
-	sendOneChar(END);
 
 	totalBytesSent = 0;
 
@@ -68,7 +67,6 @@ void serialTransmitFrame(FramePtrType framePtr, FrameCntType frameSize) {
 	}
 
 	// Send another framing character. (For some stupid reason the USB routine doesn't try very hard, so we have to loop until it succeeds.)
-	sendOneChar(END);
 	sendOneChar(END);
 	
 	// Wait while the TX buffer is full.
