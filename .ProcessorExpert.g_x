@@ -11,7 +11,7 @@
   <GeneratedFilesList>
     <GeneratedByPE>
       <File Name="Generated_Code/IO_Map.h" FileDate="2015-05-05, 16:15:47" FileAge="1430867747522" FileType="45637" />
-      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2015-08-25, 11:45:29" FileAge="1440528329472" FileType="8" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2015-08-25, 11:56:41" FileAge="1440529001987" FileType="8" />
       <File Name="Generated_Code/IO_Map.c" FileDate="2015-05-05, 16:15:47" FileAge="1430867747517" FileType="45637" />
       <File Name="Generated_Code/DebounceTimer.h" FileDate="2015-05-05, 16:15:47" FileAge="1430867747603" FileType="45637" CompNumb="35" />
       <File Name="Generated_Code/Cpu.h" FileDate="2015-06-26, 13:46:49" FileAge="1435351609945" FileType="45637" CompNumb="75" />
@@ -40,7 +40,7 @@
       <File Name="Generated_Code/IIC.c" FileDate="2015-05-05, 16:15:47" FileAge="1430867747630" FileType="45637" CompNumb="24" />
       <File Name="Generated_Code/Vectors.c" FileDate="2015-06-26, 13:46:49" FileAge="1435351609962" FileType="45637" CompNumb="75" />
       <File Name="Generated_Code/Wait.h" FileDate="2015-05-05, 16:15:47" FileAge="1430867747556" FileType="45637" CompNumb="92" />
-      <File Name="Documentation/ProcessorExpert_SIGNALS.txt" FileDate="2015-08-25, 11:50:06" FileAge="1440528606180" FileType="3072" />
+      <File Name="Documentation/ProcessorExpert_SIGNALS.txt" FileDate="2015-08-25, 12:00:33" FileAge="1440529233069" FileType="3072" />
       <File Name="Sources/Events.h" FileDate="2015-06-29, 15:00:24" FileAge="1435615224029" FileType="131328" />
       <File Name="Generated_Code/Wait.c" FileDate="2015-05-05, 16:15:47" FileAge="1430867747549" FileType="45637" CompNumb="92" />
       <File Name="Sources/Events.c" FileDate="2015-06-29, 15:00:24" FileAge="1435615224025" FileType="131328" />
@@ -49,5 +49,5 @@
       <File Name="Documentation/ProcessorExpert_Settings.xml" FileDate="2015-06-26, 13:46:50" FileAge="1435351610106" FileType="3072" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>229</CodeGenReference>
+  <CodeGenReference>230</CodeGenReference>
 </CodeGenerationInfo>
