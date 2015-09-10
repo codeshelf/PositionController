@@ -21,9 +21,12 @@
 #define RESPONSE_COMMAND		0x05
 #define IDSETUPSTART_COMMAND	0x06
 #define IDSETUPINC_COMMAND		0x07
+#define BUTTONCREATE_COMMAND		0x08
 
 #define COMMANDID_POS			0x00
 #define COMMAND_BUSADDR_POS		COMMANDID_POS + 1
+
+#define COMMAND_CREATE_NUM		COMMAND_BUSADDR_POS + 1
 
 #define BROADCAST_BUSADDR		0x00
 #define UNSET_BUSADDR			0xff
@@ -53,5 +56,7 @@ void incrementConfigMode(void);
 void sendResponseCommand(void);
 void sendIdSetupIncCommand(void);
 void sendAckCommand(void);
+
+void createButtonPress(FramePtrType framePtr, FrameCntType frameByteCount);
 
 #endif /* COMMANDS_H_ */

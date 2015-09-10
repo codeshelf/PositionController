@@ -29,6 +29,8 @@ uint8_t gMaxValue = 0;
 uint8_t gFreq = 0;
 uint8_t gDutyCycle;
 
+extern bool gAckButtonLockout;
+
 // --------------------------------------------------------------------------
 
 void processFrame(FramePtrType framePtr, FrameCntType frameByteCount) {
@@ -56,9 +58,23 @@ void processFrame(FramePtrType framePtr, FrameCntType frameByteCount) {
 			case IDSETUPINC_COMMAND:
 				incrementConfigMode();
 				break;
+			case BUTTONCREATE_COMMAND:
+				createButtonPress(framePtr, frameByteCount);
+				break;
 			default:
 				break;
 		}
+	}
+}
+
+// --------------------------------------------------------------------------
+void createButtonPress(FramePtrType framePtr, FrameCntType frameByteCount) {
+	if ((gMyBusAddr == framePtr[COMMAND_BUSADDR_POS]) || (BROADCAST_BUSADDR == framePtr[COMMAND_BUSADDR_POS])) {
+
+		gCurValue = framePtr[COMMAND_CREATE_NUM];
+
+		Cpu_Delay100US(1 * 1000);
+		sendAckCommand();
 	}
 }
 
