@@ -48,7 +48,7 @@ void main(void) {
 	
 	Wait_Waitms(20);
 	initDisplay();
-	setStatusLed(0, 0, 0);
+	//setStatusLed(0, 0, 0);
 	RS485_RX;
 
 	for (;;) {

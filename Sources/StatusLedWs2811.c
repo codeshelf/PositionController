@@ -60,9 +60,9 @@ asm {
 	
 	// Red
 	// Pop 1st param from stack
-		AIS    #3
+		AIS    #6
 		PULA
-		AIS    #-4
+		AIS    #-7
 
 		LDX    #8
 	Loop3:

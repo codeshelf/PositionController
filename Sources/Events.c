@@ -42,6 +42,10 @@ extern uint8_t gMaxValue;
 extern uint8_t kMyPermanentBusAddr;
 extern uint8_t gMyBusAddr;
 extern EDeviceState gDeviceState;
+extern uint8_t gLedRedValue;
+extern uint8_t gLedGreenValue;
+extern uint8_t gLedBlueValue;
+extern uint8_t gLedLightStyle;
 
 void handleKeypress(void);
 void handleFlashANewBusAddr(void);
@@ -89,7 +93,7 @@ void handleKeypress() {
 					gCurValue++;
 					if (gDeviceState == eActive) {
 						displayValue(gCurValue);
-					} else if (gDeviceState == eConfigMode) {
+					} else if (gDeviceState == eConfigMode || gDeviceState == eMassConfigMode) {
 						displayValueBlink(gCurValue);
 					}
 				}
@@ -98,7 +102,7 @@ void handleKeypress() {
 					gCurValue--;
 					if (gDeviceState == eActive) {
 						displayValue(gCurValue);
-					} else if (gDeviceState == eConfigMode) {
+					} else if (gDeviceState == eConfigMode || gDeviceState == eMassConfigMode) {
 						displayValueBlink(gCurValue);
 					}
 				}
@@ -108,9 +112,9 @@ void handleKeypress() {
 						gAckButtonLockout = TRUE;
 						AckButtonDelay_Enable();
 						sendAckCommand();
-					} else if (gDeviceState == eConfigMode) {
+					} else if (gDeviceState == eConfigMode || gDeviceState == eMassConfigMode) {
 						handleFlashANewBusAddr();
-					} else {
+					} else { // eAddressDisplayMode, eFirmwareDisplayMode
 						clearDisplay();
 					}
 				}
@@ -133,7 +137,6 @@ void handleFlashANewBusAddr() {
 		RESET_MCU();
 	}
 
-	gDeviceState = eInactive;
 	gCurValue = 0;
 	gMinValue = 0;
 	gMaxValue = 0;
@@ -141,7 +144,12 @@ void handleFlashANewBusAddr() {
 	
 	clearDisplay();
 	
-	sendIdSetupIncCommand();
+
+	if (gDeviceState == eMassConfigMode) {
+		sendIdSetupIncCommand(gMyBusAddr);
+	}
+	
+	gDeviceState = eInactive;
 }
 
 /*
@@ -167,7 +175,7 @@ void DebounceTimer_OnInterrupt(void) {
 		DebounceTimer_Enable();
 	} else {
 		gKeypressPending = FALSE;
-		DebounceTimer_Disable();		
+		DebounceTimer_Disable();
 	}
 }
 
@@ -280,6 +288,21 @@ void Cpu_OnLvwINT(void)
 {
   /* Write your code here ... */
 }
+
+//ISR(LedOn) {
+//	//setStatusLed(gLedRedValue,gLedBlueValue,gLedGreenValue);
+//	//TPM1SC;
+//	//TPM1SC_TOF = 0;
+//}
+//
+//ISR(LedOff) {
+//	
+//	//if (gLedLightStyle == 0) {
+//	//	setStatusLed(0,0,0);
+//	//}
+//	//TPM1C0SC;
+//	//TPM1C0SC_CH0F = 0;
+//}
 
 /* END Events */
 

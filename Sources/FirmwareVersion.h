@@ -9,6 +9,6 @@
 #define FIRMWAREVERSION_H_
 
 #define FWVERSION_MAJOR		3
-#define FWVERSION_MINOR		3
+#define FWVERSION_MINOR		4
 
 #endif /* FIRMWAREVERSION_H_ */

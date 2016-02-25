@@ -29,14 +29,20 @@ uint8_t gMaxValue = 0;
 uint8_t gFreq = 0;
 uint8_t gDutyCycle;
 
+// LED status values
+uint8_t gLedRedValue = 0;
+uint8_t gLedGreenValue = 0;
+uint8_t gLedBlueValue = 0;
+uint8_t gLedLightStyle = 0;
+
 extern bool gAckButtonLockout;
 
 // --------------------------------------------------------------------------
 
 void processFrame(FramePtrType framePtr, FrameCntType frameByteCount) {
-
 	// Dispatch the command if the bus ID is zero or matches our bus ID.
 	if ((gMyBusAddr == framePtr[COMMAND_BUSADDR_POS]) || (BROADCAST_BUSADDR == framePtr[COMMAND_BUSADDR_POS])) {
+		
 		switch (framePtr[COMMANDID_POS]) {
 			case INIT_COMMAND:
 				gDeviceState = eInactive;
@@ -53,17 +59,41 @@ void processFrame(FramePtrType framePtr, FrameCntType frameByteCount) {
 			case QUERY_COMMAND:
 				break;
 			case IDSETUPSTART_COMMAND:
-				startConfigMode();
+				startMassConfigMode();
 				break;
 			case IDSETUPINC_COMMAND:
-				incrementConfigMode();
+				incrementMassConfigMode(framePtr, frameByteCount);
 				break;
 			case BUTTONCREATE_COMMAND:
 				createButtonPress(framePtr, frameByteCount);
 				break;
+			case DISPLAY_ADDR_COMMAND:
+				gDeviceState = eAddressDisplayMode;
+				displayBusAddress();
+				break;
+			case SET_LED:
+				setLedValues(framePtr, frameByteCount);
+				break;
+			case DISPLAY_FWVER_COMMAND:
+				gDeviceState = eFirmwareDisplayMode;
+				displayFirmwareVersion();
+				break;
 			default:
 				break;
 		}
+	}
+}
+
+// --------------------------------------------------------------------------
+void displayBusAddress() {
+	initDisplay();
+
+	if (gMyBusAddr == UNSET_BUSADDR) {
+		// Flash 0x00 if we have no bus address
+		displayValueBlink(0x00);
+	} else {
+		// Display current bus address
+		displayValue(gMyBusAddr);
 	}
 }
 
@@ -117,8 +147,8 @@ void setValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 
 // --------------------------------------------------------------------------
 
-void startConfigMode() {
-	gDeviceState = eConfigMode;
+void startMassConfigMode() {
+	gDeviceState = eMassConfigMode;
 	gCurValue = 0x01;
 	gMinValue = 1;
 	gMaxValue = 99;
@@ -127,19 +157,22 @@ void startConfigMode() {
 
 // --------------------------------------------------------------------------
 
-void incrementConfigMode() {
-	if (gDeviceState == eConfigMode) {
-		gCurValue++;
+void incrementMassConfigMode(FramePtrType framePtr, FrameCntType frameByteCount) {
+	if (gDeviceState == eMassConfigMode) {
+		//gCurValue++;
+		//displayValueBlink(gCurValue);
+		gCurValue = framePtr[IDSETUPINC_COMMAND_NUM_POS];
 		displayValueBlink(gCurValue);
 	}
 }
 
 // --------------------------------------------------------------------------
 
-void sendIdSetupIncCommand() {
-	uint8_t commandBytes[] = { IDSETUPINC_COMMAND, 0x00 };
+void sendIdSetupIncCommand(uint8_t n) {
+	uint8_t commandBytes[] = { IDSETUPINC_COMMAND, 0x00, 0};
+	commandBytes[2] = n+1;
 
-	serialTransmitFrame((FramePtrType) &commandBytes, 2);
+	serialTransmitFrame((FramePtrType) &commandBytes, 3);
 }
 
 // --------------------------------------------------------------------------
@@ -153,4 +186,12 @@ void sendAckCommand() {
 	serialTransmitFrame((FramePtrType) &commandBytes, 3);
 }
 
+// --------------------------------------------------------------------------
 
+void setLedValues(FramePtrType framePtr, FrameCntType frameByteCount) {
+	
+	gLedRedValue = 0; //framePtr[DISPLAY_CMD_RED_POS];
+	gLedGreenValue = 0; //framePtr[DISPLAY_CMD_GREEN_POS];
+	gLedBlueValue = 20; //framePtr[DISPLAY_CMD_BLUE_POS];
+	gLedLightStyle = framePtr[DISPLAY_CMD_SYTLE_POS];
+}
