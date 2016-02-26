@@ -20,6 +20,7 @@
 #include "AckButtonDelay.h"
 #include "Wait.h"
 #include "StatusLedClkDo.h"
+#include "TPM1.h"
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
@@ -29,6 +30,10 @@
 #include "Commands.h"
 #include "Display.h"
 
+extern uint8_t gLedRedValue;
+extern uint8_t gLedGreenValue;
+extern uint8_t gLedBlueValue;
+extern uint8_t gLedLightStyle;
 void main(void) {
 	FrameDataType frame[MAX_FRAME_BYTES];
 	FrameCntType frameSize;
@@ -48,7 +53,6 @@ void main(void) {
 	
 	Wait_Waitms(20);
 	initDisplay();
-	//setStatusLed(0, 0, 0);
 	RS485_RX;
 
 	for (;;) {

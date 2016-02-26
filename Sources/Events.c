@@ -31,6 +31,7 @@
 #include "Events.h"
 #include "Commands.h"
 #include "Display.h"
+#include "StatusLed.h" 
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
@@ -289,20 +290,189 @@ void Cpu_OnLvwINT(void)
   /* Write your code here ... */
 }
 
-//ISR(LedOn) {
-//	//setStatusLed(gLedRedValue,gLedBlueValue,gLedGreenValue);
-//	//TPM1SC;
-//	//TPM1SC_TOF = 0;
-//}
-//
-//ISR(LedOff) {
-//	
-//	//if (gLedLightStyle == 0) {
-//	//	setStatusLed(0,0,0);
-//	//}
-//	//TPM1C0SC;
-//	//TPM1C0SC_CH0F = 0;
-//}
+ISR(LedOn) {
+
+	asm {		
+		// Green
+			LDA 	gLedGreenValue
+			LDX		#8
+		Loop2:
+			ASLA
+			BCS		On2
+		Off2:
+			BSET	4, _PTBD
+			NOP
+			NOP
+			BCLR    4, _PTBD
+			BRA		End2
+		On2:
+			BSET	4, _PTBD
+			NOP    
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			BCLR    4, _PTBD
+		End2:
+			DECX
+			BNE		Loop2
+		
+		// Red
+			LDA 	gLedRedValue
+			LDX    #8
+		Loop3:
+			ASLA
+			BCS    On3
+		Off3:
+			BSET	4, _PTBD
+			NOP
+			NOP
+			BCLR    4, _PTBD
+			BRA    End3
+		On3:
+			BSET	4, _PTBD
+			NOP    
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			BCLR    4, _PTBD
+		End3:
+			DECX
+			BNE    Loop3	
+
+		// Blue
+			LDA 	gLedBlueValue
+			LDX    #8
+		Loop1:
+			ASLA
+			BCS    On1
+		Off1:
+			BSET	4, _PTBD
+			NOP
+			NOP
+			BCLR    4, _PTBD
+			BRA    End1
+		On1:
+			BSET	4, _PTBD
+			NOP    
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			NOP
+			BCLR    4, _PTBD
+		End1:
+			DECX
+			BNE    Loop1
+			
+		}
+	
+	TPM1SC;
+	TPM1SC_TOF = 0;
+}
+
+ISR(LedOff) {
+	
+	if (gLedLightStyle == 0) {
+		asm {		
+			// Green
+				LDA		#0
+				LDX		#8
+			Loop2:
+				ASLA
+				BCS		On2
+			Off2:
+				BSET	4, _PTBD
+				NOP
+				NOP
+				BCLR    4, _PTBD
+				BRA		End2
+			On2:
+				BSET	4, _PTBD
+				NOP    
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				BCLR    4, _PTBD
+			End2:
+				DECX
+				BNE		Loop2
+			
+			// Red
+				LDA		#0
+				LDX   	#8
+			Loop3:
+				ASLA
+				BCS    On3
+			Off3:
+				BSET	4, _PTBD
+				NOP
+				NOP
+				BCLR    4, _PTBD
+				BRA    End3
+			On3:
+				BSET	4, _PTBD
+				NOP    
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				BCLR    4, _PTBD
+			End3:
+				DECX
+				BNE    Loop3	
+
+			// Blue
+				LDA 	#0
+				LDX   	#8
+			Loop1:
+				ASLA
+				BCS    On1
+			Off1:
+				BSET	4, _PTBD
+				NOP
+				NOP
+				BCLR    4, _PTBD
+				BRA    End1
+			On1:
+				BSET	4, _PTBD
+				NOP    
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				BCLR    4, _PTBD
+			End1:
+				DECX
+				BNE    Loop1
+				
+			}
+		
+		TPM1SC;
+		TPM1SC_TOF = 0;
+	}
+	TPM1C0SC;
+	TPM1C0SC_CH0F = 0;
+}
 
 /* END Events */
 

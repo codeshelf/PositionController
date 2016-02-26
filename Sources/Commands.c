@@ -159,8 +159,6 @@ void startMassConfigMode() {
 
 void incrementMassConfigMode(FramePtrType framePtr, FrameCntType frameByteCount) {
 	if (gDeviceState == eMassConfigMode) {
-		//gCurValue++;
-		//displayValueBlink(gCurValue);
 		gCurValue = framePtr[IDSETUPINC_COMMAND_NUM_POS];
 		displayValueBlink(gCurValue);
 	}
@@ -190,8 +188,8 @@ void sendAckCommand() {
 
 void setLedValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 	
-	gLedRedValue = 0; //framePtr[DISPLAY_CMD_RED_POS];
-	gLedGreenValue = 0; //framePtr[DISPLAY_CMD_GREEN_POS];
-	gLedBlueValue = 20; //framePtr[DISPLAY_CMD_BLUE_POS];
+	gLedRedValue = framePtr[DISPLAY_CMD_RED_POS];
+	gLedGreenValue = framePtr[DISPLAY_CMD_GREEN_POS];
+	gLedBlueValue = framePtr[DISPLAY_CMD_BLUE_POS];
 	gLedLightStyle = framePtr[DISPLAY_CMD_SYTLE_POS];
 }
