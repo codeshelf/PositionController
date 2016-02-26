@@ -60,6 +60,7 @@ typedef enum {
 void processFrame(FramePtrType, FrameCntType);
 void setValues(FramePtrType, FrameCntType);
 void setLedValues(FramePtrType, FrameCntType);
+void clearStatusLed();
 
 void startMassConfigMode(void);
 void incrementMassConfigMode(FramePtrType framePtr, FrameCntType frameByteCount);

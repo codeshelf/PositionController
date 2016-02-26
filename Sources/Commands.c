@@ -51,6 +51,7 @@ void processFrame(FramePtrType framePtr, FrameCntType frameByteCount) {
 			case CLEAR_COMMAND:
 				gDeviceState = eInactive;
 				clearDisplay();
+				clearStatusLed();
 				break;
 			case DISPLAY_COMMAND:
 				gDeviceState = eActive;
@@ -192,4 +193,13 @@ void setLedValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 	gLedGreenValue = framePtr[DISPLAY_CMD_GREEN_POS];
 	gLedBlueValue = framePtr[DISPLAY_CMD_BLUE_POS];
 	gLedLightStyle = framePtr[DISPLAY_CMD_SYTLE_POS];
+}
+
+// --------------------------------------------------------------------------
+
+void clearStatusLed() {
+	gLedRedValue = 0;
+	gLedGreenValue = 0;
+	gLedBlueValue = 0;
+	gLedLightStyle = 0;
 }
