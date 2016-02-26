@@ -43,6 +43,8 @@ extern uint8_t gMaxValue;
 extern uint8_t kMyPermanentBusAddr;
 extern uint8_t gMyBusAddr;
 extern EDeviceState gDeviceState;
+
+extern uint8_t gLedOn;
 extern uint8_t gLedRedValue;
 extern uint8_t gLedGreenValue;
 extern uint8_t gLedBlueValue;
@@ -292,89 +294,91 @@ void Cpu_OnLvwINT(void)
 
 ISR(LedOn) {
 
-	asm {		
-		// Green
-			LDA 	gLedGreenValue
-			LDX		#8
-		Loop2:
-			ASLA
-			BCS		On2
-		Off2:
-			BSET	4, _PTBD
-			NOP
-			NOP
-			BCLR    4, _PTBD
-			BRA		End2
-		On2:
-			BSET	4, _PTBD
-			NOP    
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			BCLR    4, _PTBD
-		End2:
-			DECX
-			BNE		Loop2
-		
-		// Red
-			LDA 	gLedRedValue
-			LDX    #8
-		Loop3:
-			ASLA
-			BCS    On3
-		Off3:
-			BSET	4, _PTBD
-			NOP
-			NOP
-			BCLR    4, _PTBD
-			BRA    End3
-		On3:
-			BSET	4, _PTBD
-			NOP    
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			BCLR    4, _PTBD
-		End3:
-			DECX
-			BNE    Loop3	
-
-		// Blue
-			LDA 	gLedBlueValue
-			LDX    #8
-		Loop1:
-			ASLA
-			BCS    On1
-		Off1:
-			BSET	4, _PTBD
-			NOP
-			NOP
-			BCLR    4, _PTBD
-			BRA    End1
-		On1:
-			BSET	4, _PTBD
-			NOP    
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			NOP
-			BCLR    4, _PTBD
-		End1:
-			DECX
-			BNE    Loop1
+	if (gLedOn == TRUE) {
+		asm {		
+			// Green
+				LDA 	gLedGreenValue
+				LDX		#8
+			Loop2:
+				ASLA
+				BCS		On2
+			Off2:
+				BSET	4, _PTBD
+				NOP
+				NOP
+				BCLR    4, _PTBD
+				BRA		End2
+			On2:
+				BSET	4, _PTBD
+				NOP    
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				BCLR    4, _PTBD
+			End2:
+				DECX
+				BNE		Loop2
 			
+			// Red
+				LDA 	gLedRedValue
+				LDX    #8
+			Loop3:
+				ASLA
+				BCS    On3
+			Off3:
+				BSET	4, _PTBD
+				NOP
+				NOP
+				BCLR    4, _PTBD
+				BRA    End3
+			On3:
+				BSET	4, _PTBD
+				NOP    
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				BCLR    4, _PTBD
+			End3:
+				DECX
+				BNE    Loop3	
+	
+			// Blue
+				LDA 	gLedBlueValue
+				LDX    #8
+			Loop1:
+				ASLA
+				BCS    On1
+			Off1:
+				BSET	4, _PTBD
+				NOP
+				NOP
+				BCLR    4, _PTBD
+				BRA    End1
+			On1:
+				BSET	4, _PTBD
+				NOP    
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				NOP
+				BCLR    4, _PTBD
+			End1:
+				DECX
+				BNE    Loop1
+				
 		}
+	}
 	
 	TPM1SC;
 	TPM1SC_TOF = 0;
@@ -382,7 +386,7 @@ ISR(LedOn) {
 
 ISR(LedOff) {
 	
-	if (gLedLightStyle == 0) {
+	if (gLedLightStyle == 0 || gLedOn == FALSE) {
 		asm {		
 			// Green
 				LDA		#0
@@ -466,10 +470,8 @@ ISR(LedOff) {
 				BNE    Loop1
 				
 			}
-		
-		TPM1SC;
-		TPM1SC_TOF = 0;
 	}
+	
 	TPM1C0SC;
 	TPM1C0SC_CH0F = 0;
 }

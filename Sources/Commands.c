@@ -30,10 +30,11 @@ uint8_t gFreq = 0;
 uint8_t gDutyCycle;
 
 // LED status values
-uint8_t gLedRedValue = 0;
-uint8_t gLedGreenValue = 0;
-uint8_t gLedBlueValue = 0;
-uint8_t gLedLightStyle = 0;
+uint8_t gLedRedValue	= 0;
+uint8_t gLedGreenValue	= 0;
+uint8_t gLedBlueValue	= 0;
+uint8_t gLedLightStyle	= 0;
+uint8_t gLedOn			= FALSE;
 
 extern bool gAckButtonLockout;
 
@@ -188,7 +189,7 @@ void sendAckCommand() {
 // --------------------------------------------------------------------------
 
 void setLedValues(FramePtrType framePtr, FrameCntType frameByteCount) {
-	
+	gLedOn = TRUE;
 	gLedRedValue = framePtr[DISPLAY_CMD_RED_POS];
 	gLedGreenValue = framePtr[DISPLAY_CMD_GREEN_POS];
 	gLedBlueValue = framePtr[DISPLAY_CMD_BLUE_POS];
@@ -198,6 +199,7 @@ void setLedValues(FramePtrType framePtr, FrameCntType frameByteCount) {
 // --------------------------------------------------------------------------
 
 void clearStatusLed() {
+	gLedOn = FALSE;
 	gLedRedValue = 0;
 	gLedGreenValue = 0;
 	gLedBlueValue = 0;
